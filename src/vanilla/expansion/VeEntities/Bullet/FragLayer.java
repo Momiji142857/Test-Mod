@@ -1,4 +1,4 @@
-package vanilla.expansion.content.VeEntities.Bullet;
+package vanilla.expansion.VeEntities.Bullet;
 
 /**
  * 链式分裂子弹的层级配置.<p>

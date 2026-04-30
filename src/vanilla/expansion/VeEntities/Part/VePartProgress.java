@@ -1,4 +1,4 @@
-package vanilla.expansion.content.VeEntities.Part;
+package vanilla.expansion.VeEntities.Part;
 
 import arc.math.Mathf;
 import arc.util.Time;

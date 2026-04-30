@@ -1,4 +1,4 @@
-package vanilla.expansion.content.VeEntities.Bullet;
+package vanilla.expansion.VeEntities.Bullet;
 
 import mindustry.entities.bullet.BulletType;
 

@@ -1,4 +1,4 @@
-package vanilla.expansion.content.VePlanetGenerators;
+package vanilla.expansion.VePlanetGenerators;
 
 import mindustry.maps.generators.PlanetGenerator;
 

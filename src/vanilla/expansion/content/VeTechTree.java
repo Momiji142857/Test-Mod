@@ -2,12 +2,8 @@ package vanilla.expansion.content;
 
 import arc.struct.Seq;
 import mindustry.content.Blocks;
-import mindustry.content.Items;
-import mindustry.content.Liquids;
 import mindustry.game.Objectives;
 
-import static mindustry.content.Items.*;
-import static mindustry.content.Liquids.*;
 import static mindustry.content.TechTree.*;
 import static vanilla.expansion.content.VeBlocks.*;
 import static vanilla.expansion.content.VeItems.*;

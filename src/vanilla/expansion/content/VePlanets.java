@@ -10,9 +10,9 @@ import mindustry.graphics.g3d.SunMesh;
 import mindustry.type.Planet;
 import mindustry.world.meta.Attribute;
 import mindustry.world.meta.Env;
-import vanilla.expansion.content.VePlanetGenerators.CyclantPlanetGenerator;
-import vanilla.expansion.content.VePlanetGenerators.MaressPlanetGenerator;
-import vanilla.expansion.content.VePlanetGenerators.PhoonPlanetGenerator;
+import vanilla.expansion.VePlanetGenerators.CyclantPlanetGenerator;
+import vanilla.expansion.VePlanetGenerators.MaressPlanetGenerator;
+import vanilla.expansion.VePlanetGenerators.PhoonPlanetGenerator;
 
 public class VePlanets {
     public static Planet

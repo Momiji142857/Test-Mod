@@ -8,7 +8,6 @@ import mindustry.content.*;
 import mindustry.entities.TargetPriority;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
-import mindustry.entities.part.DrawPart;
 import mindustry.entities.part.RegionPart;
 import mindustry.entities.pattern.ShootBarrel;
 import mindustry.entities.pattern.ShootMulti;
