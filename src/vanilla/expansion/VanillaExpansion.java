@@ -1,7 +1,11 @@
 package vanilla.expansion;
 
+import mindustry.mod.ClassMap;
 import mindustry.mod.Mod;
 import mindustry.world.meta.Attribute;
+import vanilla.expansion.VeEntities.Part.StatefulRegionPart;
+import vanilla.expansion.VeEntities.Part.VePartProgress;
+import vanilla.expansion.VeType.StatefulWeapon;
 import vanilla.expansion.content.*;
 import vanilla.expansion.content.Override;
 
@@ -16,6 +20,11 @@ public class VanillaExpansion extends Mod {
 
     @java.lang.Override
     public void loadContent() {
+        // 尝试让json文件也能使用StatefulWeapon
+        ClassMap.classes.put("StatefulWeapon", StatefulWeapon.class);
+        ClassMap.classes.put("StatefulRegionPart", StatefulRegionPart.class);
+        ClassMap.classes.put("VePartProgress", VePartProgress.class);
+
         VeSounds.load();
         VeItems.load();
         VeStatusEffects.load();
@@ -23,6 +32,7 @@ public class VanillaExpansion extends Mod {
         VeWeathers.load();
         VeMissileUnitType.load();
         VeUnitTypes.load();
+        VeTestUnitTypes.load();
         VeBlocks.load();
         VePlanets.load();
         VeSectors.load();

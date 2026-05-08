@@ -4019,7 +4019,7 @@ public class VeUnitTypes {
         }};
 
 
-// UnitType
+        // UnitType
         /*
         unit = new UnitType("") {{
             constructor = UnitEntity::create;
@@ -4363,7 +4363,7 @@ public class VeUnitTypes {
         }};
         */
 
-// Missile
+        // Missile
         /*
         Missile = new MissileUnitType("") {{
             constructor = TimedKillUnit::create;
@@ -4397,7 +4397,7 @@ public class VeUnitTypes {
         }};
         */
 
-// DrawPart
+        // DrawPart
         /*
         DrawPart = new DrawPart() {{
             // = new EffectSpawnerPart() {{
@@ -4551,7 +4551,7 @@ public class VeUnitTypes {
         }};
         */
 
-// Abilities
+        // Abilities
         /*
         abilities = new Ability(unit, spawnTime, spawnX, spawnY) {{
             // = new ArmorPlateAbility() {{ // 护甲板
@@ -4767,7 +4767,7 @@ public class VeUnitTypes {
         }};
         */
 
-// Weapons
+        // Weapons
         /*
         BuildWeapon = new BuildWeapon(name) {{
             // = new BuildWeapon(name) {{ // 纯视觉武器

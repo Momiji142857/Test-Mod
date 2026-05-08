@@ -14,6 +14,7 @@ import mindustry.entities.part.DrawPart;
  * </ul>
  *
  * @since 2026-04-26
+ * @see DrawPart.PartProgress
  * @author Momiji142857 (with DeepSeek)
  */
 public class VePartProgress {
@@ -37,6 +38,27 @@ public class VePartProgress {
      */
     public static DrawPart.PartProgress sinOf(DrawPart.PartProgress source) {
         return sinOf(source, 1f, 1f);
+    }
+
+    /**
+     * 以任意 Progress 为相位源构造余弦波.<p>
+     * 数学形式: {@code output = cos(source / scl) * mag}
+     *
+     * @param source 相位源
+     * @param scl    周期
+     * @param mag    振幅
+     * @return  返回一个余弦波 Progress, 输出范围 [-mag, mag]
+     */
+    public static DrawPart.PartProgress cosOf(DrawPart.PartProgress source, float scl, float mag) {
+        return p -> Mathf.cos(source.get(p), scl, mag);
+    }
+
+    /**
+     * 默认周期 1f, 振幅 1f 的 {@link #cosOf(DrawPart.PartProgress, float, float)}.<p>
+     * 等价于 {@code cosOf(source, 1f, 1f)}, 输出范围 [-1, 1].
+     */
+    public static DrawPart.PartProgress cosOf(DrawPart.PartProgress source) {
+        return cosOf(source, 1f, 1f);
     }
 
     /**
