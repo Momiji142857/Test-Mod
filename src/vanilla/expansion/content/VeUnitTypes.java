@@ -10,6 +10,8 @@ import arc.struct.Seq;
 import mindustry.Vars;
 import mindustry.ai.UnitCommand;
 import mindustry.content.Fx;
+import mindustry.content.Items;
+import mindustry.content.Liquids;
 import mindustry.content.StatusEffects;
 import mindustry.entities.abilities.*;
 import mindustry.entities.bullet.*;
@@ -27,9 +29,7 @@ import mindustry.type.Weapon;
 import mindustry.type.weapons.*;
 import mindustry.world.meta.BlockFlag;
 import mindustry.world.meta.Env;
-import vanilla.expansion.VeEntities.Bullet.BulletChain;
-import vanilla.expansion.VeEntities.Bullet.ChainFragBullet;
-import vanilla.expansion.VeEntities.Bullet.FragLayer;
+import vanilla.expansion.VeEntities.Bullet.*;
 import vanilla.expansion.VeEntities.Part.StatefulRegionPart;
 import vanilla.expansion.VeEntities.Part.VePartProgress;
 import vanilla.expansion.VeType.StatefulWeapon;
@@ -41,96 +41,96 @@ public class VeUnitTypes {
     public static UnitType
             // core units
             theta, lambda, sigma, delta, omega,
-                    thetaTether, lambdaTether, sigmaTether,
+            thetaTether, lambdaTether, sigmaTether,
 
-            iota, iotaFungikiller, iotaStg,
+    iota, iotaFungikiller, iotaStg,
 
-            zeta, eta,
+    zeta, eta,
 
-            // 特种单位 - cyclant
-            // armorcar
-            conscript, arrange, charge, capture, triumph,
+    // 特种单位 - cyclant
+    // armorcar
+    conscript, arrange, charge, capture, triumph,
 
-            // crabbot
-            smarb, mider, velocite, slidoid, hovopid,
+    // crabbot
+    smarb, mider, velocite, slidoid, hovopid,
 
-            // hovership
-            dust, mist, haze, hurricane, meteorology,
+    // hovership
+    dust, mist, haze, hurricane, meteorology,
 
-            // 反制单位
-            flocculate, alleviate,
+    // 反制单位
+    flocculate, alleviate,
 
-            // 强化单位
-            // 陆战
-            blade, hammer, ballistic, firelock, ray,
+    // 强化单位
+    // 陆战
+    blade, hammer, ballistic, firelock, ray,
 
-            // 陆辅
-            stardust, vortex, nebula, galaxy, universe,
+    // 陆辅
+    stardust, vortex, nebula, galaxy, universe,
 
-            // 空战
-            aurora, plasma, solar, magnetic, corona,
+    // 空战
+    aurora, plasma, solar, magnetic, corona,
 
-            // 空辅
-            point, line, square, stereo, meta,
+    // 空辅
+    point, line, square, stereo, meta,
 
-            // maress
-            vibrate, shake, quake,
-                    sparkle, plasm, surge, tide, thunder,
-                    shimmer, daybreak, sunrise,
-                    uprise, soar, hover, dive,
+    // maress
+    vibrate, shake, quake,
+            sparkle, plasm, surge, tide, thunder,
+            shimmer, daybreak, sunrise,
+            uprise, soar, hover, dive,
 
-            // Boss
-            thoriumEradicator, hugeDagger, hyper,
+    // Boss
+    thoriumEradicator, hugeDagger, hyper,
 
-            // 改装单位
-            lance, hoe,
-                    astrologe,
-                    prominence, stellar,
-                    string, plain,
+    // 改装单位
+    lance, hoe,
+            astrologe,
+            prominence, stellar,
+            string, plain,
 
-            // 特殊单位
-            flyLaserDrill, wideFortress, alev, toxorpion, antumbright, eclire,
-                    thoriumBlaster, thoriumBomber, thoriumRocketeer,
-                    egnarra, magneticSmall, duplicator, duplicatorSmall,
+    // 特殊单位
+    flyLaserDrill, wideFortress, alev, toxorpion, antumbright, eclire,
+            thoriumBlaster, thoriumBomber, thoriumRocketeer,
+            egnarra, magneticSmall, duplicator, duplicatorSmall,
 
-            md, j, kobe, shard, coreNucleusUnit,
+    md, j, kobe, shard, coreNucleusUnit,
 
-            // assembly drone
-            assemblyDroneVe, assemblyDroneHyper,
+    // assembly drone
+    assemblyDroneVe, assemblyDroneHyper,
 
-            // missile
-            pantypeMissile, pantypeMissileNitroalkoss, pantypeMissilePhase, pantypeMissileSilicide, pantypeMissileSilicon, pantypeMissileSurge, pantypeMissileThorium, pantypeMissileWarp,
-                    chargeMissile, hurricaneMissile, meteorologyOrb, alleviateMissile,
-                    metaOrb, metaOrbSmall,
-                    hyperMissile,
-                    thoriumRocketeerMissileAccel, thoriumRocketeerMissile,
-                    surgeMissile,
+    // missile
+    pantypeMissile, pantypeMissileNitroalkoss, pantypeMissilePhase, pantypeMissileSilicide, pantypeMissileSilicon, pantypeMissileSurge, pantypeMissileThorium, pantypeMissileWarp,
+            chargeMissile, hurricaneMissile, meteorologyOrb, alleviateMissile,
+            metaOrb, metaOrbSmall,
+            hyperMissile,
+            thoriumRocketeerMissileAccel, thoriumRocketeerMissile,
+            surgeMissile,
 
-            // test
-            test1, test2, test3, test4, test5, test6, test7, test8, test9,
-                    testA, testB, testC, testD, testE, testF, testGHead, testGTail,
-                    testMissile, testMissileLarge, testOutline,
+    // test
+    test1, test2, test3, test4, test5, test6, test7, test8, test9,
+            testA, testB, testC, testD, testE, testF, testGHead, testGTail,
+            testMissile, testMissileLarge, testOutline,
 
-            // 超维
-            hyperDebrisBack, hyperDebrisFrontl, hyperDebrisFrontr, hyperDebrisRing1, hyperDebrisRing2, hyperDebrisShellL, hyperDebrisShellR, hyperDebrisSidedL, hyperDebrisSidedR, hyperDebrisSideL,
-                    hyperDebrisSideR, hyperOrb, hyperSpawn,
+    // 超维
+    hyperDebrisBack, hyperDebrisFrontl, hyperDebrisFrontr, hyperDebrisRing1, hyperDebrisRing2, hyperDebrisShellL, hyperDebrisShellR, hyperDebrisSidedL, hyperDebrisSidedR, hyperDebrisSideL,
+            hyperDebrisSideR, hyperOrb, hyperSpawn,
 
-            // 菌噬体
-            fungitronAbsorb, fungitronAttackLaser, fungitronAttackMissileUnit, fungitronAttackMissile, fungitronExplosion, fungitronMass1, fungitronMass2, fungitronMass3, fungitronMass4, fungitronMissile,
-                    fungitronPhase1, fungitronPhase2L, fungitronPhase2R, fungitronPhase3LD, fungitronPhase3LU, fungitronPhase3RD, fungitronPhase3RU, fungitronPrebattle, fungitronRoarShort, fungitronRoar,
-                    fungusFactoryDie,
+    // 菌噬体
+    fungitronAbsorb, fungitronAttackLaser, fungitronAttackMissileUnit, fungitronAttackMissile, fungitronExplosion, fungitronMass1, fungitronMass2, fungitronMass3, fungitronMass4, fungitronMissile,
+            fungitronPhase1, fungitronPhase2L, fungitronPhase2R, fungitronPhase3LD, fungitronPhase3LU, fungitronPhase3RD, fungitronPhase3RU, fungitronPrebattle, fungitronRoarShort, fungitronRoar,
+            fungusFactoryDie,
 
-            // 西击舰
-            octPainted,
-                    zentackArmLCannon, zentackArmL, zentackArmRCannon, zentackArmR, zentackBody, zentackCannonMid, zentackClawLCannon, zentackClawL, zentackClawRCannon, zentackClawR,
-                    zentackGun, zentackHeadL, zentackHeadR, zentackLegL, zentackLegR, zentackLightning, zentackMissile,
+    // 西击舰
+    octPainted,
+            zentackArmLCannon, zentackArmL, zentackArmRCannon, zentackArmR, zentackBody, zentackCannonMid, zentackClawLCannon, zentackClawL, zentackClawRCannon, zentackClawR,
+            zentackGun, zentackHeadL, zentackHeadR, zentackLegL, zentackLegR, zentackLightning, zentackMissile,
 
-            // 潜行小游戏
-            zenithSentry,
-            // 其他
+    // 潜行小游戏
+    zenithSentry,
+    // 其他
 
-            iotaStealth, turretUnitBuildTower, coronaSpawn, magneticSpawn, metaSpawn, mgsSpotIdea, mgsSpotNotice, mgsSpot, omegaAngry1, omegaAngry2,
-                    omegaObserver, speaker, surgeOfficerHuh, surgeOfficer, thoriumBomberCircle, zenithAudience, zenithMelondropper, zenithPilot;
+    iotaStealth, turretUnitBuildTower, coronaSpawn, magneticSpawn, metaSpawn, mgsSpotIdea, mgsSpotNotice, mgsSpot, omegaAngry1, omegaAngry2,
+            omegaObserver, speaker, surgeOfficerHuh, surgeOfficer, thoriumBomberCircle, zenithAudience, zenithMelondropper, zenithPilot;
 
             /*
             "flying": UnitEntity::create;
@@ -297,12 +297,11 @@ public class VeUnitTypes {
                             progress = PartProgress.charge.curve(Interp.circleOut);
                             layer = 110;
                         }});
-                        bullet = new BasicBulletType(5f, 19f) {{
+                        bullet = new BasicBulletType(5f, 19f, "circle-bullet") {{
                             backColor = frontColor = Pal.accent;
                             width = 6f;
                             height = 6f;
                             shrinkY = 0f;
-                            sprite = "circle-bullet";
                             lifetime = 35f;
                             buildingDamageMultiplier = 0.01f;
                             collidesTeam = true;
@@ -520,14 +519,13 @@ public class VeUnitTypes {
                         recoil = 3f;
                         shootSound = VeSounds.get("bangClassic");
                         reload = 30f;
-                        bullet = new ArtilleryBulletType(1f, 15f) {{
+                        bullet = new ArtilleryBulletType(1f, 15f, "missile-large") {{
                             hitSound = Sounds.explosionArtillery; // -
                             backColor = Color.valueOf("f9c27a");
                             frontColor = Pal.accent;
                             width = 8f;
                             height = 8f;
                             shrinkY = 0f;
-                            sprite = "missile-large";
                             lifetime = 95f;
                             scaleLife = false;
                             maxRange = 280f;
@@ -707,11 +705,10 @@ public class VeUnitTypes {
                                 lightningColor = hitColor = lightColor = Pal.accent;
                                 lightningLength = 5;
                             }};
-                            spawnBullets.add(new BasicBulletType(3f, 99.99f) {{
+                            spawnBullets.add(new BasicBulletType(3f, 99.99f, "ve-gggg") {{
                                 width = 15.25f;
                                 height = 10.5f;
                                 spin = 45f;
-                                sprite = "ve-gggg";
                                 lifetime = 199.98f;
                                 buildingDamageMultiplier = 0.01f;
                                 hittable = false;
@@ -1051,13 +1048,12 @@ public class VeUnitTypes {
                     colorTo = VePal.accent73;
                     under = false;
                 }});
-                bullet = new BasicBulletType(7f, 40f) {{
+                bullet = new BasicBulletType(7f, 40f, "circle-bullet") {{
                     backColor = Pal.accent;
                     frontColor = Color.white;
                     width = 4f;
                     height = 6f;
                     shrinkY = 0f;
-                    sprite = "circle-bullet";
                     lifetime = 120f;
                     keepVelocity = false;
                     knockback = 1f;
@@ -1283,13 +1279,12 @@ public class VeUnitTypes {
                         recoil = 1.5f; // -
                         shootSound = Sounds.shootMissilePlasmaShort;
                         reload = 25f;
-                        bullet = new BasicBulletType(4f, 20f) {{
+                        bullet = new BasicBulletType(4f, 20f, "missile") {{
                             backColor = Pal.accent;
                             frontColor = Color.white;
                             width = 9f;
                             height = 9f;
                             shrinkY = 0f;
-                            sprite = "missile";
                             lifetime = 60f;
                             buildingDamageMultiplier = 0.01f;
                             collidesTeam = true;
@@ -1362,12 +1357,11 @@ public class VeUnitTypes {
                     moveY = -1.25f;
                     under = true;
                 }});
-                bullet = new BasicBulletType(3.3f, 27f) {{
+                bullet = new BasicBulletType(3.3f, 27f, "missile-large") {{
                     backColor = Pal.redLight;
                     frontColor = Color.white;
                     width = 6f;
                     height = 9f;
-                    sprite = "missile-large";
                     lifetime = 55f;
                     drag = 0.008f;
                     hitSize = 5f;
@@ -1518,13 +1512,12 @@ public class VeUnitTypes {
                 reload = 45f;
                 shootCone = 30f;
                 shootSound = VeSounds.get("lbp3SearchlightEdited");
-                bullet = new BasicBulletType(0f, 32f) {{
+                bullet = new BasicBulletType(0f, 32f, "missile-large") {{
                     backColor = Pal.redLight;
                     frontColor = Color.white;
                     width = 4f;
                     height = 24f;
                     shrinkY = 0f;
-                    sprite = "missile-large";
                     lifetime = 80f;
                     drag = -0.01f;
                     buildingDamageMultiplier = 0.5f;
@@ -1655,13 +1648,12 @@ public class VeUnitTypes {
                         velocityRnd = 0.2f;
                         shootCone = 10f;
                         shootSound = Sounds.shootScepter;
-                        bullet = new BasicBulletType(7f, 130f) {{
+                        bullet = new BasicBulletType(7f, 130f, "missile-large") {{
                             backColor = Pal.redLight;
                             frontColor = Color.white;
                             width = 6f;
                             height = 9f;
                             shrinkY = 0f;
-                            sprite = "missile-large";
                             lifetime = 30f;
                             shieldDamageMultiplier = 3f;
                             hitSize = 4f; // -
@@ -1673,13 +1665,12 @@ public class VeUnitTypes {
                             fragBullets = 2;
                             fragVelocityMin = 0.5f;
                             fragOffsetMax = 1f;
-                            fragBullet = new BasicBulletType(6f, 70f) {{
+                            fragBullet = new BasicBulletType(6f, 70f, "missile-large") {{
                                 backColor = Pal.redLight;
                                 frontColor = Color.white;
                                 width = 5f; // -
                                 height = 7f; // -
                                 shrinkY = 0f;
-                                sprite = "missile-large";
                                 lifetime = 30f;
                                 drag = 0.05f;
                                 shieldDamageMultiplier = 3f;
@@ -1792,13 +1783,12 @@ public class VeUnitTypes {
                             fragBullets = 2;
                             fragVelocityMin = 0.6f;
                             fragOffsetMax = 1f;
-                            fragBullet = new BasicBulletType(7f, 55f) {{
+                            fragBullet = new BasicBulletType(7f, 55f, "circle-bullet") {{
                                 backColor = frontColor = Pal.redLight;
                                 width = 4f;
                                 height = 4f;
                                 shrinkX = 1f;
                                 shrinkY = 1f;
-                                sprite = "circle-bullet";
                                 lifetime = 15f;
                                 buildingDamageMultiplier = 0.7f;
                                 shieldDamageMultiplier = 0.5f;
@@ -1887,12 +1877,11 @@ public class VeUnitTypes {
                             moveY = -3f;
                             under = true;
                         }});
-                        bullet = new BasicBulletType(10f, 80f) {{
+                        bullet = new BasicBulletType(10f, 80f, "missile-large") {{
                             backColor = frontColor = Pal.redLight;
                             width = 10f;
                             height = 30f;
                             shrinkY = 0.2f;
-                            sprite = "missile-large";
                             lifetime = 70f;
                             rangeOverride = 472f;
                             accel = -0.12f;
@@ -1913,12 +1902,11 @@ public class VeUnitTypes {
                             fragBullets = 3;
                             fragVelocityMin = 1f;
                             fragOffsetMax = 1f;
-                            fragBullet = new BasicBulletType(3f, 1f) {{
+                            fragBullet = new BasicBulletType(3f, 1f, "missile") {{
                                 backColor = frontColor = Pal.redLight;
                                 width = 9f;
                                 height = 9f;
                                 shrinkY = 0f;
-                                sprite = "missile";
                                 lifetime = 60f;
                                 accel = -0.05f;
                                 collides = false;
@@ -2129,11 +2117,10 @@ public class VeUnitTypes {
                 recoil = 1.5f; // -
                 shootSound = Sounds.shootMerui;
                 reload = 8f;
-                bullet = new BasicBulletType(5.2f, 10f) {{
+                bullet = new BasicBulletType(5.2f, 10f, "circle-bullet") {{
                     backColor = frontColor = Pal.reactorPurple;
                     width = 4f;
                     height = 6f;
-                    sprite = "circle-bullet";
                     lifetime = 33f;
                     scaleLife = true;
                     collides = false;
@@ -2364,13 +2351,12 @@ public class VeUnitTypes {
                         shootSound = VeSounds.get("trLaserGatling");
                         reload = 7f;
                         inaccuracy = 1f;
-                        bullet = new BasicBulletType(5f, 40f) {{
+                        bullet = new BasicBulletType(5f, 40f, "missile") {{
                             backColor = Pal.reactorPurple;
                             frontColor = Color.white;
                             width = 8f;
                             height = 8f;
                             shrinkY = 0f;
-                            sprite = "missile";
                             lifetime = 27f;
                             maxRange = 192f;
                             drag = -0.03f;
@@ -2415,13 +2401,12 @@ public class VeUnitTypes {
                         shootSound = VeSounds.get("trLaserGatling");
                         reload = 9f;
                         inaccuracy = 1f;
-                        bullet = new BasicBulletType(5f, 40f) {{
+                        bullet = new BasicBulletType(5f, 40f, "missile") {{
                             backColor = Pal.reactorPurple;
                             frontColor = Color.white;
                             width = 8f;
                             height = 8f;
                             shrinkY = 0f;
-                            sprite = "missile";
                             lifetime = 27f;
                             maxRange = 192f;
                             drag = -0.03f;
@@ -2567,13 +2552,12 @@ public class VeUnitTypes {
                                     under = true;
                                 }}
                         );
-                        bullet = new BasicBulletType(12f, 25f) {{
+                        bullet = new BasicBulletType(12f, 25f, "ve-buzzsaw") {{
                             backColor = frontColor = Pal.reactorPurple;
                             width = 9f;
                             height = 9f;
                             shrinkY = 0f;
                             spin = 12f;
-                            sprite = VeName("buzzsaw");
                             lifetime = 40f; // -
                             rangeOverride = 240f;
                             accel = -0.3f;
@@ -2635,13 +2619,12 @@ public class VeUnitTypes {
                                     under = true;
                                 }}
                         );
-                        bullet = new BasicBulletType(12f, 25f) {{
+                        bullet = new BasicBulletType(12f, 25f, "ve-buzzsaw") {{
                             backColor = frontColor = Pal.reactorPurple;
                             width = 9f;
                             height = 9f;
                             shrinkY = 0f;
                             spin = 12f;
-                            sprite = VeName("buzzsaw");
                             lifetime = 40f; // -
                             rangeOverride = 240f;
                             accel = -0.3f;
@@ -2859,14 +2842,13 @@ public class VeUnitTypes {
                 shootStatus = StatusEffects.slow;
                 shootStatusDuration = 3f * 60f;
                 // parts.add();
-                bullet = new ArtilleryBulletType(2f, 5f) {{
+                bullet = new ArtilleryBulletType(2f, 5f, "circle-bullet") {{
                     backColor = VePal.skyBlue;
                     frontColor = Color.white;
                     width = 10f;
                     height = 10f;
                     shrinkX = 0f; // -
                     shrinkY = 0f;
-                    sprite = "circle-bullet";
                     lifetime = 100f;
                     keepVelocity = false;
                     hitSize = 10f;
@@ -2878,13 +2860,12 @@ public class VeUnitTypes {
                     fragRandomSpread = 0f;
                     fragBullets = 1;
                     fragVelocityMin = 1f;
-                    fragBullet = new BasicBulletType(0f, 42f) {{
+                    fragBullet = new BasicBulletType(0f, 42f, "circle-bullet") {{
                         backColor = Color.valueOf("78abd1");
                         frontColor = VePal.skyBlue;
                         width = 10f;
                         height = 10f;
                         shrinkY = 0f;
-                        sprite = "circle-bullet";
                         lifetime = 120f * 60f;
                         // hitSize = 14f;
                         hitSize = 16f;
@@ -3008,27 +2989,26 @@ public class VeUnitTypes {
             );
 
             BulletType hazeBullet = ChainFragBullet.create(
-                    new FragLayer[]{
-                            new FragLayer(24f, 11f, 10f, 12f, 2f).basicFields(6f, 12f),
-                            new FragLayer(22f, 10f, 13f, 16f, 2f).basicFields(11f, 11f),
-                            new FragLayer(20f, 9f, 16f, 20f, 2f).basicFields(10f, 10f),
-                            new FragLayer(18f, 9f, 19f, 24f, 2f).basicFields(9f, 9f),
-                            new FragLayer(16f, 8f, 22f, 28f, 2f).basicFields(8f, 8f),
-                            new FragLayer(14f, 7f, 24f, 26f, 1f).basicFields(7f, 7f),
-                            new FragLayer(12f, 7f, 25f, 24f, 1f).basicFields(6f, 6f),
-                            new FragLayer(10f, 6f, 24f, 22f, 1f).basicFields(5f, 5f),
-                            new FragLayer(6f, 5f, 22f, 20f, 1f).basicFields(4f, 4f),
-                            new FragLayer(6f, 4f, 19f, 18f, 1f).basicFields(3f, 3f),
-                            new FragLayer(4f, 4f, 15f, 16f, 1f).basicFields(2f, 2f),
-                            new FragLayer(2f, 4f, 35f, 40f, 3f).basicFields(1f, 1f)
+                    new BulletLayer[]{
+                            new BulletLayer(24f, 5f, 11f, 2f).setSplash(10f, 12f).setBasicFields(6f, 12f),
+                            new BulletLayer(22f, 2.5f, 10f, 2f).setSplash(13f, 16f).setBasicFields(11f, 11f),
+                            new BulletLayer(20f, 2.5f, 9f, 2f).setSplash(16f, 20f).setBasicFields(10f, 10f),
+                            new BulletLayer(18f, 2.5f, 9f, 2f).setSplash(19f, 24f).setBasicFields(9f, 9f),
+                            new BulletLayer(16f, 2.5f, 8f, 2f).setSplash(22f, 28f).setBasicFields(8f, 8f),
+                            new BulletLayer(14f, 2.5f, 7f, 1f).setSplash(24f, 26f).setBasicFields(7f, 7f),
+                            new BulletLayer(12f, 2.5f, 7f, 1f).setSplash(25f, 24f).setBasicFields(6f, 6f),
+                            new BulletLayer(10f, 2.5f, 6f, 1f).setSplash(24f, 22f).setBasicFields(5f, 5f),
+                            new BulletLayer(8f, 2.5f, 5f, 1f).setSplash(22f, 20f).setBasicFields(4f, 4f),
+                            new BulletLayer(6f, 2.5f, 4f, 1f).setSplash(19f, 18f).setBasicFields(3f, 3f),
+                            new BulletLayer(4f, 2.5f, 4f, 1f).setSplash(15f, 16f).setBasicFields(2f, 2f),
+                            new BulletLayer(2f, 2.5f, 4f, 3f).setSplash(35f, 40f).setBasicFields(1f, 1f)
                     },
-                    new BasicBulletType(2.5f, 5f) {{
+                    new BasicBulletType(2.5f, 5f, "circle-bullet") {{
                         backColor = VePal.skyBlue;
                         frontColor = Color.white;
                         width = 6f;
                         height = 12f;
                         shrinkY = 0f;
-                        sprite = "circle-bullet";
                         lifetime = 24f;
                         shieldDamageMultiplier = 2.5f;
                         hitSize = 11f;
@@ -3067,7 +3047,6 @@ public class VeUnitTypes {
             hazeBullet.smokeEffect = Fx.shootBigSmoke;
             hazeBullet.hitColor = VePal.skyBlue;
             hazeBullet.maxRange = 432f;
-            hazeBullet.speed = 5f;
             ((BasicBulletType) hazeBullet).shrinkX = -1f;
             var lastBullet = BulletChain.last(hazeBullet);
             lastBullet.despawnEffect = Fx.blastExplosion;
@@ -3913,9 +3892,7 @@ public class VeUnitTypes {
                 top = true; // -
                 x = 4.75f;
                 y = -2.5f;
-                shoot = new ShootSpread(3, 0f) {{
-                    shotDelay = 5f;
-                }};
+                shoot = new ShootSpread(3, 0f) {{shotDelay = 5f;}};
                 ejectEffect = Fx.casing1;
                 recoil = 3.5f;
                 recoilTime = 20f;
@@ -4017,6 +3994,1947 @@ public class VeUnitTypes {
                 }};
             }});
         }};
+
+        /* = new UnitType("") {{
+            constructor = UnitEntity::create;
+
+//            "flying": UnitEntity::create;
+//            "mech": MechUnit::create;
+//            "legs": LegsUnit::create;
+//            "naval": UnitWaterMove::create;
+//            "payload": PayloadUnit::create;
+//            "missile": TimedKillUnit::create;
+//            "tank": TankUnit::create;
+//            "hover": ElevationMoveUnit::create;
+//            "tether": BuildingTetherPayloadUnit::create;
+//            "crawl": CrawlUnit::create;
+
+            // 属性
+            health = f; // 200f 生命值
+            armor = f; // 0f 护甲
+            range = f; // -1f 最小攻击范围
+            maxRange = f; // -1f 最大攻击范围
+            aimDst = f; // -1f 武器可瞄准的最小距离
+            hitSize = f; // 6f 碰撞箱边长大小
+            mineRange = f; // 70f 挖掘范围
+            mineSpeed = f; // 1f 挖掘速度
+            mineTier = ; // -1 可挖掘的矿石最大硬度
+            mineWalls = ; // false 能否从墙壁挖掘
+            mineFloor = ; // true 能否从地板挖掘
+            mineHardnessScaling = ; // true 更硬的矿石挖掘时间是否延长
+            buildRange = ; // 220f 建造范围
+            buildSpeed = f; // -1f 建造速度倍率
+            rotateToBuilding = ; // true 是否面向正在建造的物体
+            itemCapacity = ; // -1 可携带物品数量
+            pickupUnits = ; // true 该单位能否搬起其他单位
+            payloadCapacity = Mathf.sqr(f) * Vars.tilePayload; // 8 载荷容量
+            createScorch = ; // true 死亡时是否会产生烧痕
+            createWreck = ; // true 死亡时是否掉落残骸
+            wreckHealthMultiplier = f; // 0.25f 残骸生命值倍率
+            crashDamageMultiplier = f; // 1f 坠落伤害倍率
+            dpsEstimate = f; // -1f DPS粗略估计
+            canDrown = ; // true 能否被淹没
+            drownTimeMultiplier = f; // -1f 沉没速度倍率
+            fogRadius = f; // -1f 战争迷雾视野半径
+            researchCostMultiplier = f; // 50f 研究成本倍数
+            isEnemy = ; // true 是否被视为敌人
+            flying = ; // false 是否为飞行单位
+            wobble = ; // true 飞行单位是否摇晃
+            targetBuildingsMobile = ; // true 仅移动端, 当玩家附身该单位时, 是否自动瞄准建筑进行附着
+            allowedInPayloads = ; // true 能否被移动到载荷中
+            logicControllable = ; // true 逻辑能否控制此单位
+            playerControllable = ; // true 玩家能否控制该单位
+            controlSelectGlobal = ; // true 能否被shift+g选中
+            physics = ; // true 该单位能否与其他单位发生物理碰撞
+            useUnitCap = ; // true 如果为false, 忽略单位上限, 无限生成
+            coreUnitDock = ; // false 该核心机在解除附身之后是否重新出现
+            hoverable = ; // true 是否显示悬停提示
+            hidden = ; // false 是否隐藏
+            bounded = ; // true 能否被推离地图边界
+
+            // 移动
+            speed = f; // 1.1f 移动速度
+            strafePenalty = f; // 0.5f 侧向移动速度惩罚倍率
+            boostMultiplier = f; // 1f 助推速度倍率
+            floorMultiplier = f; // 1f 受地形影响的程度
+            rotateSpeed = f; // 5f 身体转向速度
+            baseRotateSpeed = f; // 5f 机甲转向速度
+            drag = f; // 0.3f 移动阻力与移动速度的比例
+            accel = f; // 0.5f 加速度与移动速度的比例
+            riseSpeed = f; // 0.08f 助推时上升速度
+            descentSpeed = f; // 0.08f 无助推时下落速度
+            fallSpeed = f; // 0.018f 死亡时的坠落速度
+            canBoost = ; // false 能否助推
+            boostWhenBuilding = ; // true 处于建造者AI时助推
+            boostWhenMining = ; // true 处于挖矿AI时助推
+            hovering = ; // false 是否受下方地板影响
+            omniMovement = ; // true 能否向任意方向移动, 如果为false, 则只能向前方移动
+            rotateMoveFirst = ; // false 单位在实际移动前是否需要先面朝移动方向
+
+            // 战斗
+            targetPriority = f; // 0f 目标优先级
+            canHeal = ; // false 能否修复建筑
+            singleTarget = ; // false 武器是否攻击同一目标
+            forceMultiTarget = ; // false 是否强制拥有多个目标
+            canAttack = ; // true 能否攻击
+            targetAir = ; // true 是否尝试攻击空中单位
+            targetGround = ; // true 是否尝试攻击地面单位
+            faceTarget = ; // true 攻击时是否面向目标
+            circleTarget = ; // false 是否围绕目标盘旋
+            circleTargetRadius = f; // 80f 围绕目标盘旋的范围
+            autoDropBombs = ; // false 如果为true, 即使该单位不在其"真实"目标旁边, 也会投下炸弹, 用于地毯式轰炸机
+            hittable = ; // true 能否被子弹或爆炸打中
+            killable = ; // true 单位能否受伤和被击杀
+            targetable = ; // true 能否被索敌
+            vulnerableWithPayloads = ; // false 当该单位携带载荷时, 能否被索敌和被击中
+            targetUnderBlocks = ; // true 是否攻击类似传送带的"下方"的建筑
+            alwaysShootWhenMoving = ; // false 是否在移动时始终射击
+
+            // 渲染
+            clipSize = f; // -1f 单位渲染范围大小
+            deathShake = f; // -1f 单位死亡时的震动强度
+            stepShake = f; // -1f 单位行走时的震动强度
+            rippleScale = f; // 1f 行走时扬起的尘埃云大小
+            groundLayer = f; // 60f 地面单位渲染时所处的图层
+            flyingLayer = f; // -1 飞行单位渲染时所处的图层
+            lowAltitude = ; // false 是否在效果或子弹下方绘制
+            drawCell = ; // true 是否绘制队伍指示器/单元格
+            drawBody = ; // true 是否绘制单位身体
+            squareShape = ; // false 是否具有方块阴影
+            shadowElevation = f; // -1f 阴影垂直偏移量
+            shadowElevationScl = f; // 1f 阴影缩放比例
+            drawSoftShadow = ; // true 是否绘制软阴影
+            softShadowScl = f; // 1f 软阴影缩放比例
+            drawBuildBeam = ; // true 是否绘制建造光束
+            buildBeamOffset = f; // 3.8f 建造光束向前的偏移量
+            drawMineBeam = ; // true 是否绘制挖掘光束
+            mineBeamOffset = f; // = hitSize / 2f 挖掘光束向前的偏移量
+            drawShields = ; // true 是否绘制单位护盾
+            shieldColor = Color.valueOf(""); // 单位护盾的颜色
+            drawItems = ; // true 是否绘制携带物品
+            itemOffsetY = f; // 3f 物品y轴偏移量
+            drawMinimap = ; // true 是否在小地图上绘制
+            internal = ; // false 是否仅用于内部用途且没有贴图
+            internalGenerateSprites = ; // false 对于内部使用的单位, 是否仍然需要贴图
+            // 轮廓
+            alwaysCreateOutline = ; // false 是否始终生成轮廓区域
+            outlineColor = Color.valueOf(""); // 565666 贴图轮廓颜色
+            outlineRadius = ; // 3 贴图轮廓厚度
+            outlines = ; // true 有无贴图轮廓
+            //引擎
+            setEnginesMirror(); // 引擎
+            engineOffset = f; // 5f 引擎向后的偏移量
+            engineSize = f; // 2.5f 引擎半径
+            engineLayer = f; // -1f 引擎所处的图层
+            useEngineElevation = ; // true 引擎是否始终以正常尺寸显示
+            engineColor = Color.valueOf(""); // null 引擎颜色
+            engineColorInner = Color.valueOf(""); // white 引擎内部颜色
+            // 轨迹
+            waveTrailX = f; // 4f 波纹轨迹水平偏移量
+            waveTrailY = f; // -3f 波纹轨迹垂直偏移量
+            trailScl = f; // 1f 轨迹缩放比例
+            trailLength = ; // 0 引擎尾迹或波浪尾迹长度
+            trailColor = Color.valueOf(""); // 尾迹颜色
+            // 光照
+            lightRadius = f; // -1f 光照半径
+            lightOpacity = f; // 0.6f 光照不透明度
+            lightColor = Color.valueOf(""); // fbd367 单位产生的光照的颜色
+            // 治疗
+            healFlash = ; // true 被治疗时是否闪光
+            healColor = Color.valueOf(""); // 98ffa9 收到治疗时闪光的颜色
+
+            // 音效
+            deathSound = Sounds.; // unset 死亡音效
+            deathSoundVolume = f; // 1f 死亡音效音量
+            wreckSound = Sounds.; // unset 坠毁音效
+            wreckSoundVolume = f; // 1f 坠毁音效音量
+            loopSound = Sounds.; // none 单位在附近时循环播放的音效
+            loopSoundVolume = f; // 0.5f 循环音效的音量
+            stepSound = Sounds.; // mechStepSmall 步进音效
+            stepSoundVolume = f; // 0.5f 步进音量
+            stepSoundPitch = f; // 1f 步进音效的音高
+            stepSoundPitchRange = f; // 0.1f 步进音效的音高范围
+            moveSound = Sounds.; // none 移动音效
+            moveSoundVolume = f; // 1f 移动音效的音量
+            moveSoundPitchMin = f; // 1f 基于速度的移动音效的音高范围
+            moveSoundPitchMax = f; // 1f
+            mineSound = Sounds.; // loopMineBeam 挖掘音效
+            mineSoundVolume = f; // 0.6f 挖掘音效音量
+
+            // 粒子效果
+            fallEffect = Fx.; // fallSmoke 坠毁时产生的粒子效果
+            fallEngineEffect = Fx.; // fallSmoke 坠毁时引擎处产生的粒子效果
+            deathExplosionEffect = Fx.; // dynamicExplosion 死亡时产生的粒子效果
+
+            //LEG UNITS
+            allowLegStep = ; // false 对于有腿的单位, 能否跨过方块
+            legPhysicsLayer = ; // true 腿部是否强行处于地面物理层
+            legCount = ; // 4 拥有腿的数量
+            legGroupSize = ; // 2 腿的组数
+
+            legLength = f; // 10f 单条腿的总长度
+            legSpeed = f; // 0.1f 单条腿的移动速度
+            legForwardScl = f; // 1f 腿部向前放置的距离与单位速度的比例
+            legBaseOffset = f; // 0f 腿部相对于中心的偏移量
+            legMoveSpace = f; // 1f 腿部移动间距比例
+            legExtension = f; // 0f 腿部关节覆盖偏移
+            legPairOffset = f; // 0f 腿部组间同步移动的偏移量
+            legLengthScl = f; // 1f 腿部试图与单位保持的距离
+            legStraightLength = f; // 1f 腿部水平伸展距离比例
+            legMaxLength = f; // 1.75f 腿部最大伸展长度比例
+            legMinLength = f; // 0f 腿部最小伸展长度比例
+            legSplashDamage = f; // 0f 腿部触地时产生的溅射伤害
+            legSplashRange = f; // 5f 腿部触地伤害的范围
+            baseLegStraightness = f; // 0f 腿部基座排列直线度
+            legStraightness = f; // 0f 腿部外展角度直线度
+
+            legBaseUnder = ; // false 腿部区域是否绘制在下方
+            lockLegBase = ; // false 腿部是否被锁定在单位基座上
+            legContinuousMove = ; // 当单位停止移动时, 腿部是否始终尝试移动
+            emitWalkSound = ; // true 踩中液体的音效
+            emitWalkEffect = ; // true 踩中液体的粒子效果
+
+            //MECH UNITS
+            mechLandShake = f; // 0f 机甲落地时的震动强度
+            mechSideSway = f; // 0.54f 机甲侧向摆动的幅度
+            mechFrontSway = f; // 0.1f 机甲前后摆动的幅度
+            mechStride = f; // -1f 机甲步幅长度
+            mechStepParticles = ; // false 机甲在迈出一步后是否产生粒子效果
+            mechLegColor = Color.valueOf(""); // 6e7080 机甲腿部移动时的颜色
+
+            //TANK UNITS
+            treadRects = new Rect[]{}; // 履带矩形区域列表, 相对于中心
+            treadFrames = ; // 18 履带动画帧数
+            treadPullOffset = ; // 0 履带顶部裁剪偏移
+            tankMoveSound = Sounds.; // tankMove 坦克移动音效
+            tankMoveVolume = f; // 0.5f 坦克移动音效的音量
+            treadEffect = Fx.; // 坦克移动时产生的粒子效果
+
+            //SEGMENTED / CRAWL UNITS (this is WIP content!)
+            segments = ; // 0 身体节段数量
+            segmentUnits = ; // 1 是否每节都是独立单位
+            segmentUnit = UnitType.; // 身体节段使用的单位类型
+            segmentEndUnit = UnitType.; // 尾部节段使用的单位类型
+            segmentLayerOrder = ; // true 节段绘制顺序. 为false时, 后面的节段覆盖前面的节段
+            segmentMag = f; // 2f 摆动幅度
+            segmentScl = f; // 4f 摆动周期缩放
+            segmentPhase = f; // 5f 节段间相位差
+            segmentRotSpeed = f; // 1f 节段转向速度
+            segmentMaxRot = f; // 30f 最大角度差
+            segmentSpacing = f; // -1f 节段间距
+            segmentRotationRange = f; // 80f 转向范围限制
+            crawlSlowdown = f; // 0.5f 爬行减速倍率
+            crushDamage = f; // 0f 碾压伤害
+            crawlSlowdownFrac = f; // 0.55f 减速阈值
+
+            //MISSILE UNITS
+            lifetime = f; // 5f * 60f 导弹的生命周期
+            homingDelay = f; // 10f 导弹开始追踪前需要经过的帧数
+            missileAccelTime = f; // 0f 导弹加速到全速所须时间
+
+            // 行为
+            allowChangeCommands = ; // true 是否在单位工厂中隐藏命令更改界面
+            mineItems = Seq.with(Items., Items.); // 目标矿石, 用于采矿AI
+
+            commands.add(); // 可用命令列表
+            defaultCommand = UnitCommand.; // 默认命令
+            stances = ; // 单位可拥有的行为
+            flowfieldPathType = ; // -1 寻路相关
+            pathCost = ; //
+
+            // 环境需求
+            envRequired = ; // 0 必要的环境
+            envEnabled = ; // 可以存在的环境
+            envDisabled = ; // 无法存在的环境
+
+            immunities.add(StatusEffects.); // 免疫的状态效果
+            targetFlags = new BlockFlag[] {BlockFlag., BlockFlag.}; // 目标
+            ammoCapacity = ; // -1 弹药容量
+            ammoType = new ItemAmmoType(Items.); // copper 使用的弹药
+
+            parts.add(); // 额外的动画部件
+            abilities.add(); // 能力
+            weapons.add(new Weapon(VeName("")) {{
+                display = ; // true 是否显示在单位属性中
+                showStatSprite = ; // true 是否在数据库中显示武器贴图
+                mirror = ; // true 有无镜像
+                noAttack = ; // false 该武器能否用于攻击
+                alternate = ; // true 不同副本是否依次射击
+                shootOnDeath = ; // false 是否死亡时射击
+                useAttackRange = ; // true 是否用于攻击范围计算
+                minShootVelocity = f; // -1f 该武器射击所需的最小速度
+                useAmmo = ; // true 当对应规则启用时, 是否消耗弹药
+                targetInterval = f; // 40f 更换目标间的等待时间
+                targetSwitchInterval = f; // 70f 目标切换间隔
+
+                // 旋转
+                rotate = ; // false 是否独立于单位旋转
+                ignoreRotation = ; // false 射击时是否忽略单位旋转
+                baseRotation = f; // 0f 起始旋转角度
+                rotateSpeed = f; // 20f 武器旋转速度
+                rotationLimit = f; // 361f 武器旋转限制
+
+                // 视觉效果
+                region = ""; // 显示纹理区域
+                heatRegion = ""; // 发热纹理区域
+                cellRegion = ""; // 能量单元纹理区域
+                outlineRegion = ""; // 轮廓纹理区域
+                top = ; // true 是否在顶部绘制轮廓
+                layerOffset = f; // 0f 图层偏移量
+                shootX = f; // 0f 弹道/特效相对于武器中心的偏移量
+                shootY = f; // 3f
+                x = f; // 5f 武器对于单位的偏移量
+                y = f; // 0f
+                xRand = f; // 0f X/Y轴上的随机散布
+                yRand = f; // 0f
+                shadow = f; // -1f 武器阴影半径
+                shake = f; // 0f 射击后屏幕震动强度
+                shoot. = ; // 用于子弹的图案
+                ejectEffect = Fx.; // none 弹壳抛出效果
+                parentizeEffects = ; // 射击效果是否跟随单位
+                recoil = f; // 1.5f 视觉上的后坐力
+                recoils = f; // -1f 额外的后坐力计数器数量
+                recoilTime = f; // = reload 后坐力复位时间
+                recoilPow = f; // 1.8f 后坐力功率曲线
+                cooldownTime = f; // 20f 冷却热区所用时间
+                minWarmup = f; // 0f 最小开火预热值
+                shootWarmupSpeed = f; // 0.1f 射击预热速度
+                smoothReloadSpeed = f; // 0.15f 平滑装填速度
+                linearWarmup = ; // false 是否使用线性预热
+                heatColor = Color.valueOf(""); // ab3400 发热区域颜色
+                mountType = WeaponMount::new; // 武器挂架类型
+
+                // 音效
+                soundPitchMin = f; // 0.8f 射击音效随机音高范围
+                soundPitchMax = f; // 1f
+                activeSound = Sounds.; // none 射击循环音效
+                activeSoundVolume = f; // 1f 射击循环音效的音量
+                shootSound = Sounds.; // shoot 射击音效
+                shootSoundVolume = f; // 1f 射击音效音量
+                initialShootSound = Sounds.; // none 首次开火音效
+                chargeSound = Sounds.; // none 充能音效
+
+                // 子弹
+                continuous = ; // 是否保持子弹在射击位置
+                alwaysContinuous = ; // 是否无装填连续射击
+                aimChangeSpeed = f; // Float.1/0f 改变炮塔瞄准距离的速度, 仅用于点激光子弹
+                controllable = ; // true 是否可由玩家手动瞄准
+                aiControllable = ; // true 是否可由单位自动瞄准
+                alwaysShooting = ; // false 是否始终射击
+                autoTarget = ; // false 是否自动瞄准目标
+                predictTarget = ; // true 是否预测目标轨迹
+                reload = f; // 77f 重新装填的帧数
+                inaccuracy = f; // 0f 射击时的不精准度
+                velocityRnd = f; // 0f 速度随机分量比例
+                extraVelocity = f; // 0f 额外速度比例
+                shootCone = f; // 5f 射击起始锥角半径
+                shootStatus = StatusEffects.; // none 射击施加的状态效果
+                shootStatusDuration = f; // 5f * 60f 射击状态效果持续时间
+
+                parts.add(); // 额外动画部件
+                bullet = new ();
+            }});
+        }};*/
+
+        // 强化单位
+        // 陆战
+        blade = new UnitType("blade") {{
+            constructor = MechUnit::create;
+            health = 280f;
+            armor = 2f;
+            hitSize = 10f;
+            itemCapacity = 30;
+            speed = 0.75f;
+            lightColor = Pal.unitFront;
+            stepSound = Sounds.mechStepSmall; // -
+            stepSoundVolume = 0.5f; // -
+            stepSoundPitch = 1f; // -
+            stepSoundPitchRange = 0.1f; // -
+            immunities.add(VeStatusEffects.dusty);
+            parts.add(new RegionPart("-glow") {{
+                outline = false;
+                progress = PartProgress.warmup; // -
+                blending = Blending.additive;
+                layerOffset = 0.001f;
+                x = 0f;
+                y = 0f;
+                color = VePal.turretHeat0;
+                colorTo = Pal.turretHeat;
+            }});
+            weapons.add(new Weapon(VeName("blade-weapon")) {{
+                top = false;
+                shootX = 0f; // -
+                shootY = 6f;
+                x = 4f;
+                y = 0f; // -
+                shoot.shots = 5;
+                shoot.shotDelay = 3f;
+                ejectEffect = Fx.casing1;
+                shootSound = Sounds.shoot; // -
+                reload = 15f;
+                bullet = new BasicBulletType(3.5f, 13f) {{
+                    backColor = Pal.unitBack;
+                    frontColor = Pal.unitFront;
+                    width = 8f;
+                    height = 10f;
+                    lifetime = 50f;
+                    homingPower = 0.04f;
+                    hitColor = lightColor = Pal.unitFront;
+                    shootEffect = Fx.shootSmall; // -
+                    smokeEffect = Fx.shootSmallSmoke; // -
+                }};
+            }});
+        }};
+
+        hammer = new UnitType("hammer") {{
+            constructor = MechUnit::create;
+            health = 1400f;
+            armor = 6f;
+            hitSize = 14f;
+            itemCapacity = 50;
+            speed = 0.5f;
+            targetAir = false;
+            lightColor = Pal.unitFront;
+            stepSound = Sounds.mechStepSmall; // -
+            stepSoundVolume = 0.5f;
+            stepSoundPitch = 0.9f;
+            stepSoundPitchRange = 0.1f; // -
+            immunities.addAll(StatusEffects.burning, StatusEffects.melting, StatusEffects.tarred,
+                    VeStatusEffects.dusty, VeStatusEffects.frozen);
+            targetFlags = new BlockFlag[] {BlockFlag.generator, BlockFlag.factory, BlockFlag.storage};
+            weapons.add(
+                    new Weapon(VeName("slag-thrower")) {{
+                        mirror = false;
+                        top = false;
+                        shootX = 0f; // -
+                        shootY = 8.75f;
+                        x = 9.25f;
+                        y = 0f; // -
+                        shoot.shots = 3;
+                        shoot.firstShotDelay = 6f;
+                        shoot.shotDelay = 1f;
+                        ejectEffect = Fx.none; // -
+                        shootSound = Sounds.shootAtrax;
+                        reload = 12f;
+                        inaccuracy = 2f;
+                        bullet = new LiquidBulletType(Liquids.slag) {{
+                            lifetime = 45f;
+                            speed = 3.6f;
+                            damage = 12f;
+                            collidesAir = false;
+                            hittable = true; // -
+                            status = StatusEffects.melting; // -
+                            statusDuration = 5f * 60f;
+                            hitColor = lightColor = Pal.unitFront;
+                            shootEffect = Fx.shootLiquid;
+                        }};
+                    }},
+                    new Weapon(VeName("oil-thrower")) {{
+                        mirror = false;
+                        top = false;
+                        shootX = 0f; // -
+                        shootY = 8.75f;
+                        x = -9.25f;
+                        y = 0f; // -
+                        shoot.shots = 3;
+                        shoot.shotDelay = 1f;
+                        ejectEffect = Fx.none; // -
+                        shootSound = Sounds.shootAtrax;
+                        reload = 12f;
+                        inaccuracy = 3f;
+                        bullet = new LiquidBulletType(Liquids.oil) {{
+                            lifetime = 45f;
+                            speed = 3.6f;
+                            damage = 2f;
+                            collidesAir = false;
+                            hittable = false;
+                            status = StatusEffects.tarred; // -
+                            statusDuration = 5f * 60f;
+                            layer = 98f;
+                            hitColor = Color.black;
+                            shootEffect = Fx.shootLiquid;
+                        }};
+                    }},
+                    new Weapon(VeName("blade-weapon-mount")) {{
+                        rotate = true;
+                        rotateSpeed = 7f;
+                        top = true; // -
+                        shootX = -0.25f;
+                        shootY = 3.75f;
+                        x = 5.25f;
+                        y = -2.75f;
+                        shoot.shots = 5;
+                        shoot.shotDelay = 3f;
+                        ejectEffect = Fx.casing1;
+                        shootSound = Sounds.shoot; // -
+                        reload = 15f;
+                        bullet = new BasicBulletType(3.5f, 13f) {{
+                            backColor = Pal.unitBack;
+                            frontColor = Pal.unitFront;
+                            width = 8f;
+                            height = 10f;
+                            lifetime = 50f;
+                            homingPower = 0.04f;
+                            hitColor = lightColor = Pal.unitFront;
+                            shootEffect = Fx.shootSmall; // -
+                            smokeEffect = Fx.shootSmallSmoke; // -
+                        }};
+                    }}
+            );
+        }};
+
+        ballistic = new UnitType("ballistic") {{
+            constructor = MechUnit::create;
+            health = 4400f;
+            armor = 14f;
+            hitSize = 18f;
+            itemCapacity = 80;
+            drownTimeMultiplier = 3f;
+            speed = 0.5f;
+            rotateSpeed = 2f;
+            stepShake = 0.15f;
+            lightColor = Pal.unitFront;
+            stepSound = Sounds.mechStep;
+            stepSoundVolume = 0.25f;
+            stepSoundPitch = 1f; // -
+            stepSoundPitchRange = 0.1f; // -
+            mechFrontSway = 1f;
+            mechStepParticles = true;
+            immunities.add(VeStatusEffects.dusty);
+            abilities.add(new ShieldRegenFieldAbility(50f, 600f, 180f, 40f));
+            weapons.add(
+                    new Weapon(VeName("ballistic-weapon")) {{
+                        baseRotation = 5f;
+                        top = false;
+                        shootX = 0f; // -
+                        shootY = 10f;
+                        x = 12f;
+                        y = 0f; // -
+                        shake = 5f;
+                        shoot = new ShootSpread(3, 10f) {{shotDelay = 0f;}};
+                        ejectEffect = Fx.casing3;
+                        recoil = 4f;
+                        cooldownTime = 60f;
+                        shootSound = Sounds.shootFuse;
+                        reload = 27f;
+                        shootCone = 60f;
+                        bullet = new ShrapnelBulletType() {{
+                            length = 96f;
+                            width = 18f;
+                            fromColor = toColor = Pal.bulletYellowBack;
+                            serrations = 6;
+                            serrationLenScl = 1f;
+                            serrationWidth = 6f;
+                            serrationSpaceOffset = 18f;
+                            serrationFadeOffset = 0f;
+                            damage = 104f;
+                            recoil = 0.1f;
+                            knockback = 4f;
+                            shootEffect = Fx.sparkShoot;
+                            smokeEffect = Fx.shootBigSmoke;
+                            lightColor = Pal.bulletYellowBack;
+                        }};
+                    }},
+                    new Weapon(VeName("ballistic-artillery")) {{
+                        rotate = true;
+                        rotateSpeed = 2f;
+                        shootY = 7f;
+                        x = 9f;
+                        y = -4f;
+                        shake = 1.5f;
+                        ejectEffect = Fx.casing2;
+                        shootSound = Sounds.shootArtillery;
+                        reload = 25f;
+                        bullet = new ArtilleryBulletType(4f, 20f) {{
+                            backColor = Pal.unitBack;
+                            frontColor = Pal.unitFront;
+                            width = 11f;
+                            height = 11f;
+                            lifetime = 60f;
+                            keepVelocity = false;
+                            collidesTiles = false;
+                            knockback = 0.8f;
+                            splashDamage = 64f;
+                            splashDamageRadius = 35f;
+                            status = StatusEffects.blasted;
+                            statusDuration = 60f;
+                            hitEffect = Fx.flakExplosion; // -
+                            hitShake = 2f;
+                            despawnShake = 2f;
+                            lightColor = Pal.unitFront;
+                            hitSound = Sounds.explosionArtillery; // -
+                            despawnSound = Sounds.explosionArtillery;
+                        }};
+                    }}
+            );
+        }};
+
+        firelock = new UnitType("firelock") {{
+            constructor = MechUnit::create;
+            health = 18000f; // 14000
+            armor = 18f;
+            range = 464f;
+            hitSize = 24f;
+            itemCapacity = 100;
+            drownTimeMultiplier = 5f;
+            speed = 0.52f;
+            rotateSpeed = 1.7f;
+            stepShake = 0.25f;
+            shadowElevation = 0.1f;
+            lightColor = Pal.unitFront;
+            deathSound = VeSounds.get("si2Explode");
+            stepSound = Sounds.mechStepHeavy;
+            stepSoundVolume = 0.35f;
+            stepSoundPitch = 0.9f;
+            stepSoundPitchRange = 0.1f; // -
+            mechSideSway = 0.7f;
+            mechFrontSway = 1.4f;
+            mechStepParticles = true;
+            immunities.addAll(StatusEffects.electrified, VeStatusEffects.dusty);
+            weapons.add(
+                    new Weapon(VeName("firelock-weapon")) {{
+                        alternate = false;
+                        rotate = true;
+                        rotateSpeed = 1f;
+                        rotationLimit = 30f;
+                        top = false;
+                        shootY = 6f;
+                        x = 22.75f;
+                        y = -2.25f;
+                        shake = 7f;
+                        ejectEffect = Fx.none; // -
+                        recoil = 4f;
+                        cooldownTime = 100f;
+                        shootSound = Sounds.shootOmura;
+                        reload = 60f;
+                        shootCone = 20f;
+                        bullet = new RailBulletType() {{
+                            pierceEffect = Fx.railHit;
+                            pointEffect = Fx.railTrail;
+                            lineEffect = Fx.chainLightning;
+                            length = 480f;
+                            pointEffectSpace = 30f;
+                            damage = 300f;
+                            pierceCap = 10;
+                            pierceDamageFactor = 0.15f;
+                            status = StatusEffects.electrified;
+                            statusDuration = 3f * 60f;
+                            spawnBullets.add(
+                                    new LaserBulletType(0f) {{
+                                        laserEffect = Fx.none;
+                                        length = 0f;
+                                        sideLength = 45f;
+                                        sideWidth = 1.3f;
+                                        sideAngle = 90f; // -
+                                        colors = new Color[]{
+                                                Pal.unitFront,
+                                                Color.white,
+                                                Color.white
+                                        };
+                                        lifetime = 18f;
+                                        collidesTiles = false;
+                                        collidesGround = false;
+                                        hitColor = Pal.unitFront;
+                                    }},
+                                    new LaserBulletType(0f) {{
+                                        laserEffect = Fx.none;
+                                        length = 0f;
+                                        sideLength = 20f;
+                                        sideWidth = 1.3f;
+                                        sideAngle = 135f;
+                                        colors = new Color[]{
+                                                Pal.unitFront,
+                                                Color.white,
+                                                Color.white
+                                        };
+                                        lifetime = 18f;
+                                        collidesTiles = false;
+                                        collidesGround = false;
+                                        hitColor = Pal.unitFront;
+                                    }}
+                            );
+                            hitEffect = Fx.railHit;
+                            hitColor = lightColor = Pal.unitFront;
+                            despawnEffect = Fx.none; // -
+                            shootEffect = Fx.hitLaserBlast;
+                            smokeEffect = Fx.smokeCloud;
+                            hitShake = 6f;
+                            despawnShake = 4f;
+                        }};
+                    }},
+                    new Weapon(VeName("firelock-bullet")) {{
+                        rotate = true;
+                        rotateSpeed = 6f;
+                        top = true;
+                        shootY = 8f;
+                        x = 9.5f;
+                        y = -3f;
+                        shake = 0.5f;
+                        shoot.shots = 2;
+                        shoot.shotDelay = 6f;
+                        ejectEffect = Fx.casing1;
+                        shootSound = Sounds.shootCyclone;
+                        reload = 17f;
+                        inaccuracy = 2f;
+                        bullet = new BasicBulletType(7f, 44f) {{
+                            backColor = Pal.unitBack;
+                            frontColor = Pal.unitFront;
+                            width = 10f;
+                            height = 16f;
+                            spin = -12f;
+                            lifetime = 30f;
+                            pierceArmor = true;
+                            knockback = 1f;
+                            hitColor = lightColor = Pal.unitFront;
+                            shootEffect = Fx.shootBig;
+                        }};
+                    }},
+                    new Weapon(VeName("firelock-bullet")) {{
+                        rotate = true;
+                        rotateSpeed = 6f;
+                        top = true; // -
+                        shootY = 8f;
+                        x = 19.25f;
+                        y = -7.25f;
+                        shake = 0.5f;
+                        shoot.shots = 2;
+                        shoot.shotDelay = 6f;
+                        ejectEffect = Fx.casing1;
+                        shootSound = Sounds.shootCyclone;
+                        reload = 24f;
+                        inaccuracy = 2f;
+                        bullet = new BasicBulletType(7f, 47f) {{
+                            backColor = Pal.unitBack;
+                            frontColor = Pal.unitFront;
+                            width = 10f;
+                            height = 16f;
+                            spin = 15f;
+                            lifetime = 30f;
+                            pierceArmor = true;
+                            knockback = 1f;
+                            hitColor = lightColor = Pal.unitFront;
+                            shootEffect = Fx.shootBig;
+                        }};
+                    }}
+            );
+        }};
+
+        ray = new UnitType("ray") {{
+            constructor = MechUnit::create;
+            health = 47000f;
+            armor = 24f;
+            hitSize = 48f;
+            itemCapacity = 250;
+            drownTimeMultiplier = 10f;
+            speed = 0.5f;
+            rotateSpeed = 1.5f;
+            stepShake = 1f;
+            shadowElevation = 0.2f;
+            lightColor = Pal.unitFront;
+            deathSound = VeSounds.get("si2ExplodeLoud");
+            stepSound = Sounds.mechStepHeavy;
+            stepSoundVolume = 1f;
+            stepSoundPitch = 0.75f;
+            stepSoundPitchRange = 0.1f; // -
+            mechSideSway = 0.8f;
+            mechFrontSway = 1.6f;
+            mechStepParticles = true;
+            immunities.add(VeStatusEffects.dusty);
+            weapons.add(
+                    new Weapon(VeName("ray-weapon")) {{
+                        rotate = true;
+                        rotateSpeed = 2f;
+                        rotationLimit = 50f;
+                        top = false;
+                        shootY = 26.5f;
+                        x = 42.75f;
+                        y = 0f; // -
+                        shake = 7f;
+                        ejectEffect = Fx.casing4;
+                        recoil = 8f;
+                        recoilTime = 50f;
+                        cooldownTime = 90f;
+                        shootSound = Sounds.shootTank;
+                        reload = 30f;
+                        shootCone = 40f;
+
+                        BulletLayer[] rayLayer = new BulletLayer[] {
+                                new BulletLayer(3f, 4.8f, 4f, 4f).setSplash(70f, 16f),
+                                new BulletLayer(6f, 5.1f, 4f, 4f).setSplash(70f, 20f),
+                                new BulletLayer(9f, 5.4f, 4f, 4f).setSplash(75f, 24f),
+                                new BulletLayer(12f, 5.7f, 4f, 4f).setSplash(75f, 27.5f),
+                                new BulletLayer(15f, 6f, 4f, 4f).setSplash(80f, 31f),
+                                new BulletLayer(18f, 6.3f, 4f, 4f).setSplash(80f, 34f),
+                                new BulletLayer(21f, 6.6f, 4f, 4f).setSplash(85f, 37f),
+                                new BulletLayer(24f, 6.9f, 4f, 4f).setSplash(85f, 39.5f),
+                                new BulletLayer(27f, 7.2f, 4f, 4f).setSplash(90f, 42f),
+                                new BulletLayer(30f, 7.5f, 4f, 4f).setSplash(90f, 44f),
+                                new BulletLayer(33f, 7.8f, 4f, 4f).setSplash(95f, 46f),
+                                new BulletLayer(36f, 8.1f, 4f, 4f).setSplash(95f, 47.5f),
+                                new BulletLayer(39f, 8.4f, 4f, 4f).setSplash(100f, 49f),
+                                new BulletLayer(42f, 8.7f, 4f, 4f).setSplash(100f, 50f),
+                                new BulletLayer(45f, 9f, 4f, 4f).setSplash(105f, 51f),
+                                new BulletLayer(48f, 9.3f, 4f, 4f).setSplash(105f, 51.5f),
+                                new BulletLayer(51f, 9.6f, 4f, 4f).setSplash(110f, 52f)
+                        };
+                        ExMultiBulletType rayBullet = MultiBulletBuilder.create(
+                                rayLayer,
+                                new BasicBulletType() {{
+                                    backColor = frontColor = VePal.white0;
+                                    collides = false;
+                                    hittable = false;
+                                    despawnHit = true;
+                                    splashDamagePierce = true;
+                                    status = StatusEffects.blasted;
+                                    statusDuration = 60f;
+                                    /*
+                                    fragRandomSpread = 0f;
+                                    fragBullets = 0;
+                                    fragVelocityMin = 1f;
+                                    fragOffsetMin = 0f;
+                                    fragOffsetMax = 0f;
+                                    fragBullet = ;
+                                    */
+                                    despawnEffect = Fx.none;
+                                    hitShake = 4f;
+                                    lightColor = trailColor = Pal.unitFront;
+                                    trailLength = 5;
+                                    hitSound = despawnSound = new RandomSound(
+                                            VeSounds.get("si2Explosive1"),
+                                            VeSounds.get("si2Explosive2"),
+                                            VeSounds.get("si2Explosive3"),
+                                            VeSounds.get("si2Explosive4"),
+                                            VeSounds.get("si2Explosive5")
+                                    );
+                                }}
+                        );
+                        rayBullet.maxRange = 384f;
+                        rayBullet.damage = 70f;
+                        rayBullet.splashDamage = 110f;
+                        rayBullet.splashDamageRadius = 52f;
+                        rayBullet.status = StatusEffects.blasted;
+                        rayBullet.statusDuration = 60f;
+                        rayBullet.shootEffect = new RadialEffect() {{
+                            effect = Fx.shootSmokeMissile;
+                            rotationOffset = 180f;
+                            amount = 1;
+                        }};
+                        rayBullet.smokeEffect = Fx.none;
+
+                        BulletType[] bullets = rayBullet.getBullets();
+                        for (int i = 0; i < 15; i += 2) {
+                            int finalI = i;
+                            bullets[i].hitEffect =
+                                    bullets[i + 1].hitEffect =
+                                            rayHitEffect(rayLayer[i].splashDamageRadius, i);
+                        }
+                        bullets[16].hitEffect = rayHitEffect(rayLayer[16].splashDamageRadius, 16);
+
+                        bullet = rayBullet;
+                    }},
+                    new Weapon(VeName("ray-missile")) {{
+                        alternate = false;
+                        rotate = true;
+                        rotateSpeed = 6f;
+                        shootY = 12.25f;
+                        x = 26.5f;
+                        y = -14.25f;
+                        shadow = 16f;
+                        shoot = new ShootBarrel() {{
+                            barrels = new float[] {
+                                    -6.5f ,0,0,
+                                    -3.25f,0,0,
+                                    3.25f ,0,0,
+                                    6.5f  ,0,0
+                            };
+                            shots = 5;
+                            shotDelay = 6f;
+                        }};
+                        ejectEffect = Fx.casing2;
+                        recoil = 1f;
+                        recoilTime = 30f;
+                        shootSound = Sounds.shootMissile;
+                        reload = 20f;
+                        bullet = new BasicBulletType(6f, 20f, "missile-large") {{
+                            backColor = Pal.surge;
+                            frontColor = Color.white;
+                            width = 10f;
+                            height = 10f;
+                            shrinkY = 0f;
+                            lifetime = 40f;
+                            maxRange = 360f;
+                            accel = 0.1f;
+                            homingPower = 0.2f;
+                            homingRange = 40f;
+                            weaveMag = 1f;
+                            splashDamage = 70f;
+                            splashDamageRadius = 32f;
+                            status = StatusEffects.shocked;
+                            statusDuration = 10f;
+                            lightningColor = Pal.surge; // -
+                            lightning = 3;
+                            lightningLength = 13;
+                            lightningLengthRand = 5;
+                            lightningDamage = 40f;
+                            hitEffect = despawnEffect = Fx.blastExplosion;
+                            shootEffect = Fx.shootBig;
+                            smokeEffect = Fx.shootBigSmoke;
+                            hitShake = 2f;
+                            despawnShake = 2f;
+                            trailColor = VePal.surge67;
+                            trailInterval = 2f;
+                            hitSound = despawnSound = Sounds.explosion;
+                        }};
+                    }}
+            );
+        }};
+
+        // 陆辅
+        stardust = new UnitType("stardust") {{
+            constructor = MechUnit::create;
+            health = 260f; // 200f 生命值
+            armor = 1f;
+            hitSize = 10f;
+            mineSpeed = 3f;
+            mineTier = 1;
+            buildSpeed = 0.8f;
+            itemCapacity = 30;
+            speed = 0.75f;
+            boostMultiplier = 3f;
+            drag = 0.05f;
+            canBoost = true;
+            boostWhenMining = true;
+            lowAltitude = true;
+            mineBeamOffset = 3.75f;
+            engineSize = 3f;
+            lightColor = Pal.heal;
+            stepSound = Sounds.mechStepSmall; // -
+            stepSoundVolume = 0.5f; // -
+            stepSoundPitch = 1f; // -
+            stepSoundPitchRange = 0.1f; // -
+            mineItems = Seq.with(Items.copper, Items.lead,
+                    VeItems.aluminium, VeItems.silver);
+            immunities.addAll(VeStatusEffects.dusty, VeStatusEffects.frozen);
+            abilities.add(new RepairFieldAbility(30f, 180f, 72f));
+            weapons.add(
+                    new RepairBeamWeapon(VeName("RepairBeamWeapon")) {{
+                        targetBuildings = true;
+                        targetUnits = true; // -
+                        repairSpeed = 0.7f;
+                        fractionRepairSpeed = 0.5f;
+                        beamWidth = 0.5f;
+                        mirror = false;
+                        rotate = false;
+                        shootY = 0f;
+                        x = 0f;
+                        y = 3f;
+                        bullet = new BasicBulletType() {{maxRange = 72f;}};
+                    }},
+                    new Weapon(VeName("stardust-weapon")) {{
+                        alternate = false;
+                        rotate = false; // -
+                        top = false;
+                        shootY = 6f;
+                        x = 4f;
+                        y = 0f; // -
+                        shoot = new ShootSpread(3, 5f) {{shotDelay = 0f;}};
+                        ejectEffect = Fx.none; // -
+                        recoil = 2f;
+                        cooldownTime = 20f; // -
+                        heatColor = VePal.white93;
+                        shootSound = Sounds.shootLaser;
+                        initialShootSound = VeSounds.get("lasershootClassic");
+                        reload = 30f;
+                        bullet = new LaserBoltBulletType(5.2f, 16f) {{
+                            backColor = Pal.heal;
+                            frontColor = Color.white;
+                            lifetime = 30f;
+                            collidesTeam = true;
+                            hittable = false;
+                            healPercent = 3f;
+                            healAmount = 20f;
+                            shootEffect = Fx.shootHeal;
+                            lightColor = Pal.heal; // -
+                        }};
+                    }},
+                    new Weapon() {{
+                        display = false;
+                        mirror = false;
+                        noAttack = true;
+                        ejectEffect = Fx.none; // -
+                        shootSound = Sounds.none;
+                        controllable = false;
+                        alwaysShooting = true;
+                        reload = 1f;
+                        shootStatus = VeStatusEffects.walking;
+                        shootStatusDuration = 2f;
+                        bullet = new BasicBulletType() {{
+                            collides = false;
+                            hittable = false;
+                            absorbable = false;
+                            instantDisappear = true;
+                            hitEffect =
+                                    despawnEffect =
+                                            shootEffect =
+                                                    smokeEffect = Fx.none;
+                        }};
+                    }}
+            );
+        }};
+
+        vortex = new UnitType("vortex") {{
+            constructor = MechUnit::create;
+            health = 850f;
+            armor = 5f;
+            hitSize = 14f;
+            mineSpeed = 6f;
+            mineTier = 2;
+            mineWalls = true;
+            buildSpeed = 1.1f;
+            itemCapacity = 50;
+            speed = 0.65f;
+            boostMultiplier = 2.8f;
+            drag = 0.05f;
+            canBoost = true;
+            boostWhenMining = true;
+            lowAltitude = true;
+            mineBeamOffset = 5.75f;
+            engineSize = 3.75f;
+            lightColor = Pal.heal;
+            stepSound = Sounds.mechStepSmall; // -
+            stepSoundVolume = 0.5f; // -
+            stepSoundPitch = 0.95f;
+            stepSoundPitchRange = 0.1f; // -
+            mineItems = Seq.with(Items.copper, Items.lead,
+                    VeItems.aluminium, VeItems.silver);
+            immunities.addAll(VeStatusEffects.dusty, VeStatusEffects.frozen);
+            abilities.add(new ShieldRegenFieldAbility(30f, 300f, 120f, 80f));
+            weapons.add(
+                    new Weapon(VeName("vortex-weapon")) {{
+                        rotate = true;
+                        baseRotation = 0f; // -
+                        rotateSpeed = 5f;
+                        rotationLimit = 120f;
+                        top = false;
+                        shootX = 6f;
+                        shootY = 8f;
+                        x = 0.3f;
+                        y = 0.2f;
+                        shoot = new ShootSpread(3, 0f) {{shotDelay = 6f;}};
+                        ejectEffect = Fx.none; // -
+                        recoil = 2f;
+                        cooldownTime = 20f; // -
+                        minWarmup = 0.9f;
+                        heatColor = VePal.white93;
+                        shootSound = Sounds.shootLocus;
+                        reload = 47f;
+                        inaccuracy = 2f;
+                        parts.add(new RegionPart("-weapon") {{
+                            progress = PartProgress.warmup; // -
+                            x = 0f;
+                            y = 0f;
+                            rotation = -45f;
+                            moveRot = 45f;
+                            heatColor = VePal.white93;
+                        }});
+                        bullet = new BasicBulletType(1.8f, 25f, "circle-bullet") {{
+                            backColor = Pal.heal;
+                            frontColor = Color.white;
+                            width = 6f;
+                            height = 6f;
+                            shrinkX = -0.2f;
+                            shrinkY = -0.2f;
+                            lifetime = 49f;
+                            drag = -0.02f;
+                            collidesTeam = true;
+                            hittable = false;
+                            weaveScale = 5f;
+                            weaveMag = 3f;
+                            despawnHit = true;
+                            status = StatusEffects.shocked;
+                            statusDuration = 10f;
+                            healPercent = 7f;
+                            healAmount = 80f;
+                            fragOnHit = true; // -
+                            fragBullets = 4;
+                            fragBullet = new LightningBulletType() {{
+                                lightningLength = 4;
+                                lightningLengthRand = 3;
+                                speed = 5f;
+                                drag = 0.1f;
+                                damage = 5f;
+                                collidesTeam = true;
+                                hittable = false;
+                                status = StatusEffects.shocked; // -
+                                statusDuration = 10f;
+                                healAmount = 7f;
+                                lightningColor = Pal.heal;
+                            }};
+                            bulletInterval = 4f;
+                            intervalBullet = new LightningBulletType() {{
+                                damage = 5f;
+                                collidesTeam = true;
+                                collidesAir = false;
+                                hittable = false;
+                                status = StatusEffects.shocked;
+                                statusDuration = 10f;
+                                healAmount = 7f;
+                                lightningColor = lightColor = Pal.heal;
+                                lightningLength = 3;
+                                lightningLengthRand = 2;
+                            }};
+
+                            hitEffect = new ExplosionEffect() {{
+                                waveColor = smokeColor = sparkColor = Pal.heal;
+                                waveRad = 16f;
+                                smokeRad = 12f;
+                                smokes = 4;
+                                sparks = 4; // -
+                            }};
+                            /*
+                            hitEffect = new MultiEffect(
+                                    new ExplosionEffect() {{
+                                        waveColor = smokeColor = sparkColor = Pal.heal;
+                                        waveRad = 16f;
+                                        smokeRad = 12f;
+                                        smokes = 4;
+                                        sparks = 4; // -
+                                    }}
+                            );
+                            */
+
+                            shootEffect = Fx.shootHeal;
+                            smokeEffect = Fx.none;
+                            despawnShake = 1f;
+                            lightColor = trailColor = Pal.heal;
+                            trailInterval = 5f;
+                            despawnSound = Sounds.shootArc;
+                        }};
+                    }},
+                    new PointDefenseWeapon(VeName("vortex-point-defense")) {{
+                        targetInterval = 12f;
+                        targetSwitchInterval = 15f;
+                        x = 6f;
+                        y = -3.5f;
+                        recoil = 0.5f;
+                        cooldownTime = 10f;
+                        heatColor = VePal.white93;
+                        shootSound = Sounds.shootSegment;
+                        reload = 12f;
+                        bullet = new BasicBulletType() {{
+                            maxRange = 80f;
+                            damage = 36f;
+                            hitEffect = Fx.pointHit;
+                            shootEffect = Fx.sparkShoot;
+                        }};
+                    }},
+                    new Weapon() {{
+                        display = false;
+                        mirror = false;
+                        noAttack = true;
+                        ejectEffect = Fx.none; // -
+                        shootSound = Sounds.none;
+                        controllable = false;
+                        alwaysShooting = true;
+                        reload = 1f;
+                        shootStatus = VeStatusEffects.walking;
+                        shootStatusDuration = 2f;
+                        bullet = new BasicBulletType() {{
+                            collides = hittable = absorbable = false;
+                            instantDisappear = true;
+                            hitEffect = despawnEffect = shootEffect = smokeEffect = Fx.none;
+                        }};
+                    }}
+            );
+        }};
+
+        nebula = new UnitType("nebula") {{
+            constructor = MechUnit::create;
+            health = 3800f;
+            armor = 13f;
+            hitSize = 18f;
+            mineSpeed = 8f;
+            mineTier = 3;
+            mineWalls = true;
+            buildSpeed = 1.75f;
+            itemCapacity = 80;
+            speed = 0.5f;
+            boostMultiplier = 2.6f;
+            rotateSpeed = 2f;
+            drag = 0.05f;
+            riseSpeed = 0.03f;
+            canBoost = true;
+            boostWhenMining = true; // -
+            stepShake = 0.15f;
+            lowAltitude = true;
+            buildBeamOffset = 5f;
+            mineBeamOffset = 6.75f;
+            engineOffset = 7.5f;
+            engineSize = 4.5f;
+            lightColor = Pal.heal;
+            stepSound = Sounds.mechStep;
+            stepSoundVolume = 0.25f;
+            stepSoundPitch = 1.1f;
+            stepSoundPitchRange = 0.1f;
+            mechFrontSway = 1f;
+            mechStepParticles = true;
+            mineItems = Seq.with(Items.copper, Items.lead, Items.titanium, Items.beryllium,
+                    VeItems.aluminium, VeItems.cobalt, VeItems.ferrum, VeItems.silver);
+            immunities.addAll(VeStatusEffects.dusty, VeStatusEffects.frozen);
+            abilities.addAll(
+                    /*
+                    new ForceFieldAbility(80f, 0.5f, 2000f, 180f, 6, 0f),
+                    */
+                    new ShieldArcAbility() {{
+                        radius = 30f;
+                        regen = 0.55f;
+                        max = 700f;
+                        cooldown = 2f * 60f;
+                        angle = 60f;
+                        angleOffset = 0f * 60f; // -
+                        whenShooting = false;
+                        width = 60f;
+                    }},
+                    new ShieldArcAbility() {{
+                        radius = 30f;
+                        regen = 0.65f;
+                        max = 650f;
+                        cooldown = 2.25f * 60f;
+                        angle = 60f;
+                        angleOffset = 1 * 60f;
+                        whenShooting = false;
+                        width = 60f;
+                    }},
+                    new ShieldArcAbility() {{
+                        radius = 30f;
+                        regen = 0.65f;
+                        max = 650f;
+                        cooldown = 2.25f * 60f;
+                        angle = 60f;
+                        angleOffset = -1 * 60f; // -
+                        whenShooting = false;
+                        width = 60f;
+                    }},
+                    new ShieldArcAbility() {{
+                        radius = 30f;
+                        regen = 0.75f;
+                        max = 600f;
+                        cooldown = 2.5f * 60f;
+                        angle = 60f;
+                        angleOffset = 2 * 60f; // -
+                        whenShooting = false;
+                        width = 60f;
+                    }},
+                    new ShieldArcAbility() {{
+                        radius = 30f;
+                        regen = 0.75f;
+                        max = 600f;
+                        cooldown = 2.5f * 60f;
+                        angle = 60f;
+                        angleOffset = -2 * 60f; // -
+                        whenShooting = false;
+                        width = 60f;
+                    }},
+                    new ShieldArcAbility() {{
+                        radius = 30f;
+                        regen = 0.85f;
+                        max = 560f;
+                        cooldown = 2.75f * 60f;
+                        angle = 60f;
+                        angleOffset = 3 * 60f; // -
+                        whenShooting = false;
+                        width = 60f;
+                    }}
+            );
+            weapons.add(
+                    new Weapon(VeName("nebula-weapon")) {{
+                        rotate = false; // -
+                        top = false;
+                        shootX = -1.25f;
+                        shootY = 4.5f;
+                        x = 11.25f;
+                        y = 0f; // -
+                        shake = 4f;
+                        ejectEffect = Fx.none; // -
+                        recoil = 4f;
+                        cooldownTime = 30f;
+                        heatColor = VePal.white93;
+                        shootSound = Sounds.shootSmite;
+                        reload = 55f;
+                        bullet = new BasicBulletType(0f, 0f) {{
+                            backColor = frontColor = VePal.white0;
+                            lifetime = 0f;
+                            maxRange = 168f;
+                            keepVelocity = false;
+                            collides = false;
+                            hittable = false;
+                            reflectable = false;
+                            recoil = 0.2f;
+                            fragRandomSpread = 20f;
+                            fragBullets = 15;
+                            fragVelocityMin = 0.1f;
+                            fragLifeMin = 0.5f;
+                            fragBullet = new BasicBulletType(10f, 5f, "circle-bullet") {{
+                                backColor = Pal.heal;
+                                frontColor = Color.white;
+                                width = 7f;
+                                height = 14f;
+                                shrinkY = 0.5f; // -
+                                lifetime = 50f;
+                                drag = 0.05f;
+                                collidesTiles = false;
+                                collidesTeam = true;
+                                collidesGround = false;
+                                hittable = false;
+                                despawnHit = true;
+                                splashDamage = 40f;
+                                splashDamageRadius = 22f;
+                                healPercent = 5f;
+                                healAmount = 60f;
+                                fragOnHit = true; // -
+                                fragBullets = 3;
+                                fragBullet = new LightningBulletType() {{
+                                    damage = 12f;
+                                    collidesTeam = true;
+                                    collidesAir = true; // -
+                                    hittable = false;
+                                    status = StatusEffects.shocked;
+                                    statusDuration = 10f;
+                                    healAmount = 12f;
+                                    lightningColor = lightColor = Pal.heal;
+                                    lightningLength = 5;
+                                    lightningLengthRand = 4;
+                                }};
+
+                                hitEffect = new ExplosionEffect() {{
+                                    waveColor = smokeColor = sparkColor = Pal.heal;
+                                    waveRad = 24f;
+                                    smokeRad = 18f;
+                                    smokes = 4;
+                                    sparks = 4; // -
+                                }};
+                                /*
+                                hitEffect = new MultiEffect(
+                                        new ExplosionEffect() {{
+                                            waveColor = smokeColor = sparkColor = Pal.heal;
+                                            waveRad = 24f;
+                                            smokeRad = 18f;
+                                            smokes = 4;
+                                            sparks = 4; // -
+                                        }}
+                                );
+                                */
+
+                                hitColor = Pal.heal;
+                                hitShake = 1f;
+                                lightColor = trailColor = Pal.heal;
+                                trailEffect = Fx.missileTrail; // -
+                                trailLength = 5;
+                                hitSound = Sounds.shootPulsar;
+                                hitSoundVolume = 0.5f;
+                            }};
+                            hitEffect = Fx.colorSpark;
+                            hitColor = Pal.heal;
+                            despawnEffect = Fx.colorSpark;
+                            shootEffect = new WaveEffect() {{
+                                colorTo = Pal.heal;
+                                sizeTo = 24f;
+                                strokeFrom = 5f;
+                                lifetime = 8f;
+                            }};
+                            smokeEffect = Fx.shootSmokeTitan;
+                        }};
+                    }},
+                    new Weapon() {{
+                        display = false;
+                        mirror = false;
+                        noAttack = true;
+                        ejectEffect = Fx.none; // -
+                        shootSound = Sounds.none;
+                        controllable = false;
+                        alwaysShooting = true;
+                        reload = 1f;
+                        shootStatus = VeStatusEffects.walking;
+                        shootStatusDuration = 2f;
+                        bullet = new BasicBulletType() {{
+                            collides = hittable = absorbable = false;
+                            instantDisappear = true;
+                            hitEffect = despawnEffect = shootEffect = smokeEffect = Fx.none;
+                        }};
+                    }},
+                    new RepairBeamWeapon(VeName("repair-beam-weapon")) {{
+                        targetBuildings = true;
+                        repairSpeed = 0.75f;
+                        beamWidth = 0.8f;
+                        shootY = 6f;
+                        x = 6.25f;
+                        y = -1f;
+                        bullet = new BasicBulletType() {{maxRange = 120f;}};
+                    }}
+            );
+        }};
+
+        galaxy = new UnitType("galaxy") {{
+            constructor = MechUnit::create;
+            health = 16000f; // 12000
+            armor = 16f;
+            hitSize = 24f;
+            buildSpeed = 4.5f;
+            itemCapacity = 200;
+            drownTimeMultiplier = 5f;
+            researchCostMultiplier = 0.01f;
+            speed = 0.56f;
+            boostMultiplier = 2.8f;
+            rotateSpeed = 2f;
+            drag = 0.05f;
+            riseSpeed = 0.025f;
+            canBoost = true;
+            stepShake = 0.2f;
+            lowAltitude = true;
+            shadowElevation = 0.1f;
+            buildBeamOffset = 4.75f;
+            setEnginesMirror(
+                    new UnitEngine(7.25f, -10f, 5.5f, -75f),
+                    new UnitEngine(-7.25f, -10f, 5.5f, -105f),
+                    new UnitEngine(19f, -9.5f, 3f, -45f),
+                    new UnitEngine(-19f, -9.5f, 3f, -135f)
+            );
+            engineSize = 0f;
+            lightColor = Pal.heal;
+            deathSound = VeSounds.get("si2Explode");
+            stepSound = Sounds.mechStepHeavy;
+            stepSoundVolume = 0.35f;
+            stepSoundPitch = 1f; // -
+            stepSoundPitchRange = 0.1f; // -
+            mechSideSway = 0.6f;
+            mechFrontSway = 1.3f;
+            mechStepParticles = true;
+            immunities.addAll(StatusEffects.electrified,
+                    VeStatusEffects.dusty, VeStatusEffects.frozen, VeStatusEffects.interrupted);
+            weapons.addAll(
+                    new Weapon(VeName("galaxy-weapon")) {{
+                        rotate = true;
+                        rotateSpeed = 3f;
+                        rotationLimit = 60f;
+                        top = false;
+                        shootY = 12.25f;
+                        x = 24f;
+                        y = 0f; // -
+                        shake = 3f;
+                        shoot.shots = 3;
+                        shoot.shotDelay = 0f; // -
+                        ejectEffect = Fx.none; // -
+                        recoil = 4f;
+                        cooldownTime = 30f;
+                        heatColor = VePal.white93;
+                        shootSound = Sounds.shootLancer;
+                        reload = 55f;
+                        inaccuracy = 5f;
+                        velocityRnd = 0.5f;
+                        shootCone = 90f;
+                        bullet = new BasicBulletType(10f, 1f, "ve-buzzsaw") {{
+                            backColor = Pal.heal;
+                            frontColor = Color.white;
+                            width = 8f;
+                            height = 8f;
+                            shrinkX = -0.5f;
+                            shrinkY = -0.5f;
+                            spin = -4f;
+                            lifetime = 90f;
+                            lifeScaleRandMin = 0.5f;
+                            lifeScaleRandMax = 1f; // -
+                            rangeOverride = 224f;
+                            drag = 0.07f;
+                            collidesTeam = true;
+                            collides = false;
+                            hittable = false;
+                            weaveMag = 2f;
+                            splashDamage = 50f;
+                            splashDamageRadius = 24f;
+                            healAmount = 1000f;
+                            fragRandomSpread = 0f;
+                            fragSpread = 60f;
+                            fragAngle = 30f;
+                            fragBullets = 6;
+                            fragVelocityMin = 1f;
+                            fragOffsetMax = 1f;
+                            fragBullet = new BasicBulletType(0.1f, 1f, "missile-large") {{
+                                backColor = Pal.heal;
+                                frontColor = Pal.heal;
+                                width = 8f;
+                                height = 8f;
+                                shrinkY = 0f;
+                                lifetime = 140f;
+                                drag = 0.006f;
+                                accel = 0.03f;
+                                collidesTeam = true;
+                                collideTerrain = true;
+                                splashDamage = 20f;
+                                splashDamageRadius = 14f;
+                                status = StatusEffects.shocked;
+                                statusDuration = 10f;
+                                healPercent = 7f;
+                                healAmount = 100f;
+                                sticky = true;
+                                stickyExtraLifetime = 70f;
+                                lightningColor = Pal.heal;
+                                lightning = 3;
+                                lightningLength = 7;
+                                lightningDamage = 40f;
+                                hitEffect = Fx.none;
+                                despawnEffect = new ExplosionEffect() {{
+                                    waveColor = sparkColor = Pal.heal;
+                                    waveLife = 6f; // -
+                                    waveStroke = 2f;
+                                    waveRad = 16f;
+                                    waveRadBase = 0f;
+                                    smokeColor = VePal.heal40;
+                                    smokeSize = 3f;
+                                    smokeSizeBase = 0f;
+                                    smokeRad = 16f;
+                                    smokes = 5; // -
+                                    sparkStroke = 1f; // -
+                                    sparkRad = 16f;
+                                    sparkLen = 3f; // -
+                                    sparks = 6;
+                                    lifetime = 20f;
+                                }};
+                                despawnShake = 2f;
+                                trailColor = VePal.heal40;
+                                trailInterval = 5f;
+                                despawnSound = Sounds.shockBullet;
+                            }};
+                            parts.add(new FlarePart() {{
+                                sides = 6;
+                                radius = 0f;
+                                radiusTo = 32f;
+                                stroke = 2f;
+                                spinSpeed = 0f; // -
+                                followRotation = true;
+                                color1 = VePal.heal40;
+                                color2 = VePal.heal80;
+                                progress = PartProgress.life;
+                                layer = Layer.bullet;
+                            }});
+                            layer = Layer.bullet + 5f;
+                            hitEffect = Fx.none;
+                            despawnEffect = new ExplosionEffect() {{
+                                waveColor = sparkColor = Pal.heal;
+                                waveLife = 6f; // -
+                                waveStroke = 2f;
+                                waveRad = 40f;
+                                waveRadBase = 0f;
+                                smokeColor = VePal.heal40;
+                                smokeSize = 4f; // -
+                                smokeSizeBase = 0f;
+                                smokeRad = 24f;
+                                smokes = 8;
+                                sparkStroke = 1f; // -
+                                sparkRad = 32f;
+                                sparkLen = 5f;
+                                sparks = 12;
+                                lifetime = 40f;
+                            }};
+                            shootEffect = Fx.shootHeal;
+                            smokeEffect = new ParticleEffect() {{
+                                colorFrom = Pal.heal;
+                                colorTo = VePal.heal0;
+                                particles = 5;
+                                cone = 10f;
+                                length = 16f;
+                                baseLength = 0f; // -
+                                interp = Interp.circleOut;
+                                sizeInterp = Interp.circleIn;
+                                lightColor = Pal.heal;
+                                sizeFrom = 2f; // -
+                                sizeTo = 0f; // -
+                                lifetime = 32f;
+                            }};
+                            despawnShake = 3f;
+                            trailColor = VePal.heal67;
+                            trailInterval = 3f;
+                            despawnSound = Sounds.explosionAfflict;
+                        }};
+                    }},
+                    new RepairBeamWeapon(VeName("repair-beam-weapon-center-large")) {{
+                        targetBuildings = true;
+                        repairSpeed = 2.2f;
+                        beamWidth = 1f; // -
+                        targetSwitchInterval = 1f;
+                        shootY = 6f;
+                        x = 8f;
+                        y = -4.25f;
+                        bullet = new BasicBulletType() {{maxRange = 160f;}};
+                    }},
+                    new RepairBeamWeapon(VeName("repair-beam-weapon")) {{
+                        targetBuildings = true;
+                        repairSpeed = 1.2f;
+                        beamWidth = 0.8f;
+                        targetSwitchInterval = 1f;
+                        shootY = 6f;
+                        x = -15.5f;
+                        y = -11f;
+                        bullet = new BasicBulletType() {{maxRange = 160f;}};
+                    }},
+                    new RepairBeamWeapon(VeName("repair-beam-weapon")) {{
+                        targetBuildings = true;
+                        repairSpeed = 1.2f;
+                        beamWidth = 0.8f;
+                        targetSwitchInterval = 1f;
+                        shootY = 6f;
+                        x = -20.5f;
+                        y = -9.5f;
+                        bullet = new BasicBulletType() {{maxRange = 160f;}};
+                    }},
+                    new Weapon() {{
+                        display = false;
+                        mirror = false;
+                        noAttack = true;
+                        ejectEffect = Fx.none; // -
+                        shootSound = Sounds.none;
+                        controllable = false;
+                        alwaysShooting = true;
+                        reload = 1f;
+                        shootStatus = VeStatusEffects.walking;
+                        shootStatusDuration = 2f;
+                        bullet = new BasicBulletType() {{
+                            collides = hittable = absorbable = false;
+                            instantDisappear = true;
+                            hitEffect = despawnEffect = shootEffect = smokeEffect = Fx.none;
+                        }};
+                    }}
+            );
+        }};
+
+        /*
+        universe = new UnitType("universe") {{
+            constructor = MechUnit::create;
+            health = f; // 200f 生命值
+            armor = f; // 0f 护甲
+            range = f; // -1f 最小攻击范围
+            maxRange = f; // -1f 最大攻击范围
+            aimDst = f; // -1f 武器可瞄准的最小距离
+            hitSize = f; // 6f 碰撞箱边长大小
+            mineRange = f; // 70f 挖掘范围
+            mineSpeed = f; // 1f 挖掘速度
+            mineTier = ; // -1 可挖掘的矿石最大硬度
+            mineWalls = ; // false 能否从墙壁挖掘
+            mineFloor = ; // true 能否从地板挖掘
+            mineHardnessScaling = ; // true 更硬的矿石挖掘时间是否延长
+            buildRange = ; // 220f 建造范围
+            buildSpeed = f; // -1f 建造速度倍率
+            rotateToBuilding = ; // true 是否面向正在建造的物体
+            itemCapacity = ; // -1 可携带物品数量
+            pickupUnits = ; // true 该单位能否搬起其他单位
+            payloadCapacity = Mathf.sqr(f) * Vars.tilePayload; // 8 载荷容量
+            createScorch = ; // true 死亡时是否会产生烧痕
+            createWreck = ; // true 死亡时是否掉落残骸
+            wreckHealthMultiplier = f; // 0.25f 残骸生命值倍率
+            crashDamageMultiplier = f; // 1f 坠落伤害倍率
+            dpsEstimate = f; // -1f DPS粗略估计
+            canDrown = ; // true 能否被淹没
+            drownTimeMultiplier = f; // -1f 沉没速度倍率
+            fogRadius = f; // -1f 战争迷雾视野半径
+            researchCostMultiplier = f; // 50f 研究成本倍数
+            isEnemy = ; // true 是否被视为敌人
+            flying = ; // false 是否为飞行单位
+            wobble = ; // true 飞行单位是否摇晃
+            targetBuildingsMobile = ; // true 仅移动端, 当玩家附身该单位时, 是否自动瞄准建筑进行附着
+            allowedInPayloads = ; // true 能否被移动到载荷中
+            logicControllable = ; // true 逻辑能否控制此单位
+            playerControllable = ; // true 玩家能否控制该单位
+            controlSelectGlobal = ; // true 能否被shift+g选中
+            physics = ; // true 该单位能否与其他单位发生物理碰撞
+            useUnitCap = ; // true 如果为false, 忽略单位上限, 无限生成
+            coreUnitDock = ; // false 该核心机在解除附身之后是否重新出现
+            hoverable = ; // true 是否显示悬停提示
+            hidden = ; // false 是否隐藏
+            bounded = ; // true 能否被推离地图边界
+
+            // 移动
+            speed = f; // 1.1f 移动速度
+            strafePenalty = f; // 0.5f 侧向移动速度惩罚倍率
+            boostMultiplier = f; // 1f 助推速度倍率
+            floorMultiplier = f; // 1f 受地形影响的程度
+            rotateSpeed = f; // 5f 身体转向速度
+            baseRotateSpeed = f; // 5f 机甲转向速度
+            drag = f; // 0.3f 移动阻力与移动速度的比例
+            accel = f; // 0.5f 加速度与移动速度的比例
+            riseSpeed = f; // 0.08f 助推时上升速度
+            descentSpeed = f; // 0.08f 无助推时下落速度
+            fallSpeed = f; // 0.018f 死亡时的坠落速度
+            canBoost = ; // false 能否助推
+            boostWhenBuilding = ; // true 处于建造者AI时助推
+            boostWhenMining = ; // true 处于挖矿AI时助推
+            hovering = ; // false 是否受下方地板影响
+            omniMovement = ; // true 能否向任意方向移动, 如果为false, 则只能向前方移动
+            rotateMoveFirst = ; // false 单位在实际移动前是否需要先面朝移动方向
+
+            // 战斗
+            targetPriority = f; // 0f 目标优先级
+            canHeal = ; // false 能否修复建筑
+            singleTarget = ; // false 武器是否攻击同一目标
+            forceMultiTarget = ; // false 是否强制拥有多个目标
+            canAttack = ; // true 能否攻击
+            targetAir = ; // true 是否尝试攻击空中单位
+            targetGround = ; // true 是否尝试攻击地面单位
+            faceTarget = ; // true 攻击时是否面向目标
+            circleTarget = ; // false 是否围绕目标盘旋
+            circleTargetRadius = f; // 80f 围绕目标盘旋的范围
+            autoDropBombs = ; // false 如果为true, 即使该单位不在其"真实"目标旁边, 也会投下炸弹, 用于地毯式轰炸机
+            hittable = ; // true 能否被子弹或爆炸打中
+            killable = ; // true 单位能否受伤和被击杀
+            targetable = ; // true 能否被索敌
+            vulnerableWithPayloads = ; // false 当该单位携带载荷时, 能否被索敌和被击中
+            targetUnderBlocks = ; // true 是否攻击类似传送带的"下方"的建筑
+            alwaysShootWhenMoving = ; // false 是否在移动时始终射击
+
+            // 渲染
+            clipSize = f; // -1f 单位渲染范围大小
+            deathShake = f; // -1f 单位死亡时的震动强度
+            stepShake = f; // -1f 单位行走时的震动强度
+            rippleScale = f; // 1f 行走时扬起的尘埃云大小
+            groundLayer = f; // 60f 地面单位渲染时所处的图层
+            flyingLayer = f; // -1 飞行单位渲染时所处的图层
+            lowAltitude = ; // false 是否在效果或子弹下方绘制
+            drawCell = ; // true 是否绘制队伍指示器/单元格
+            drawBody = ; // true 是否绘制单位身体
+            squareShape = ; // false 是否具有方块阴影
+            shadowElevation = f; // -1f 阴影垂直偏移量
+            shadowElevationScl = f; // 1f 阴影缩放比例
+            drawSoftShadow = ; // true 是否绘制软阴影
+            softShadowScl = f; // 1f 软阴影缩放比例
+            drawBuildBeam = ; // true 是否绘制建造光束
+            buildBeamOffset = f; // 3.8f 建造光束向前的偏移量
+            drawMineBeam = ; // true 是否绘制挖掘光束
+            mineBeamOffset = f; // = hitSize / 2f 挖掘光束向前的偏移量
+            drawShields = ; // true 是否绘制单位护盾
+            shieldColor = Color.valueOf(""); // 单位护盾的颜色
+            drawItems = ; // true 是否绘制携带物品
+            itemOffsetY = f; // 3f 物品y轴偏移量
+            drawMinimap = ; // true 是否在小地图上绘制
+            internal = ; // false 是否仅用于内部用途且没有贴图
+            internalGenerateSprites = ; // false 对于内部使用的单位, 是否仍然需要贴图
+            // 轮廓
+            alwaysCreateOutline = ; // false 是否始终生成轮廓区域
+            outlineColor = Color.valueOf(""); // 565666 贴图轮廓颜色
+            outlineRadius = ; // 3 贴图轮廓厚度
+            outlines = ; // true 有无贴图轮廓
+            //引擎
+            setEnginesMirror(); // 引擎
+            engineOffset = f; // 5f 引擎向后的偏移量
+            engineSize = f; // 2.5f 引擎半径
+            engineLayer = f; // -1f 引擎所处的图层
+            useEngineElevation = ; // true 引擎是否始终以正常尺寸显示
+            engineColor = Color.valueOf(""); // null 引擎颜色
+            engineColorInner = Color.valueOf(""); // white 引擎内部颜色
+            // 轨迹
+            waveTrailX = f; // 4f 波纹轨迹水平偏移量
+            waveTrailY = f; // -3f 波纹轨迹垂直偏移量
+            trailScl = f; // 1f 轨迹缩放比例
+            trailLength = ; // 0 引擎尾迹或波浪尾迹长度
+            trailColor = Color.valueOf(""); // 尾迹颜色
+            // 光照
+            lightRadius = f; // -1f 光照半径
+            lightOpacity = f; // 0.6f 光照不透明度
+            lightColor = Color.valueOf(""); // fbd367 单位产生的光照的颜色
+            // 治疗
+            healFlash = ; // true 被治疗时是否闪光
+            healColor = Color.valueOf(""); // 98ffa9 收到治疗时闪光的颜色
+
+            // 音效
+            deathSound = Sounds.; // unset 死亡音效
+            deathSoundVolume = f; // 1f 死亡音效音量
+            wreckSound = Sounds.; // unset 坠毁音效
+            wreckSoundVolume = f; // 1f 坠毁音效音量
+            loopSound = Sounds.; // none 单位在附近时循环播放的音效
+            loopSoundVolume = f; // 0.5f 循环音效的音量
+            stepSound = Sounds.; // mechStepSmall 步进音效
+            stepSoundVolume = f; // 0.5f 步进音量
+            stepSoundPitch = f; // 1f 步进音效的音高
+            stepSoundPitchRange = f; // 0.1f 步进音效的音高范围
+            moveSound = Sounds.; // none 移动音效
+            moveSoundVolume = f; // 1f 移动音效的音量
+            moveSoundPitchMin = f; // 1f 基于速度的移动音效的音高范围
+            moveSoundPitchMax = f; // 1f
+            mineSound = Sounds.; // loopMineBeam 挖掘音效
+            mineSoundVolume = f; // 0.6f 挖掘音效音量
+
+            // 粒子效果
+            fallEffect = Fx.; // fallSmoke 坠毁时产生的粒子效果
+            fallEngineEffect = Fx.; // fallSmoke 坠毁时引擎处产生的粒子效果
+            deathExplosionEffect = Fx.; // dynamicExplosion 死亡时产生的粒子效果
+
+            //LEG UNITS
+            allowLegStep = ; // false 对于有腿的单位, 能否跨过方块
+            legPhysicsLayer = ; // true 腿部是否强行处于地面物理层
+            legCount = ; // 4 拥有腿的数量
+            legGroupSize = ; // 2 腿的组数
+
+            legLength = f; // 10f 单条腿的总长度
+            legSpeed = f; // 0.1f 单条腿的移动速度
+            legForwardScl = f; // 1f 腿部向前放置的距离与单位速度的比例
+            legBaseOffset = f; // 0f 腿部相对于中心的偏移量
+            legMoveSpace = f; // 1f 腿部移动间距比例
+            legExtension = f; // 0f 腿部关节覆盖偏移
+            legPairOffset = f; // 0f 腿部组间同步移动的偏移量
+            legLengthScl = f; // 1f 腿部试图与单位保持的距离
+            legStraightLength = f; // 1f 腿部水平伸展距离比例
+            legMaxLength = f; // 1.75f 腿部最大伸展长度比例
+            legMinLength = f; // 0f 腿部最小伸展长度比例
+            legSplashDamage = f; // 0f 腿部触地时产生的溅射伤害
+            legSplashRange = f; // 5f 腿部触地伤害的范围
+            baseLegStraightness = f; // 0f 腿部基座排列直线度
+            legStraightness = f; // 0f 腿部外展角度直线度
+
+            legBaseUnder = ; // false 腿部区域是否绘制在下方
+            lockLegBase = ; // false 腿部是否被锁定在单位基座上
+            legContinuousMove = ; // 当单位停止移动时, 腿部是否始终尝试移动
+            emitWalkSound = ; // true 踩中液体的音效
+            emitWalkEffect = ; // true 踩中液体的粒子效果
+
+            //MECH UNITS
+            mechLandShake = f; // 0f 机甲落地时的震动强度
+            mechSideSway = f; // 0.54f 机甲侧向摆动的幅度
+            mechFrontSway = f; // 0.1f 机甲前后摆动的幅度
+            mechStride = f; // -1f 机甲步幅长度
+            mechStepParticles = ; // false 机甲在迈出一步后是否产生粒子效果
+            mechLegColor = Color.valueOf(""); // 6e7080 机甲腿部移动时的颜色
+
+            //TANK UNITS
+            treadRects = new Rect[]{}; // 履带矩形区域列表, 相对于中心
+            treadFrames = ; // 18 履带动画帧数
+            treadPullOffset = ; // 0 履带顶部裁剪偏移
+            tankMoveSound = Sounds.; // tankMove 坦克移动音效
+            tankMoveVolume = f; // 0.5f 坦克移动音效的音量
+            treadEffect = Fx.; // 坦克移动时产生的粒子效果
+
+            //SEGMENTED / CRAWL UNITS (this is WIP content!)
+            segments = ; // 0 身体节段数量
+            segmentUnits = ; // 1 是否每节都是独立单位
+            segmentUnit = UnitType.; // 身体节段使用的单位类型
+            segmentEndUnit = UnitType.; // 尾部节段使用的单位类型
+            segmentLayerOrder = ; // true 节段绘制顺序. 为false时, 后面的节段覆盖前面的节段
+            segmentMag = f; // 2f 摆动幅度
+            segmentScl = f; // 4f 摆动周期缩放
+            segmentPhase = f; // 5f 节段间相位差
+            segmentRotSpeed = f; // 1f 节段转向速度
+            segmentMaxRot = f; // 30f 最大角度差
+            segmentSpacing = f; // -1f 节段间距
+            segmentRotationRange = f; // 80f 转向范围限制
+            crawlSlowdown = f; // 0.5f 爬行减速倍率
+            crushDamage = f; // 0f 碾压伤害
+            crawlSlowdownFrac = f; // 0.55f 减速阈值
+
+            //MISSILE UNITS
+            lifetime = f; // 5f * 60f 导弹的生命周期
+            homingDelay = f; // 10f 导弹开始追踪前需要经过的帧数
+            missileAccelTime = f; // 0f 导弹加速到全速所须时间
+
+            // 行为
+            allowChangeCommands = ; // true 是否在单位工厂中隐藏命令更改界面
+            mineItems = Seq.with(Items., Items.); // 目标矿石, 用于采矿AI
+
+            commands.add(); // 可用命令列表
+            defaultCommand = UnitCommand.; // 默认命令
+            stances = ; // 单位可拥有的行为
+            flowfieldPathType = ; // -1 寻路相关
+            pathCost = ; //
+
+            // 环境需求
+            envRequired = ; // 0 必要的环境
+            envEnabled = ; // 可以存在的环境
+            envDisabled = ; // 无法存在的环境
+
+            immunities.add(StatusEffects.); // 免疫的状态效果
+            targetFlags = new BlockFlag[] {BlockFlag., BlockFlag.}; // 目标
+            ammoCapacity = ; // -1 弹药容量
+            ammoType = new ItemAmmoType(Items.); // copper 使用的弹药
+
+            parts.add(); // 额外的动画部件
+            abilities.add(); // 能力
+            weapons.add(new Weapon(VeName("")) {{
+                display = ; // true 是否显示在单位属性中
+                showStatSprite = ; // true 是否在数据库中显示武器贴图
+                mirror = ; // true 有无镜像
+                noAttack = ; // false 该武器能否用于攻击
+                alternate = ; // true 不同副本是否依次射击
+                shootOnDeath = ; // false 是否死亡时射击
+                useAttackRange = ; // true 是否用于攻击范围计算
+                minShootVelocity = f; // -1f 该武器射击所需的最小速度
+                useAmmo = ; // true 当对应规则启用时, 是否消耗弹药
+                targetInterval = f; // 40f 更换目标间的等待时间
+                targetSwitchInterval = f; // 70f 目标切换间隔
+
+                // 旋转
+                rotate = ; // false 是否独立于单位旋转
+                ignoreRotation = ; // false 射击时是否忽略单位旋转
+                baseRotation = f; // 0f 起始旋转角度
+                rotateSpeed = f; // 20f 武器旋转速度
+                rotationLimit = f; // 361f 武器旋转限制
+
+                // 视觉效果
+                region = ""; // 显示纹理区域
+                heatRegion = ""; // 发热纹理区域
+                cellRegion = ""; // 能量单元纹理区域
+                outlineRegion = ""; // 轮廓纹理区域
+                top = ; // true 是否在顶部绘制轮廓
+                layerOffset = f; // 0f 图层偏移量
+                shootX = f; // 0f 弹道/特效相对于武器中心的偏移量
+                shootY = f; // 3f
+                x = f; // 5f 武器对于单位的偏移量
+                y = f; // 0f
+                xRand = f; // 0f X/Y轴上的随机散布
+                yRand = f; // 0f
+                shadow = f; // -1f 武器阴影半径
+                shake = f; // 0f 射击后屏幕震动强度
+                shoot. = ; // 用于子弹的图案
+                ejectEffect = Fx.; // none 弹壳抛出效果
+                parentizeEffects = ; // 射击效果是否跟随单位
+                recoil = f; // 1.5f 视觉上的后坐力
+                recoils = f; // -1f 额外的后坐力计数器数量
+                recoilTime = f; // = reload 后坐力复位时间
+                recoilPow = f; // 1.8f 后坐力功率曲线
+                cooldownTime = f; // 20f 冷却热区所用时间
+                minWarmup = f; // 0f 最小开火预热值
+                shootWarmupSpeed = f; // 0.1f 射击预热速度
+                smoothReloadSpeed = f; // 0.15f 平滑装填速度
+                linearWarmup = ; // false 是否使用线性预热
+                heatColor = Color.valueOf(""); // ab3400 发热区域颜色
+                mountType = WeaponMount::new; // 武器挂架类型
+
+                // 音效
+                soundPitchMin = f; // 0.8f 射击音效随机音高范围
+                soundPitchMax = f; // 1f
+                activeSound = Sounds.; // none 射击循环音效
+                activeSoundVolume = f; // 1f 射击循环音效的音量
+                shootSound = Sounds.; // shoot 射击音效
+                shootSoundVolume = f; // 1f 射击音效音量
+                initialShootSound = Sounds.; // none 首次开火音效
+                chargeSound = Sounds.; // none 充能音效
+
+                // 子弹
+                continuous = ; // 是否保持子弹在射击位置
+                alwaysContinuous = ; // 是否无装填连续射击
+                aimChangeSpeed = f; // Float.1/0f 改变炮塔瞄准距离的速度, 仅用于点激光子弹
+                controllable = ; // true 是否可由玩家手动瞄准
+                aiControllable = ; // true 是否可由单位自动瞄准
+                alwaysShooting = ; // false 是否始终射击
+                autoTarget = ; // false 是否自动瞄准目标
+                predictTarget = ; // true 是否预测目标轨迹
+                reload = f; // 77f 重新装填的帧数
+                inaccuracy = f; // 0f 射击时的不精准度
+                velocityRnd = f; // 0f 速度随机分量比例
+                extraVelocity = f; // 0f 额外速度比例
+                shootCone = f; // 5f 射击起始锥角半径
+                shootStatus = StatusEffects.; // none 射击施加的状态效果
+                shootStatusDuration = f; // 5f * 60f 射击状态效果持续时间
+
+                parts.add(); // 额外动画部件
+                bullet = new ();
+            }});
+        }};
+        */
 
 
         // UnitType
@@ -4280,7 +6198,7 @@ public class VeUnitTypes {
 
             parts.add(); // 额外的动画部件
             abilities.add(); // 能力
-            weapons.add(new Weapon(VanillaExpansion.VeName("")) {{
+            weapons.add(new Weapon(VeName("")) {{
                 display = ; // true 是否显示在单位属性中
                 showStatSprite = ; // true 是否在数据库中显示武器贴图
                 mirror = ; // true 有无镜像
@@ -4930,6 +6848,237 @@ public class VeUnitTypes {
         */
 
 
+        // BasicBulletType
+        /*
+        backColor = Color.valueOf(""); // Pal.bulletYellowBack 底部颜色
+        frontColor = Color.valueOf(""); // Pal.bulletYellow 顶部颜色
+        mixColorFrom = Color.valueOf(""); // 混合颜色的起始值
+        mixColorTo = Color.valueOf(""); // 混合颜色的终止值
+        width = f; // 5f 子弹宽度
+        height = f; // 7f 子弹高度
+        shrinkX = f; // 0f X轴缩放收缩量
+        shrinkY = f; // 0.5f Y轴缩放收缩量
+        shrinkInterp = Interp.; // linear 收缩效果的插值方式
+        spin = f; // 0 每帧旋转速度
+        rotationOffset = f; // 0f 旋转角度偏移量
+        sprite = ""; // 主贴图
+        backSprite = ""; // 底部贴图
+
+        // 基础属性部分
+        // 射程
+        lifetime = f; // 40f 子弹存在时间
+        lifeScaleRandMin = f; // 1f 子弹生命时间的随机缩放范围
+        lifeScaleRandMax = f; // 1f
+        scaleLife = ; // 是否根据距离缩放存在时间
+        maxRange = f; // -1f 最大射程
+        rangeOverride = f; // -1f 强制射程
+        rangeChange = f; // 0f 炮塔射程改变量
+        extraRangeMargin = f; // 0f 额外射程余量
+        range = f; // 0f 初始化后的实际射程
+        minRangeChange = f; // 0f 最小射程改变量
+        // 速度
+        speed = f; // 1f 子弹速度
+        velocityScaleRandMin = f; // 1f 子弹速度的随机缩放范围
+        velocityScaleRandMax = f; // 1f
+        drag = f; // 0f 阻力大小
+        accel = f; // 0f 加速度大小
+        keepVelocity = ; // true 是否继承射手速度
+        // 伤害
+        damage = f; // 1f 直接命中伤害
+        optimalLifeFract = f; // 0f 达到最佳效果需要的时间
+        buildingDamageMultiplier = f; // 1f 对建筑伤害倍率
+        shieldDamageMultiplier = f; // 1f 对护盾伤害倍率
+        pierceArmor = ; // false 是否无视护甲
+        armorMultiplier = f; // 1f 目标护甲乘数
+        // 穿透
+        pierce = ; // 是否穿透单位
+        pierceBuilding = ; // 是否穿透建筑
+        pierceCap = ; // -1 最大穿透次数
+        pierceDamageFactor = f; // 0f 每次穿透后伤害衰减比例
+        maxDamageFraction = f; // -1f 对目标最大生命值的伤害上限比例
+        removeAfterPierce = ; // true 穿透次数耗尽后是否移除子弹
+        laserAbsorb = ; // true 是否被塑钢墙吸收(用于激光)
+        // 碰撞与消除
+        hitSize = f; // 4 碰撞箱大小
+        collidesTiles = ; // true 是否与地形碰撞
+        collidesTeam = ; // false 是否与同队单位碰撞
+        collidesAir = ; // true 是否与空中单位碰撞
+        collidesGround = ; // true 是否与地面单位碰撞
+        collides = ; // true 是否与任何东西碰撞
+        collideFloor = ; // false 是否与非实心地面碰撞
+        collideTerrain = ; // false 是否与静态墙碰撞
+        hittable = ; // true 是否能被点防消除
+        reflectable = ; // true 是否可被反射
+        absorbable = ; // true 是否可被护盾吸收
+        hitUnder = ; // false 是否命中下方的方块
+        // 其他属性
+        shootPattern = ; // null 射击模式
+        ammoMultiplier = f; // 2f 装填倍率
+        reloadMultiplier = f; // 1f 炮塔装填速度倍率
+        recoil = f; // 后坐力
+        killShooter = ; // 是否杀死射击者
+        instantDisappear = ; // 是否立即消失
+        targetBlocks = ; // true 是否锁定方块
+        targetMissiles = ; // true 是否锁定导弹
+        createChance = f; // 1 子弹生成概率
+        lifesteal = f; // 0f 生命偷取比例
+        setDefaults = ; // true 是否自动设置默认值
+        rotateSpeed = f; // 0f 子弹旋转速度
+
+        // 子弹移动轨迹部分
+        // 散布和偏移
+        angleOffset = f; // 0f 角度偏移
+        randomAngleOffset = f; // 0f 随机角度偏移
+        inaccuracy = f; // 0f 射击误差
+        ignoreSpawnAngle = ; // false 是否忽略生成角度
+        // 子弹环绕射击者
+        circleShooter = ; // false 是否环绕射击者
+        circleShooterRadius = f; // 13f 环绕半径
+        circleShooterRadiusSmooth = f; // 10f 平滑额外半径
+        circleShooterRotateSpeed = f; // 0.3f 环绕旋转速度
+        // 追踪
+        homingPower = f; // 0f 制导力度
+        homingRange = f; // 50f 制导范围
+        homingDelay = f; // -1f 制导延迟
+        followAimSpeed = f; // 0f 跟踪瞄准点的速度
+        // 子弹曲线飞行
+        weaveScale = f; // 1f 摆动曲线波长
+        weaveMag = f; // 0f 摆动曲线波强
+        weaveRandom = ; // true 是否随机初始摆动方向
+
+        // 击中效果部分
+        knockback = f; // 击退力度
+        impact = ; // 击退是否沿子弹方向
+        despawnHit = ; // false 消失时是否触发命中效果
+        // 溅射伤害
+        splashDamage = f; // 0f 溅射伤害
+        scaledSplashDamage = ; // false 是否根据单位体积缩放溅射伤害
+        splashDamageRadius = f; // -1f 溅射伤害半径
+        splashDamagePierce = ; // false 溅射伤害是否穿透方块
+        // 状态效果
+        status = StatusEffects.; // none 命中附加的状态效果
+        statusDuration = f; // 60 * 8f 状态效果持续时间
+        // 治疗相关
+        healPercent = f; // 0f 建筑生命恢复百分比
+        healAmount = f; // 0f 建筑生命恢复量
+        healColor = Color.valueOf(""); // Pal.heal 治疗效果颜色
+        healEffect = Fx.; // healBlockFull 治疗效果特效
+        suppressionRange = f; // -1f 修复压制范围
+        suppressionDuration = f; // 60f * 8f 修复压制持续时间
+        suppressionEffectChance = f; // 50f 修复压制触发概率
+        suppressColor = Color.valueOf(""); // Pal.sapBullet 修复压制效果颜色
+        // 黏附效果
+        sticky = ; // false 是否黏附在敌人身上
+        stickyExtraLifetime = f; // 0f 黏附后额外存在时间
+        // 火焰
+        makeFire = ; // false 是否产生火焰
+        incendAmount = ; // 0 尝试生成的火焰数量
+        incendSpread = f; // 8f 火焰的扩散程度
+        incendChance = f; // 1f 火焰生成概率
+        // 生成液体
+        puddles = ; // 生成的水坑数量
+        puddleRange = ; // 水坑生成范围
+        puddleAmount = f; // 5f 每个水坑的液体量
+        puddleLiquid = Liquids.; // water 水坑的液体类型
+
+        // 额外子弹部分
+        // 分裂子弹
+        fragOnHit = ; // true 命中时是否产生分裂子弹
+        fragOnDespawn = ; // true 消失时是否产生分裂子弹
+        fragOnAbsorb = ; // true 被护盾吸收时是否产生分裂子弹
+        delayFrags = ; // false 分裂子弹是否延迟生成
+        fragRandomSpread = f; // 360f 破片随机散布角度
+        fragSpread = f; // 0f 破片均匀散布角度
+        fragAngle = f; // 0f 破片角度偏移
+        fragBullets = ; // 9 破片数量
+        fragVelocityMin = f; // 0.2f 破片速度随机范围
+        fragVelocityMax = f; // 1f
+        fragLifeMin = f; // 1f 破片寿命随机范围
+        fragLifeMax = f; // 1f
+        fragOffsetMin = f; // 1f 破片位置偏移范围
+        fragOffsetMax = f; // 7f
+        pierceFragCap = ; // -1 穿透时生成碎片的次数上限
+        fragBullet = ; // null 分裂子弹类型
+        // 间隔生成子弹
+        bulletInterval = f; // 20f 间隔子弹生成的时间间隔
+        intervalBullets = ; // 1 每次生成的子弹数量
+        intervalRandomSpread = f; // 360f 间隔子弹随机散布
+        intervalSpread = f; // 0f 间隔子弹均匀散布
+        intervalAngle = f; // 0f 间隔子弹角度偏移
+        intervalDelay = f; // -1f 间隔子弹延迟
+        intervalBullet = ; // 间隔生成的子弹类型
+        // 生成时的装饰性子弹
+        spawnBulletRandomSpread = f; // 0f 生成子弹随机散布
+        spawnBullets = ; // 生成时额外生成的子弹, 用于视觉效果
+        // 生成单位
+        spawnUnit = ; // 替代子弹生成的单位
+        despawnUnit = ; // 消失时生成的单位
+        despawnUnitChance = f; // 1 消失时单位生成概率
+        despawnUnitCount = ; // 1 消失时单位生成的数量
+        despawnUnitRadius = f; // 0.1f 消失时单位生成半径
+        faceOutwards = ; // false 单位是否背对子弹方向
+        // 子弹产生的闪电效果
+        lightningColor = Color.valueOf(""); // Pal.surge 闪电颜色
+        lightning = ; // 闪电分支数量
+        lightningLength = ; // 5 闪电基础长度
+        lightningLengthRand = ; // 0 闪电随机额外长度
+        lightningDamage = f; // -1 闪电伤害
+        lightningCone = f; // 360f 闪电散布锥形角度
+        lightningAngle = f; // 0f 闪电角度偏移
+        lightningType = ; // null 闪电点生成的子弹类型
+
+        // 视觉效果与音效部分
+        // 部件
+        parts = ; // 额外视觉部件序列
+        // 渲染
+        drawSize = f; // 40f 子弹的渲染裁剪大小
+        layer = Layer.; // bullet 渲染层
+        underwater = f; // false 是否在水下渲染
+        // 粒子效果和颜色
+        hitEffect = Fx.; // hitBulletSmall 命中效果
+        hitColor = Color.valueOf(""); // white 命中效果颜色
+        despawnEffect = Fx.; // hitBulletSmall 消失效果
+        shootEffect = Fx.; // shootSmall 发射效果
+        chargeEffect = Fx.; // none 充能效果
+        smokeEffect = Fx.; // shootSmallSmoke 烟雾效果
+        // 屏幕震动
+        hitShake = f; // 0f 命中时的屏幕震动
+        despawnShake = f; // 0f 消失时的屏幕震动
+        // 光照
+        lightRadius = f; // -1f 光照半径
+        lightOpacity = f; // 0.3f 光照透明度
+        lightColor = Color.valueOf(""); // Pal.powerLight 光照颜色
+        // 尾迹
+        trailColor = Color.valueOf(""); // Pal.missileYellowBack 尾迹颜色
+        trailChance = f; // -0.0001f 每帧产生尾迹特效的概率
+        trailInterval = f; // 0f 尾迹特效生成间隔
+        trailMinVelocity = f; // 0f 产生尾迹的最小速度
+        trailEffect = Fx.; // missileTrail 尾迹特效
+        trailSpread = f; // 0f 尾迹随机偏移
+        trailParam = f; // 2f 尾迹特效参数
+        trailRotation = ; // false 是否用子弹旋转作为参数,而不是一个固定值
+        trailInterp = Interp.; // one 尾迹宽度插值函数
+        trailLength = ; // -1 尾迹长度
+        trailWidth = f; // 2f 尾迹宽度
+        trailSinMag = f; // 0f 尾迹宽度正弦波动幅度
+        trailSinScl = f; // 3f 尾迹宽度正弦波动频率
+        // 音效
+        shootSound = Sounds.; // none 发射音效
+        hitSound = Sounds.; // none 命中音效
+        hitSoundPitch = f; // 1 命中音效的音调
+        hitSoundPitchRange = f; // 0.1f 命中音效的音调范围
+        hitSoundVolume = f; // 1 命中音效的音量
+        despawnSound = Sounds.; // none 消失音效
+        healSound = Sounds.; // blockHeal 治疗音效
+        healSoundVolume = f; // 0.9f 治疗音效音量
+
+        // 信息显示部分
+        showStats = ; // false 是否显示统计信息
+        displayAmmoMultiplier = ; // true 是否显示弹药倍率
+        statLiquidConsumed = f; // 显示的液体消耗量
+        cachedDps = f; // -1 显示的DPS
+         */
+
         omegaObserver = new UnitType("omega-observer") {{
             constructor = PayloadUnit::create;
             speed = 3.9f;
@@ -5063,4 +7212,47 @@ public class VeUnitTypes {
         }};
 
     }
+
+    /** 设置 ray 单位子弹的 hitEffect */
+    private static MultiEffect rayHitEffect(float r, int index) {
+        return new MultiEffect(
+                new ParticleEffect() {{
+                    sizeFrom = r;
+
+                    colorFrom = Color.white;
+                    colorTo = VePal.unitFront0;
+                    particles = 1;
+                    length = 0f;
+                    sizeTo = 0f;
+                    lifetime = 5f;
+                }},
+                new WaveEffect() {{
+                    sizeTo = r * 2;
+
+                    colorFrom = VePal.unitFront73;
+                    colorTo = VePal.unitBack0;
+                    sizeFrom = 0f;
+                    strokeFrom = 6f;
+                    strokeTo = 6f;
+                    interp = Interp.circleOut;
+                    lifetime = 45f;
+                }},
+                new ExplosionEffect() {{
+                    waveRad = r;
+                    smokeRad = r + 8;
+                    smokeSize = 8f + index;
+                    smokes = 8 + index / 2;
+
+                    waveColor = Pal.unitFront;
+                    waveLife = 10f;
+                    waveStroke = 2f;
+                    waveRadBase = 0f;
+                    smokeColor = VePal.unitFront53;
+                    smokeSizeBase = 1f;
+                    sparks = 0;
+                    lifetime = 60f;
+                }}
+        );
+    }
+
 }

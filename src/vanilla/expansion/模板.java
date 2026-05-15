@@ -2733,7 +2733,7 @@
 
             // = new MultiBulletType(bullets1, bullets2) {{}} // 多子弹类型
 
-            // = new PointBulletType() {{ // 点制导子弹类型(旧厄兆类型)
+            // = new PointBulletType() {{ // 单点制导子弹类型(旧厄兆类型)
             trailSpacing = f; // 10f 拖尾特效的间隔距离
             // Bullet
             lifetime = 100f; // 40f 子弹存在时间
@@ -3480,17 +3480,17 @@
             color = Color.valueOf(""); // white 光束特效的颜色
             beamEffect = Fx.; // pointBeam 发射光束时播放的特效
             // Weapon
-            useAttackRange = false; // true 是否用于攻击范围计算 4654
-            useAmmo = false; // true 当对应规则启用时, 是否消耗弹药 4656
-            targetInterval = 10f; // 40f 更换目标间的等待时间 4657
-            rotate = true; // false 是否独立于单位旋转 4661
-            controllable = false; // true 是否可由玩家手动瞄准 4710
-            autoTarget = true; // false 是否自动瞄准目标 4713
-            predictTarget = false; // true 是否预测目标轨迹 4714
+            useAttackRange = false; // true 是否用于攻击范围计算
+            useAmmo = false; // true 当对应规则启用时, 是否消耗弹药
+            targetInterval = 10f; // 40f 更换目标间的等待时间
+            rotate = true; // false 是否独立于单位旋转
+            controllable = false; // true 是否可由玩家手动瞄准
+            autoTarget = true; // false 是否自动瞄准目标
+            predictTarget = false; // true 是否预测目标轨迹
 
             // = new RepairBeamWeapon(name) {{ // 修复光束武器
             targetBuildings = ; // false 是否可治疗建筑
-            targetUnits = ; // true 是否可治疗建筑
+            targetUnits = ; // true 是否可治疗单位
             repairSpeed = f; // 0.3f 固定治疗速度
             fractionRepairSpeed = f; // 0f 百分比治疗速度
             beamWidth = f; // 1f 光束基础宽度
@@ -3508,17 +3508,17 @@
             healColor = Color.valueOf(""); // Pal.heal; 治疗特效颜色
             healEffect = Fx.; // healBlockFull 治疗建筑时播放的特效
             // Weapon
-            noAttack = true; // false 该武器能否用于攻击 4680
-            useAttackRange = false; // true 是否用于攻击范围计算 4683
-            useAmmo = false; // true 当对应规则启用时, 是否消耗弹药 4685
-            rotate = true; // false 是否独立于单位旋转 4690
-            recoil = 0f; // 1.5f 视觉上的后坐力 4714
-            mountType = HealBeamMount::new; // 武器挂架类型 4723
-            activeSound = Sounds.beamHeal; // none 射击循环音效 4728
-            controllable = false; // true 是否可由玩家手动瞄准 4739
-            autoTarget = true; // false 是否自动瞄准目标 4742
-            predictTarget = false; // true 是否预测目标轨迹 4743
-            reload = 1f; // 77f 重新装填的帧数 必须>0 4744
+            noAttack = true; // false 该武器能否用于攻击
+            useAttackRange = false; // true 是否用于攻击范围计算
+            useAmmo = false; // true 当对应规则启用时, 是否消耗弹药
+            rotate = true; // false 是否独立于单位旋转
+            recoil = 0f; // 1.5f 视觉上的后坐力
+            mountType = HealBeamMount::new; // 武器挂架类型
+            activeSound = Sounds.beamHeal; // none 射击循环音效
+            controllable = false; // true 是否可由玩家手动瞄准
+            autoTarget = true; // false 是否自动瞄准目标
+            predictTarget = false; // true 是否预测目标轨迹
+            reload = 1f; // 77f 重新装填的帧数 必须>0
         }};
         */
 

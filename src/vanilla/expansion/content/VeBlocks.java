@@ -5121,6 +5121,7 @@ public class VeBlocks {
             consumePower(48f / 60f);
         }};
 
+
         isomorphicCoreShard = new CoreBlock("isomorphic-core-shard") {{
             requirements(Category.effect, BuildVisibility.coreZoneOnly, ItemStack.with(Items.lead, 1600, VeItems.aluminium, 1000));
             alwaysUnlocked = true;
