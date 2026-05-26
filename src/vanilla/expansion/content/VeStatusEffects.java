@@ -24,7 +24,11 @@ public class VeStatusEffects {
                     charging, fungitronFast, suppressed,
                     dashing, drag, exhausted, killed, plasmaStatusOrange, thunderCharging, walking;
 
+    public static StatusEffect zhuangTaiMing;
+
     public static void load() {
+
+        zhuangTaiMing = new StatusEffect("名字");
 
         blown = new StatusEffect("blown") {{
             healthMultiplier = 0.9f;

@@ -23,6 +23,9 @@ public class BulletLayer {
             width,
             height;
 
+    /** 全 null 构造, 所有字段默认 null, 不覆写任何属性 */
+    public BulletLayer() {}
+
     /** 构造基础属性 */
     public BulletLayer(float lifetime, float speed, float hitSize, float despawnShake) {
         this.lifetime = lifetime;
@@ -43,6 +46,21 @@ public class BulletLayer {
         this.width = width;
         this.height = height;
         return this;
+    }
+
+    /**
+     * 创建指定层数的全 null 层数组.
+     * 每层不覆写任何属性, 子弹完全继承原型值.
+     *
+     * @param count 层数
+     * @return 全 null 层的 BulletLayer 数组
+     */
+    public static BulletLayer[] nullLayers(int count) {
+        BulletLayer[] layers = new BulletLayer[count];
+        for (int i = 0; i < count; i++) {
+            layers[i] = new BulletLayer();
+        }
+        return layers;
     }
 
     /** 是否设置了 BasicBulletType 特有字段 */

@@ -1672,6 +1672,9 @@
         }};
         */
 
+// GenericCrafter
+
+
 // 其他
         /*
         block = new TreeBlock("") {{
@@ -1814,7 +1817,7 @@
             outputsPower = ; // false 是否输出电力
             connectedPower = ; // true 能否被节点连接
             conductivePower = ; // false 能否通过接触传导电力
-            // 单位
+            // 载荷
             outputsPayload = ; // false 能否输出载荷
             acceptsUnitPayloads = ; // false 能否输入载荷
             acceptsPayload = ; // false 载荷是否尝试进入该方块
@@ -2401,7 +2404,7 @@
             baseRotation = f; // 基础旋转角度
             followParent = ; // true 是否跟随父级单位移动
             rotWithParent = ; // 是否跟随父级单位旋转
-            layer = f; // Layer.effect 特效的渲染层
+            layer = Layer.; // effect 特效的渲染层
             layerDuration = f; // 特定层的持续时间
         }};
         */

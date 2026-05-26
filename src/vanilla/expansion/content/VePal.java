@@ -75,6 +75,7 @@ public class VePal {
     // heal = Pal.heal;
     heal0 = Color.valueOf("98ffa900"),
             heal40 = Color.valueOf("98ffa966"),
+            heal53 = Color.valueOf("98ffa988"),
             heal67 = Color.valueOf("98ffa9aa"),
             heal80 = Color.valueOf("98ffa9cc");
 

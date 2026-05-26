@@ -1,0 +1,426 @@
+package MultiCrafter_Momiji;
+
+import arc.Core;
+import arc.audio.Sound;
+import arc.math.*;
+import arc.struct.*;
+import arc.util.*;
+import arc.util.io.Reads;
+import arc.util.io.Writes;
+import mindustry.content.Fx;
+import mindustry.ctype.*;
+import mindustry.entities.*;
+import mindustry.gen.*;
+import mindustry.graphics.*;
+import mindustry.type.*;
+import mindustry.ui.*;
+import mindustry.world.*;
+import mindustry.world.blocks.heat.*;
+import mindustry.world.blocks.payloads.*;
+import mindustry.world.blocks.production.*;
+import mindustry.world.consumers.*;
+import mindustry.world.meta.*;
+
+import static mindustry.Vars.tilesize;
+
+public class ExtendedCrafter extends GenericCrafter {
+    public Recipe recipe;
+
+    /** 最大载荷容量 */
+    public int payloadCapacity = 10;
+
+    public ExtendedCrafter(String name) {
+        super(name);
+        maxEfficiency = 1f;
+        drawArrow = true;
+        acceptsPayload = true;
+        outputsPayload = true;
+    }
+
+    @Override
+    public void init() {
+        if (recipe != null) {
+            // 热量输出强制旋转
+            if (recipe.outputHeat > 0) {
+                if (!rotate) {
+                    Log.warn("Recipe '@' has heat output, but rotation is disabled. Forcing rotate=true.", name);
+                    rotate = true;
+                }
+                drawArrow = true;
+            }
+
+            // 载荷输出强制旋转
+            if (recipe.outputPayloads != null && recipe.outputPayloads.length > 0) {
+                if (!rotate) {
+                    Log.warn("Recipe '@' has payload output, but rotation is disabled. Forcing rotate=true.", name);
+                    rotate = true;
+                }
+                drawArrow = true;
+            }
+
+            // 输出字段赋值
+            if (recipe.outputItems != null) outputItems = recipe.outputItems;
+            if (recipe.outputLiquids != null) outputLiquids = recipe.outputLiquids;
+            craftTime = recipe.craftTime;
+
+            // 动态消耗
+            if (recipe.inputItems != null) consumeItems(recipe.inputItems);
+            if (recipe.inputLiquids != null) consumeLiquids(recipe.inputLiquids);
+            if (recipe.inputPower > 0) consumePower(recipe.inputPower);
+
+            // 载荷消耗
+            if (recipe.inputPayloads != null && recipe.inputPayloads.length > 0) {
+                consume(new ConsumePayloadDynamic(
+                    ExtendedCrafterBuild::getInputPayloadSeq
+                ));
+            }
+
+            // 容量调整
+            if (recipe.outputItems != null) {
+                int total = 0;
+                for (var s : recipe.outputItems) total += s.amount;
+                itemCapacity = Math.max(itemCapacity, total * 2);
+            }
+            if (recipe.outputLiquids != null) {
+                liquidCapacity = Math.max(liquidCapacity, 10f);
+            }
+
+            // 有载荷时切换为载荷组，允许传送带自动输入
+            if ((recipe.inputPayloads != null && recipe.inputPayloads.length > 0) ||
+                (recipe.outputPayloads != null && recipe.outputPayloads.length > 0)) {
+                group = BlockGroup.payloads;
+                acceptsUnitPayloads = true;
+            }
+        }
+
+        super.init();
+    }
+
+    @Override
+    public void setBars() {
+        super.setBars();
+        if (recipe != null && recipe.outputHeat > 0) {
+            addBar("heatOutput", (ExtendedCrafterBuild entity) -> new Bar(
+                () -> Core.bundle.format("bar.heatpercent",
+                    (int)(entity.heatOutput / recipe.outputHeat * 100),
+                    (int)(entity.heatOutput)
+                ),
+                () -> Pal.lightOrange,
+                () -> recipe.outputHeat > 0 ? entity.heatOutput / recipe.outputHeat : 0f
+            ));
+        }
+    }
+
+    @Override
+    public void setStats() {
+        if (recipe != null) {
+            heatRequirement = recipe.inputHeat;
+        }
+        super.setStats();
+        if (recipe != null) {
+            if (recipe.outputHeat > 0) stats.add(Stat.output, recipe.outputHeat, StatUnit.heatUnits);
+            if (recipe.outputPower > 0) stats.add(Stat.output, recipe.outputPower * 60f, StatUnit.powerSecond);
+
+            // 载荷输入
+            if (recipe.inputPayloads != null) {
+                for (var stack : recipe.inputPayloads) {
+                    stats.add(Stat.input, t -> t.add(StatValues.stack(stack)));
+                }
+            }
+            // 载荷输出
+            if (recipe.outputPayloads != null) {
+                for (var stack : recipe.outputPayloads) {
+                    stats.add(Stat.output, t -> t.add(StatValues.stack(stack)));
+                }
+            }
+        }
+    }
+
+    public float heatRequirement = 0f;
+    public float overheatScale = 1f;
+    public float maxEfficiency = 1f;
+
+    public static class Recipe {
+        public @Nullable ItemStack[] inputItems;
+        public @Nullable LiquidStack[] inputLiquids;
+        public float inputPower;
+        public float inputHeat;
+
+        public @Nullable ItemStack[] outputItems;
+        public @Nullable LiquidStack[] outputLiquids;
+        public float outputPower;
+        public float outputHeat;
+
+        public float craftTime = 80f;
+
+        public @Nullable PayloadStack[] inputPayloads;
+        public @Nullable PayloadStack[] outputPayloads;
+
+        public boolean allowOverdrive = true;
+
+        public @Nullable Effect craftEffect;
+        public @Nullable Effect updateEffect;
+        public float updateEffectChance = 0.04f;
+        public @Nullable Sound craftSound;
+        public @Nullable Sound updateSound;
+
+        public int inputPayloadCapacity = 0;
+        public float inputPayloadMultiplier = 2f;
+
+        public Recipe() {}
+    }
+
+    public class ExtendedCrafterBuild extends GenericCrafterBuild implements HeatBlock, HeatConsumer {
+        public float heatOutput = 0f;
+        public float[] sideHeat = new float[4];
+        public float heat = 0f;
+
+        public PayloadSeq blocks = new PayloadSeq();
+        public final Seq<Payload> outputPayloadQueue = new Seq<>();
+
+        private final Seq<PayloadStack> inputPayloadSeq = new Seq<>();
+
+        public Seq<PayloadStack> getInputPayloadSeq() {
+            inputPayloadSeq.clear();
+            if (recipe != null && recipe.inputPayloads != null) {
+                inputPayloadSeq.addAll(recipe.inputPayloads);
+            }
+            return inputPayloadSeq;
+        }
+
+        @Override
+        public void updateTile() {
+            if (recipe != null) {
+                canOverdrive = !(recipe.outputHeat > 0) && recipe.allowOverdrive;
+            }
+
+            if (recipe != null && recipe.inputHeat > 0) {
+                heat = calculateHeat(sideHeat);
+            }
+
+            super.updateTile();
+
+            if (recipe != null && recipe.outputHeat > 0) {
+                heatOutput = Mathf.approachDelta(heatOutput,
+                    recipe.outputHeat * efficiency, 0.15f * delta());
+            }
+
+            if (efficiency > 0 && recipe != null && recipe.updateEffect != null) {
+                if (Mathf.chanceDelta(recipe.updateEffectChance)) {
+                    recipe.updateEffect.at(
+                        x + Mathf.range(size * 4f),
+                        y + Mathf.range(size * 4f)
+                    );
+                }
+            }
+
+            // 每帧尝试输出载荷
+            dumpOutputPayloads();
+        }
+
+        @Override
+        public void craft() {
+            super.craft();  // 这包含了消费者触发（消耗载荷原料）
+
+            // 生成输出载荷
+            if (recipe != null && recipe.outputPayloads != null) {
+                for (var stack : recipe.outputPayloads) {
+                    for (int i = 0; i < stack.amount; i++) {
+                        Payload payload = createPayload(stack.item);
+                        if (payload != null) {
+                            outputPayloadQueue.add(payload);
+                        }
+                    }
+                }
+            }
+
+            Effect effect = (recipe != null && recipe.craftEffect != null) ?
+                recipe.craftEffect : craftEffect;
+            if (wasVisible) effect.at(x, y);
+        }
+
+        public void dumpOutputPayloads() {
+            if (outputPayloadQueue.isEmpty()) return;
+
+            Payload p = outputPayloadQueue.first();
+
+            // 仅正前方
+            Building front = front();
+            if (front != null && front.acceptPayload(this, p)) {
+                front.handlePayload(this, p);
+                outputPayloadQueue.remove(0);
+                return;
+            }
+
+            // 单位载荷无人接收时直接生成
+            if (p instanceof UnitPayload up) {
+                float frontX = x + Angles.trnsx(rotation, size * tilesize / 2f + 1f);
+                float frontY = y + Angles.trnsy(rotation, size * tilesize / 2f + 1f);
+                up.unit.set(frontX, frontY);
+                up.unit.rotation = rotdeg();
+                up.unit.add();
+                Units.notifyUnitSpawn(up.unit);
+                outputPayloadQueue.remove(0);
+            }
+            // 方块载荷保留在队列中
+        }
+
+        public Payload createPayload(UnlockableContent content) {
+            if (content instanceof Block b) {
+                return new BuildPayload(b, team);
+            } else if (content instanceof UnitType unitType) {
+                return new UnitPayload(unitType.create(team));
+            }
+            return null;
+        }
+
+        @Override
+        public boolean acceptPayload(Building source, Payload payload) {
+            if (recipe == null) return false;
+            var content = payload.content();
+            if (recipe.inputPayloads != null) {
+                for (var stack : recipe.inputPayloads) {
+                    if (stack.item == content) {
+                        if (recipe.inputPayloadCapacity != 0) {
+                            return blocks.get(content) < recipe.inputPayloadCapacity;
+                        } else {
+                            return blocks.get(content) < stack.amount * recipe.inputPayloadMultiplier;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        @Override
+        public void handlePayload(Building source, Payload payload) {
+            var content = payload.content();
+            Fx.payloadDeposit.at(x, y);
+            blocks.add(content, 1);
+            if (payload instanceof UnitPayload up) {
+                up.unit.remove();
+            }
+        }
+
+        @Override
+        public Payload getPayload() {
+            return outputPayloadQueue.isEmpty() ? null : outputPayloadQueue.first();
+        }
+
+        @Override
+        public Payload takePayload() {
+            if (outputPayloadQueue.isEmpty()) return null;
+            return outputPayloadQueue.remove(0);
+        }
+
+        @Override
+        public PayloadSeq getPayloads() {
+            return blocks;
+        }
+
+        @Override
+        public boolean shouldConsume() {
+            if (recipe == null) return false;
+            if (recipe.outputItems != null) {
+                for (var stack : recipe.outputItems) {
+                    if (items.get(stack.item) + stack.amount > itemCapacity) return false;
+                }
+            }
+            if (recipe.outputLiquids != null) {
+                for (var stack : recipe.outputLiquids) {
+                    if (liquids.get(stack.liquid) >= liquidCapacity - 0.001f) return false;
+                }
+            }
+            // 每种输出载荷独立判断容量
+            if (recipe.outputPayloads != null) {
+                for (var stack : recipe.outputPayloads) {
+                    int count = 0;
+                    for (var p : outputPayloadQueue) {
+                        if (p.content() == stack.item) count++;
+                    }
+                    if (count + stack.amount > payloadCapacity) return false;
+                }
+            }
+            return enabled;
+        }
+
+        @Override
+        public boolean payloadCheck(int conveyorRotation) {
+            // 防止载荷传送带在输出方向误输入
+            return conveyorRotation == rotation;
+        }
+
+        // HeatBlock / HeatConsumer
+        @Override public float heat() { return heatOutput; }
+        @Override public float heatFrac() {
+            return recipe != null && recipe.outputHeat > 0 ? heatOutput / recipe.outputHeat : 0f;
+        }
+        @Override public float heatRequirement() { return recipe != null ? recipe.inputHeat : 0f; }
+        @Override public float[] sideHeat() { return sideHeat; }
+        @Override public float warmupTarget() {
+            if (recipe == null || recipe.inputHeat <= 0) return 1f;
+            return Mathf.clamp(heat / recipe.inputHeat);
+        }
+        @Override public float efficiencyScale() {
+            if (recipe == null || recipe.inputHeat <= 0) return super.efficiencyScale();
+            float over = Math.max(heat - recipe.inputHeat, 0f);
+            return Math.min(
+                Mathf.clamp(heat / recipe.inputHeat) + over / recipe.inputHeat * overheatScale,
+                maxEfficiency
+            );
+        }
+
+        // 序列化
+        @Override
+        public void write(Writes write) {
+            super.write(write);
+            blocks.write(write);
+            write.i(outputPayloadQueue.size);
+            for (var p : outputPayloadQueue) {
+                Payload.write(p, write);
+            }
+        }
+
+        @Override
+        public void read(Reads read, byte revision) {
+            super.read(read, revision);
+            blocks.read(read);
+            outputPayloadQueue.clear();
+            int queueSize = read.i();
+            for (int i = 0; i < queueSize; i++) {
+                Payload p = Payload.read(read);
+                if (p != null) outputPayloadQueue.add(p);
+            }
+        }
+
+        @Override
+        public void tapped() {
+            // 先触发原版物品浮窗
+            super.tapped();
+
+            // 有载荷数据时，设置数据并弹出载荷浮窗
+            if (payloadFragment != null && (blocks.total() > 0 || !outputPayloadQueue.isEmpty())) {
+                payloadFragment.setDataProvider(() -> {
+                    ObjectMap<UnlockableContent, Integer> map = new ObjectMap<>();
+                    // 输入载荷
+                    if (recipe.inputPayloads != null) {
+                        for (var stack : recipe.inputPayloads) {
+                            int count = blocks.get(stack.item);
+                            if (count > 0) map.put(stack.item, count);
+                        }
+                    }
+                    // 输出载荷
+                    for (var p : outputPayloadQueue) {
+                        UnlockableContent c = p.content();
+                        map.put(c, map.get(c, 0) + 1);
+                    }
+                    return map;
+                });
+                payloadFragment.showFor(this);
+            }
+        }
+    }
+
+    // BlockContentFragment 的静态实例（需要在 Mod 主类中初始化）
+    public static BlockContentFragment payloadFragment;
+}

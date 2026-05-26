@@ -1,5 +1,10 @@
 package vanilla.expansion;
 
+import MultiCrafter_Momiji.BlockContentFragment;
+import MultiCrafter_Momiji.ExtendedCrafter;
+import arc.Events;
+import mindustry.Vars;
+import mindustry.game.EventType;
 import mindustry.mod.ClassMap;
 import mindustry.mod.Mod;
 import mindustry.world.meta.Attribute;
@@ -39,5 +44,15 @@ public class VanillaExpansion extends Mod {
         VeTechTree.load();
         Override.load();
         SetShownPlanets.load();
+
+        // 创建 fragment 实例
+        ExtendedCrafter.payloadFragment = new BlockContentFragment();
+
+        // 延迟到客户端加载完成后再添加到 UI 树
+        Events.on(EventType.ClientLoadEvent.class, e -> {
+            ExtendedCrafter.payloadFragment.build(Vars.ui.hudGroup);
+        });
+
+        // ... 其余代码
     }
 }

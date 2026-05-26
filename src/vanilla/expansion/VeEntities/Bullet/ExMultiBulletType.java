@@ -1,8 +1,9 @@
 package vanilla.expansion.VeEntities.Bullet;
 
-
 import mindustry.entities.bullet.BulletType;
 import mindustry.entities.bullet.MultiBulletType;
+
+import java.util.Arrays;
 
 /**
  * 扩展 MultiBulletType, 提供对子子弹数组的公开访问.
@@ -35,4 +36,11 @@ public class ExMultiBulletType extends MultiBulletType {
     public void setBullets(BulletType[] bullets) {
         this.bullets = bullets;
     }
+
+    /** 向子子弹数组中添加一颗子弹 */
+    public void addBullet(BulletType bullet) {
+        bullets = Arrays.copyOf(bullets, bullets.length + 1);
+        bullets[bullets.length - 1] = bullet;
+    }
+
 }

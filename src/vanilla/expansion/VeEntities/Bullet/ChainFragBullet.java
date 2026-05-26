@@ -5,42 +5,31 @@ import mindustry.entities.bullet.*;
 
 /**
  * 链式分裂子弹工厂.<p>
- * 根据预定义的层级数组和子弹模板, 将多个子弹层嵌套为完整的链式分裂子弹序列.<p>
- * 外层子弹分裂产生内层, 内层继续分裂直至最内层.<p>
- * 每层子弹的 lifetime, hitSize 等属性通过 {@link BulletLayer} 独立配置.<p>
- * 支持大多数 BulletType 子类, 但以下类型不受支持:
- * <ul>
- *     <li>InterceptorBulletType</li>
- *     <li>MassDriverBolt</li>
- *     <li>ContinuousBulletType</li>
- *     <li>EmptyBulletType</li>
- *     <li>MultiBulletType</li>
- * </ul>
- * 字段 width / height 仅对 BasicBulletType 及其子类生效.<p>
- * 若指定了视觉尺寸但原型不支持, 工厂将输出警告并直接返回原型.<p>
- * 当预计产生的总子弹数超过 {@value #MAX_FRAG_BULLETS} 时,
- * 强制所有外层每次只生成 1 个分裂子弹, 避免数量爆炸.
+ * 根据层级数组和子弹模板将多个子弹层嵌套为链式分裂序列.<p>
+ * 支持四种模式: REPLACE / APPEND 操作第一层, REPLACE_TO_FRAG_FRAG / APPEND_TO_FRAG_FRAG 操作第二层.<p>
+ * 待添加的递归子弹应放在 MultiBulletType 的第一位.
  *
- * @since 2026-05-13
+ * @since 2026-05-17
  * @see BulletLayer
+ * @see ExMultiBulletType
  * @author Momiji142857 (with DeepSeek)
  */
 public class ChainFragBullet {
 
-    /** 最大总分裂子弹数上限 */
-    private static final int MAX_FRAG_BULLETS = 128;
+    private static final int MAX_FRAG_BULLETS = 1024;
 
-    /**
-     * 构建链式分裂子弹.<p>
-     * 从最内层向外逐级包装, 每层子弹引用其内层子弹.<p>
-     * 最内层子弹的 fragBullets 设为 0 以终止分裂.
-     *
-     * @param layers    分裂层定义数组, 索引 0 为最外层, 索引递增方向为向内层
-     * @param prototype 子弹模板, 每层基于此复制并用 BulletLayer 覆写属性, 其 fragBullet 将被覆盖
-     * @return 最外层子弹实例; layers 为空时返回 null; 创建失败时返回原型
-     */
+    public enum Mode {
+        REPLACE,
+        APPEND,
+        REPLACE_TO_FRAG_FRAG,
+        APPEND_TO_FRAG_FRAG
+    }
+
     public static BulletType create(BulletLayer[] layers, BulletType prototype) {
-        // 黑名单检查
+        return create(layers, prototype, Mode.REPLACE);
+    }
+
+    public static BulletType create(BulletLayer[] layers, BulletType prototype, Mode mode) {
         if (prototype instanceof InterceptorBulletType ||
                 prototype instanceof MassDriverBolt ||
                 prototype instanceof ContinuousBulletType ||
@@ -51,51 +40,105 @@ public class ChainFragBullet {
             return prototype;
         }
 
-        // 检查是否需要设置 BasicBulletType 特有字段
         boolean setBasicFields = false;
-        for (BulletLayer layer : layers) {
-            if (layer.hasBasicFields()) {
-                setBasicFields = true;
-                break;
-            }
+        for (BulletLayer l : layers) {
+            if (l.hasBasicFields()) { setBasicFields = true; break; }
         }
-
-        // 不兼容则直接返回
         if (setBasicFields && !(prototype instanceof BasicBulletType)) {
-            Log.warn("[ChainFragBullet] Bullet type @ does not support width/height fields, returning original bullet.",
-                    prototype.getClass().getSimpleName());
+            Log.warn("[ChainFragBullet] width/height not supported for @.", prototype.getClass().getSimpleName());
             return prototype;
         }
 
-        // 估算总子弹数, 超限则强制每层仅分裂 1 个
-        int baseFragBullets = prototype.fragBullets;
-        int estimatedTotal = 1;
-        for (int i = 0; i < layers.length - 1; i++) {
-            estimatedTotal *= baseFragBullets;
+        // 估算总子弹数
+        int fragBullets1 = prototype.fragBullets;
+        int total1 = fragBullets1;
+        if (prototype.fragBullet instanceof MultiBulletType m) {
+            fragBullets1 = m.repeat;
+            total1 = m.bullets.length * m.repeat;
         }
-        boolean forceSingleFrag = estimatedTotal > MAX_FRAG_BULLETS;
 
-        // 从内向外逐层构建
+        int fragBullets2 = 1, total2 = 1;
+        if (mode == Mode.REPLACE_TO_FRAG_FRAG || mode == Mode.APPEND_TO_FRAG_FRAG) {
+            BulletType c = resolveInner(prototype);
+            if (c != null) {
+                if (c.fragBullet instanceof MultiBulletType m2) {
+                    fragBullets2 = m2.repeat;
+                    total2 = m2.bullets.length * m2.repeat;
+                } else if (c.fragBullet != null) {
+                    fragBullets2 = c.fragBullets;
+                }
+            }
+        }
+
+        int estimated = 1;
+        for (int i = 0; i < layers.length - 1; i++) {
+            estimated *= total1 * total2;
+            if (estimated > MAX_FRAG_BULLETS) break;
+        }
+        boolean forceSingle = estimated > MAX_FRAG_BULLETS;
+
+        // 从内向外构建
         BulletType current = null;
         for (int i = layers.length - 1; i >= 0; i--) {
-            BulletLayer layer = layers[i];
             BulletType bullet = prototype.copy();
 
-            // 设置属性
-            layer.applyTo(bullet);
+            if (bullet.fragBullet instanceof MultiBulletType m) {
+                BulletType[] copies = new BulletType[m.bullets.length];
+                for (int j = 0; j < copies.length; j++) copies[j] = m.bullets[j].copy();
+                bullet.fragBullet = new ExMultiBulletType(copies);
+            }
 
-            // 链接内层
+            layers[i].applyTo(bullet);
+
             if (current != null) {
-                bullet.fragBullet = current;
-                bullet.fragBullets = forceSingleFrag ? 1 : baseFragBullets;
+                if (bullet.fragBullet == null || mode == Mode.REPLACE) {
+                    bullet.fragBullet = current;
+                } else if (mode == Mode.APPEND) {
+                    bullet.fragBullet = wrapAndAppend(bullet.fragBullet, current);
+                } else {
+                    BulletType inner = resolveInner(bullet);
+                    if (inner.fragBullet == null || mode == Mode.REPLACE_TO_FRAG_FRAG) {
+                        inner.fragBullet = current;
+                    } else {
+                        inner.fragBullet = wrapAndAppend(inner.fragBullet, current);
+                    }
+                    inner.fragBullets = forceSingle ? 1 : fragBullets2;
+                }
+                bullet.fragBullets = forceSingle ? 1 : fragBullets1;
             } else {
-                bullet.fragBullets = 0;
-                bullet.fragBullet = null;
+                if (mode == Mode.REPLACE_TO_FRAG_FRAG || mode == Mode.APPEND_TO_FRAG_FRAG) {
+                    if (bullet.fragBullet instanceof MultiBulletType m) {
+                        for (BulletType b : m.bullets) {
+                            b.fragBullet = prototype.copy();
+                            b.fragBullets = forceSingle ? 1 : fragBullets2;
+                        }
+                    }
+                    bullet.fragBullets = forceSingle ? 1 : fragBullets1;
+                }
             }
 
             current = bullet;
         }
 
         return current;
+    }
+
+    /** 取 fragBullet 的第一个子子弹, 若为 MultiBulletType 则先包装为 ExMultiBulletType */
+    private static BulletType resolveInner(BulletType target) {
+        BulletType inner = target.fragBullet;
+        if (inner instanceof MultiBulletType m) {
+            inner = new ExMultiBulletType(m.bullets);
+            target.fragBullet = inner;
+        }
+        return inner instanceof ExMultiBulletType em && em.bullets.length > 0 ? em.bullets[0] : inner;
+    }
+
+    /** 追加到 ExMultiBulletType, 若不是则先包装 */
+    private static ExMultiBulletType wrapAndAppend(BulletType target, BulletType toAdd) {
+        ExMultiBulletType multi = target instanceof ExMultiBulletType e ? e
+                : target instanceof MultiBulletType m ? new ExMultiBulletType(m.bullets)
+                  : new ExMultiBulletType(target);
+        multi.addBullet(toAdd);
+        return multi;
     }
 }

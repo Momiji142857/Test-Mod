@@ -1,10 +1,14 @@
 package vanilla.expansion.content;
 
+import MultiCrafter_Momiji.ExtendedCrafter;
+import MultiCrafter_Momiji.MultiCrafter_Momiji;
 import arc.audio.RandomSound;
 import arc.graphics.Color;
 import arc.math.Interp;
 import arc.struct.Seq;
+import arc.util.Nullable;
 import mindustry.content.*;
+import mindustry.entities.Effect;
 import mindustry.entities.TargetPriority;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
@@ -15,6 +19,7 @@ import mindustry.entities.pattern.ShootPattern;
 import mindustry.gen.Sounds;
 import mindustry.graphics.CacheLayer;
 import mindustry.graphics.Layer;
+import mindustry.mod.NoPatch;
 import mindustry.type.*;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.*;
@@ -216,7 +221,182 @@ public class VeBlocks {
                     testDirectionalShield, testDisplayStorage, testAccelerator,
                     coreNucleusRoot, coreNuleusRootSitrullus, coreSingularityRoot, teamProjectorCrux, isomorphicAcceleratorCrux, coreSingularityCrux, coreBoss, coreGeneralStg, coreGeneralFungikiller;
 
+    public static Block testCrafter, multiTest;
+
     public static void load() {
+
+        /*
+        GenericCrafter = new GenericCrafter("name") {{
+            outputItem;
+            outputItems;
+
+            outputLiquid;
+            outputLiquids;
+            liquidOutputDirections = {-1};
+
+            dumpExtraLiquid = true;
+            ignoreLiquidFullness = false;
+
+            craftTime = 80;
+            craftEffect = Fx.none;
+            updateEffect = Fx.none;
+            updateEffectChance = 0.04f;
+            updateEffectSpread = 4f;
+            warmupSpeed = 0.019f;
+            legacyReadWarmup = false;
+            drawer = new DrawDefault();
+        }};
+        */
+
+
+
+        testCrafter = new ExtendedCrafter("test-crafter"){{
+            localizedName = "测试工厂（多载荷）";
+            size = 3;
+            health = 300;
+            itemCapacity = 40;
+            liquidCapacity = 40;
+            payloadCapacity = 5;
+            rotate = true;
+
+            requirements(
+                    Category.crafting,
+                    ItemStack.with(
+                            Items.copper, 60,
+                            Items.lead, 40
+                    )
+            );
+
+            recipe = new Recipe(){{
+                // 输入
+                inputItems = ItemStack.with(Items.copper, 1);                // 1个铜
+                inputLiquids = new LiquidStack[]{new LiquidStack(Liquids.water, 0.1f)}; // 6/秒水
+                inputPayloads = new PayloadStack[]{
+                        new PayloadStack(UnitTypes.flare, 2),   // 2只星辉
+                        new PayloadStack(Blocks.duo, 3)         // 3个双管炮
+                };
+
+                // 输出
+                outputItems = ItemStack.with(Items.lead, 1);                // 1个铅
+                outputLiquids = new LiquidStack[]{new LiquidStack(Liquids.slag, 0.1f)}; // 6/秒矿渣
+                outputPayloads = new PayloadStack[]{
+                        new PayloadStack(Blocks.scatter, 2)     // 2个散射炮
+                };
+
+                craftTime = 30f;        // 0.5秒
+                allowOverdrive = true;  // 允许超速
+                craftEffect = Fx.smeltsmoke;
+            }};
+        }};
+
+        multiTest = new MultiCrafter_Momiji("multi-test-crafter"){{
+            localizedName = "综合测试工厂（多配方）";
+            size = 3;
+            health = 600;
+            itemCapacity = 40;
+            liquidCapacity = 40;
+            payloadCapacity = 10;
+            rotate = true;
+            drawArrow = true;
+
+            requirements(Category.crafting, ItemStack.with(
+                    Items.copper, 100,
+                    Items.lead, 80,
+                    Items.silicon, 60,
+                    Items.graphite, 50
+            ));
+
+            recipes = new Recipe[]{
+                    // 配方1：纯物品+液体，无热量，无载荷
+                    new Recipe(){{
+                        inputItems = ItemStack.with(Items.copper, 3);
+                        inputLiquids = new LiquidStack[]{new LiquidStack(Liquids.water, 0.15f)};
+
+                        outputItems = ItemStack.with(Items.lead, 1);
+                        outputLiquids = new LiquidStack[]{new LiquidStack(Liquids.slag, 0.1f)};
+
+                        craftTime = 60f;
+                        allowOverdrive = true;
+                        craftEffect = Fx.smeltsmoke;
+                        switchEffect = Fx.rotateBlock;
+                    }},
+
+                    // 配方2：纯物品+液体，无热量，无载荷
+                    new Recipe(){{
+                        inputItems = ItemStack.with(Items.copper, 1);
+                        inputLiquids = new LiquidStack[]{new LiquidStack(Liquids.water, 0.15f)};
+
+                        outputItems = ItemStack.with(Items.lead, 3);
+                        outputLiquids = new LiquidStack[]{new LiquidStack(Liquids.slag, 0.1f)};
+                        outputPower = 30f / 60f;
+
+                        craftTime = 60f;
+                        allowOverdrive = true;
+                        craftEffect = Fx.smeltsmoke;
+                        switchEffect = Fx.rotateBlock;
+                    }},
+
+                    // 配方2：消耗热量 + 产出热量
+                    new Recipe(){{
+                        inputItems = ItemStack.with(Items.titanium, 2);
+                        inputLiquids = new LiquidStack[]{new LiquidStack(Liquids.water, 0.1f)};
+                        inputHeat = 40f;
+
+                        outputItems = ItemStack.with(Items.surgeAlloy, 1);
+                        outputHeat = 20f;
+
+                        craftTime = 120f;
+                        allowOverdrive = false;
+                        craftEffect = Fx.smeltsmoke;
+                        switchEffect = Fx.rotateBlock;
+                    }},
+
+                    // 配方3：载荷输入 → 载荷输出（无热量）
+                    new Recipe(){{
+                        inputItems = ItemStack.with(Items.copper, 2);
+                        inputLiquids = new LiquidStack[]{new LiquidStack(Liquids.water, 0.1f)};
+                        inputPayloads = new PayloadStack[]{
+                                new PayloadStack(Blocks.scatter, 2),
+                                new PayloadStack(Blocks.duo, 3)
+                        };
+
+                        outputItems = ItemStack.with(Items.lead, 1);
+                        outputLiquids = new LiquidStack[]{new LiquidStack(Liquids.slag, 0.05f)};
+                        outputPayloads = new PayloadStack[]{
+                                new PayloadStack(UnitTypes.flare, 1)
+                        };
+
+                        craftTime = 50f;
+                        allowOverdrive = true;
+                        craftEffect = Fx.producesmoke;
+                        switchEffect = Fx.rotateBlock;
+                    }},
+
+                    // 配方4：热量+载荷组合
+                    new Recipe(){{
+                        inputItems = ItemStack.with(Items.silicon, 2, Items.titanium, 1);
+                        inputLiquids = new LiquidStack[]{new LiquidStack(Liquids.water, 0.2f)};
+                        inputPower = 1.5f;
+                        inputHeat = 50f;
+                        inputPayloads = new PayloadStack[]{
+                                new PayloadStack(UnitTypes.flare, 1),
+                                new PayloadStack(Blocks.duo, 1)
+                        };
+
+                        outputItems = ItemStack.with(Items.surgeAlloy, 1);
+                        outputLiquids = new LiquidStack[]{new LiquidStack(Liquids.slag, 0.15f)};
+                        outputHeat = 25f;
+                        outputPayloads = new PayloadStack[]{
+                                new PayloadStack(Blocks.scatter, 1)
+                        };
+
+                        craftTime = 150f;
+                        allowOverdrive = false;
+                        craftEffect = Fx.smeltsmoke;
+                        switchEffect = Fx.rotateBlock;
+                    }}
+            };
+        }};
 
         accessibleDeepWater = new Floor("accessible-deep-water", 0) {{
             speedMultiplier = 0.2f;

@@ -2,12 +2,14 @@ package vanilla.expansion.content;
 
 import arc.Core;
 import arc.assets.loaders.SoundLoader;
+import arc.audio.RandomSound;
 import arc.audio.Sound;
 import arc.files.Fi;
 import arc.struct.ObjectMap;
 import arc.util.Log;
 import mindustry.Vars;
 import mindustry.gen.Sounds;
+import mindustry.logic.GlobalVars;
 import mindustry.mod.Mods;
 import vanilla.expansion.VanillaExpansion;
 
@@ -21,6 +23,11 @@ public class VeSounds {
 
     /** 音频存储表, key: 文件名, value: Sound对象 */
     private static final ObjectMap<String, Sound> sounds = new ObjectMap<>();
+
+    // 各音效常量
+
+    /** 随机音效 lbp3ScifiLaserFire 1/2/3 */
+    public static Sound random_lbp3ScifiLaserFire;
 
     /** 加载所有音频 */
     public static void load() {
@@ -41,6 +48,41 @@ public class VeSounds {
         // 递归扫描并加载所有音频
         int count = scanAndLoad(soundsDir);
         Log.info("VeSounds: Loaded " + count + " sounds");
+
+        random_lbp3ScifiLaserFire = new RandomSound(
+                VeSounds.get("lbp3ScifiLaserFire1"),
+                VeSounds.get("lbp3ScifiLaserFire2"),
+                VeSounds.get("lbp3ScifiLaserFire3")
+        );
+
+        Log.info("VeSounds: soundNames size = " + GlobalVars.soundNames.size);
+
+        // 注册到逻辑音效系统
+        try {
+            // 获取 Sounds 的私有字段
+            var soundToIdField = Sounds.class.getDeclaredField("soundToId");
+            soundToIdField.setAccessible(true);
+            var soundToId = (arc.struct.ObjectIntMap) soundToIdField.get(null);
+
+            var idToSoundField = Sounds.class.getDeclaredField("idToSound");
+            idToSoundField.setAccessible(true);
+            var idToSound = (arc.struct.IntMap) idToSoundField.get(null);
+
+            int id = idToSound.size;
+            for (var entry : sounds) {
+                Sound sound = entry.value;
+                String name = entry.key;
+
+                soundToId.put(sound, id);
+                idToSound.put(id, sound);
+                GlobalVars.soundNames.add(name);
+                Vars.logicVars.put("@sfx-" + name, id, true);
+                id++;
+            }
+        } catch (Exception e) {
+            Log.err("VeSounds: Failed to register sounds for logic", e);
+        }
+
     }
 
     /**

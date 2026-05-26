@@ -34,6 +34,14 @@ java{
     sourceCompatibility = JavaVersion.VERSION_17
 }
 
+sourceSets {
+    main {
+        java {
+            exclude 'MDT/**'   // 注意这里的路径写法
+        }
+    }
+}
+
 ext{
     mindustryVersion = 'v157' //the build number that this mod is made for
     jabelVersion = "93fde537c7"
