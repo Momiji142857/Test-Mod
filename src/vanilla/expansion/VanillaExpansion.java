@@ -1,11 +1,6 @@
 package vanilla.expansion;
 
-import arc.Core;
-import arc.files.Fi;
-import arc.graphics.Pixmap;
-import arc.graphics.g2d.PixmapRegion;
 import arc.graphics.g2d.TextureRegion;
-import mindustry.Vars;
 import mindustry.graphics.MultiPacker;
 import mindustry.mod.ClassMap;
 import mindustry.mod.Mod;
@@ -27,60 +22,8 @@ public class VanillaExpansion extends Mod {
         return "ve2" + "-" + add;
     }
 
-    public static TextureRegion[] nitroFrames;
-
     @java.lang.Override
     public void loadContent() {
-
-        /*
-        Fi sheetFile = Vars.tree.get("vesprites/nitroalkoss.png");
-        if (sheetFile == null) {
-            // 如果为 null，说明 jar 内路径不对，请用压缩软件检查 jar 内完整路径
-            throw new RuntimeException("vesprites/nitroalkoss.png not found in mod jar. Check the jar structure.");
-        }
-
-        TextureRegion[] frames = AssetLoader.loadSheet(
-                sheetFile,
-                "nitroalkoss",   // 第一帧名 nitroalkoss，后续 nitroalkoss-1...
-                4, 3,            // 列、行
-                32, 32,          // 帧尺寸
-                0                // 间距
-        );
-        */
-
-        /*
-        TextureRegion[] frames = AssetLoader.loadSheet(
-                sheetFile,
-                "nitroalkoss",   // 基础名，第一帧就是这个，第二帧 nitroalkoss-1 ...
-                4, 2,            // 列、行
-                64, 64,          // 帧宽、帧高
-                0                // padding
-        );
-        */
-
-        /*
-        Fi testFile = Core.files.internal("assets/vesprites/nitroalkoss.png");
-        Log.info("File exists: @", testFile.exists());
-        Log.info("Full path: @", testFile.absolutePath());
-        */
-
-        /*
-        AssetLoader.loadSheet(
-                "vesprites/nitroalkoss.png",
-                "nitroalkoss",
-                4, 3,
-                32, 32,
-                0
-        );
-        */
-
-        // packSprites 已在异步阶段执行完毕，此时 Core.atlas 已包含所有帧
-        int totalFrames = 8;
-        nitroFrames = new TextureRegion[totalFrames];
-        nitroFrames[0] = Core.atlas.find("ve2-nitroalkoss");
-        for (int i = 1; i < totalFrames; i++) {
-            nitroFrames[i] = Core.atlas.find("ve2-nitroalkoss" + i);
-        }
 
         // 尝试让json文件也能使用StatefulWeapon
         ClassMap.classes.put("StatefulWeapon", StatefulWeapon.class);

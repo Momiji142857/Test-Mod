@@ -4,7 +4,6 @@ import arc.Core;
 import arc.files.Fi;
 import arc.graphics.Pixmap;
 import arc.graphics.g2d.PixmapRegion;
-import arc.graphics.g2d.TextureAtlas.AtlasRegion;
 import arc.graphics.g2d.TextureRegion;
 import arc.util.Log;
 import mindustry.Vars;
