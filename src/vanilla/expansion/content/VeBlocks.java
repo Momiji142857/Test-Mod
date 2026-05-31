@@ -5,6 +5,7 @@ import MultiCrafter_Momiji.MultiCrafter_Momiji;
 import arc.audio.RandomSound;
 import arc.graphics.Color;
 import arc.math.Interp;
+import arc.struct.EnumSet;
 import arc.struct.Seq;
 import arc.util.Nullable;
 import mindustry.content.*;
@@ -227,27 +228,241 @@ public class VeBlocks {
 
         /*
         GenericCrafter = new GenericCrafter("name") {{
-            outputItem;
-            outputItems;
-
-            outputLiquid;
-            outputLiquids;
-            liquidOutputDirections = {-1};
-
-            dumpExtraLiquid = true;
-            ignoreLiquidFullness = false;
-
-            craftTime = 80;
-            craftEffect = Fx.none;
-            updateEffect = Fx.none;
-            updateEffectChance = 0.04f;
-            updateEffectSpread = 4f;
-            warmupSpeed = 0.019f;
-            legacyReadWarmup = false;
-            drawer = new DrawDefault();
+            outputItem = Items.; // 生产的物品
+            outputItems = ItemStack.with(Items., );
+            outputLiquid = Liquids.; // 生产的液体
+            outputLiquids = LiquidStack.with(Liquids., );
+            liquidOutputDirections = {-1}; // 每种液体的排出方向
+            dumpExtraLiquid = ; // true 如果为 true, 当多种输出液体中至少还有一种有空间时，是否允许已满的液体直接倾倒
+            ignoreLiquidFullness = ; // false 如果为 true, 即使输出液体满了也不会阻止生产
+            craftTime = ; // 80f生产时间
+            craftEffect = Fx.; // none 生产完成时播放的特效
+            updateEffect = Fx.; // none 生产过程中随机播放的特效
+            updateEffectChance = f; // 0.04f 每帧播放的概率
+            updateEffectSpread = f; // 4f 随机位置的散布范围
+            warmupSpeed = f; // 0.019f 生产效率平滑过渡的速度
+            legacyReadWarmup = ; // false 旧版农场方块的存档兼容
+            drawer = new DrawDefault(); // 控制方块如何绘制
+            // Block
+            flags = EnumSet.of(BlockFlag.factory); // 方块的标志集合，用于AI索引 295
+            update = true; // 该方块是否具有持续更新的方块实体 301
+            solid = true; // 是否为实体 302
+            sync = true; // 是否需要周期性的在网络中同步 308
+            hasItems = true; // 是否拥有物品模块 381
+            drawArrow = false; // true 是否绘制旋转箭头 421
+            ambientSound = Sounds.loopMachine; // none 空闲时发出的声音 457
+            ambientSoundVolume = 0.03f; // 0.05f 空闲音效音量 458
         }};
         */
 
+        /*
+        block = new TreeBlock("") {{
+            // = new Block("") {{
+                // = new TreeBlock("") {{
+                shadowOffset = f; // -4f
+
+                solid = true; // 是否为实体
+                clipSize = 90; // -1f 方块的贴图裁剪范围大小
+                customShadow = true; // false 是否绘制自定义阴影(VeName-shadow)
+
+            // Block
+            requirements(Category.distribution, BuildVisibility.hidden, ItemStack.with(Items., ));
+
+            // 基础属性
+            insulated = ; // false 是否具有绝缘属性
+            absorbLasers = ; // false 能否吸收激光
+            scaledHealth = f; // -1f 生命值基数, 自动计算scaledHealth * size^2, 四舍五入到5的倍数
+            health = ; // -1 生命值, 跳过scaledHealth
+            armor = f; // 0f 护甲
+            baseExplosiveness = ; // 0f 基础爆炸性
+            explosivenessScale = ; // 1f 爆炸性系数
+            flammabilityScale = ; // 1f 易燃性系数
+            size = ; // 1 方块大小
+            placeOverlapRange = f; // 50f 启用placeRangeCheck规则时, 检测敌方方块的范围
+            attacks = ; // false 能否攻击
+            suppressable = ; // false 是否与修复有关
+            canOverdrive = ; // true 能否超速
+            researchCostMultiplier = f; // 1f 研究成本倍数
+            researchCostMultipliers.put(Items., f); // 每种物品的研究成本
+            researchCost = ItemStack.with(Items., ); // 覆盖研究成本
+            unitCapModifier = ; // 0 提供的单位容量, 仅当方块的标志包含unitModifier时生效
+            fogRadius = ; // -1 能揭示多大范围的战争迷雾
+            // 作为载荷
+            updateInUnits = ; // true 当方块作为单位搬运的载荷时，是否继续更新
+            alwaysUpdateInUnits = ; // false 作为载荷时, 是否无视实验性游戏规则，始终更新
+            canPickup = ; // true 能否被搬起
+            deconstructDropAllLiquid = ; // false 如果为false, 则在解构时仅输出可焚烧液体, 否则输出所有液体
+            // 索敌
+            flags = EnumSet.of(BlockFlag.); // 方块的标志集合，用于AI索引
+            priority = f; // TargetPriority.base 敌人瞄准优先级
+            targetable = ; // true 单位是否瞄准此方块
+            // 特殊属性
+            inEditor = ; // true 编辑器中是否可见
+            editorConfigurable = ; // 是否可在编辑器中配置
+            update = ; // 该方块是否具有持续更新的方块实体
+            solid = ; // 是否为实体
+            solidifes = ; // 是否为实心方块
+            teamPassable = ; // 如果为true, 则被视为同阵营的非实体方块
+            underBullets = ; // 如果为true, 则该方块除非被明确指定, 否则无法被子弹击中
+            saveData = ; // 是否保存数据到世界存档
+            timers = ; // 0 计时器的最大值
+            sync = ; // 是否需要周期性的在网络中同步
+            forceTeam = ; // 所有这个方块全部强制属于这个队伍
+
+            // 放置和拆除
+            breakable = ; // 能否用右键拆除
+            requiresWater = ; // false 是否只能放置在水上
+            placeableLiquid = ; // false 能否放置在任何液体上
+            placeablePlayer = ; // true 能否通过建筑菜单直接放置
+            placeableOn = ; // true 其他方块能否放置在这个方块上面
+            floating = ; // false 是否可以放置在液体边缘
+            alwaysReplace = ; // false 是否在所有情况下都可以被替换
+            replaceable = ; // true 能否被替换
+            group = BlockGroup.; // 属于哪个组, 同组方块可以相互替换
+            delayLandingConfig = ; // 如果为true, 则在着陆构建动画中, 该方块的配置操作会被延迟, 未来可能会被移除
+            conveyorPlacement = ; // 是否使用传送带式放置模式
+            allowDiagonal = ; // true 能否使用对角线放置模式(ctrl)
+            swapDiagonalPlacement = ; // 是否交换对角线放置模式
+            allowRectanglePlacement = ; // false 是否为矩形放置, 而非线性放置
+            schematicPriority = ; // 0 蓝图建造优先级
+            buildTime = f; // -1f 建造时间
+            buildCostMultiplier = f; // -1f 建造此方块的速度倍率
+            ignoreBuildDarkness = ; // false 能否在黑暗区域放置, 用于编辑静态墙
+            deconstructThreshold = f; // 0f 拆除完成的阈值
+            instantDeconstruct = ; // false 是否立即拆除, 不返还资源
+            // 旋转
+            rotate = ; // 是否可旋转
+            quickRotate = ; // true 放置后能否旋转
+            ignoreLineRotation = ; // false 如果为true, 该方块的朝向不会朝向拖动方向
+            invertFlip = ; // false 如果为true, 则放置或保存蓝图时不会旋转
+            rotateDraw = ; // true 当rotate为true且该项为false时, 该方块在渲染时不会旋转
+            rotateDrawEditor = ; // true 当rotate为true且该项为false时, 该方块在编辑器中渲染时不会旋转
+            lockRotation = ; // true 当rotate为false且该项为true时, 该方块放置时旋转将锁定到0(默认)
+            visualRotationOffset = f; // 0f 视觉旋转偏移
+            // 摧毁和重建
+            destructible = ; // 该方块是否具有生命值并可摧毁. update为true时, 该项为false不会有任何效果
+            unitMoveBreakable = ; // 如果为true, 某些单位踩到或移动到该方块上时会破坏该方块
+            crushDamageMultiplier = f; // 1f 碾压伤害倍率
+            crushFragile = ; // false 如果为true, 当坦克的crushFragile同为true时, 会立刻破坏该方块
+            drawCracks = ; // true 损坏时是否产生裂纹
+            baseShake = ; // 3f 被摧毁时的屏幕震动
+            createRubble = ; // true 被摧毁时是否产生残骸
+            rebuildable = ; // true 是否可重建
+            allowDerelictRepair = ; // true 该方块的废墟能否通过点击修复
+            destroyBulletSameTeam = ; // false 被摧毁时产生子弹的阵营
+            destroyBullet = new () {{}}; // 被摧毁时产生的子弹
+            // 环境需求
+            envRequired = Env. | Env.; // 0 必要环境
+            envEnabled = Env. | Env.; // Env.terrestrial 可运行环境
+            envDisabled = Env. | Env.; // 0 无法运行的环境
+
+            // 配置
+            saveConfig = ; // false 是否保存上一次的配置并应用到新方块
+            copyConfig = ; // true 能否通过选取操作复制配置
+            clearOnDoubleTap = ; // true 能否通过双击清除配置
+            configurable = ; // 能否被点击并打开配置界面
+            allowConfigInventory = ; // true 物品库存是否与配置界面一起显示
+            selectionRows = ; // 5 选择菜单的行数
+            selectionColumns = ; // 4 选择菜单的列数
+            consumesTap = ; // 当方块被点击时，是否拦截touchDown事件
+            ignoreResizeConfig = ; // 如果为true, 在地图大小改变时, 不会有名为transform的点配置
+            commandable = ; // 在指挥模式下能否被选中
+            // 逻辑
+            privileged = ; // false 对于逻辑相关方块, 能否被普通逻辑处理器更改
+            autoResetEnabled = ; // true 当逻辑块长时间没有交互时，是否自动重置其启用状态
+            drawDisabled = ; // true 是否绘制禁用状态
+            noUpdateDisabled = ; // false 当方块被禁用时，是否停止更新
+            logicConfigurable = ; // false 能否被逻辑配置
+
+            // 生产
+            itemDrop = Items.; // 被钻头开采时, 能够开采出的物品
+            playerUnmineable = ; // false 如果为false, 该方块无法被玩家手动开采
+            attributes.set(Attribute., ); // 对某些事物的效率加成
+            // 物品
+            hasItems = ; // 是否拥有物品模块
+            depositCooldown = f; // -1f 玩家向该方块存入物品时的冷却时间
+            itemCapacity = ; // 10 物品容量
+            separateItemCapacity = ; // false 物品容量是否独立计算
+            unloadable = ; // true 装卸器能否作用于该方块
+            // 液体
+            hasLiquids = ; // 是否拥有液体模块
+            liquidCapacity = f; // -1f 液体容量
+            outputsLiquid = ; // false 是否输出液体
+            liquidPressure = f; // 1f 液体输出速率
+            displayFlow = ; // true 显示液体传输速率
+            // 电力
+            hasPower = ; // 是否拥有电力模块
+            consumesPower = ; // true 是否被视为耗电单元
+            outputsPower = ; // false 是否输出电力
+            connectedPower = ; // true 能否被节点连接
+            conductivePower = ; // false 能否通过接触传导电力
+            // 载荷
+            outputsPayload = ; // false 能否输出载荷
+            acceptsUnitPayloads = ; // false 能否输入载荷
+            acceptsPayload = ; // false 载荷是否尝试进入该方块
+            // 输入输出
+            acceptsItems = ; // false 是否与附近的传送带连接
+            alwaysAllowDeposit = ; // false 是否忽略onlyDepositCore规则
+            outputFacing = ; // true 是否按方块朝向输出
+            noSideBlend = ; // false 是否接受来自侧面的输入
+            isDuct = ; // false 该方块是否为管道
+            allowResupply = ; // false 单位能否从该方块拿取物品
+            instantTransfer = ; // false 是否支持瞬时传输(光传)
+            dumpTime = ; // 5 尝试输出的时间间隔, 填5即每秒尝试输出12次
+            consumeLiquid(Liquids., f / 60f); // + .boost(); 消耗的液体 + 强化
+            consumeLiquids(LiquidStack.with(Liquids., f / 60f));
+            consumeCoolant(f); // + .boost(); 消耗任意冷却液 + 强化
+            consumePower(f / 60f); // 消耗的电力
+            consumeItem(Items., ); // 消耗的物品
+            consumeItems(ItemStack.with(Items., , Items., ));
+            consumePowerBuffered(f); // 储存的电力
+
+            // 渲染
+            variants = ; // 0 不同的变体贴图数量
+            drawArrow = ; // true 是否绘制旋转箭头
+            drawTeamOverlay = ; // true 是否绘制队伍标识
+            squareSprite = ; // true 贴图是否为完整方块
+            enableDrawStatus = ; // true 是否绘制状态
+            lightLiquid = Liquids.; // 用于光照效果的液体
+            offset = f; // 0f 方块在网格中的偏移量
+            clipSize = f; // -1f 方块的贴图裁剪范围大小
+            lightClipSize = f; // 仅用于光照的裁剪范围
+            cacheLayer = CacheLayer.; // 缓存渲染层类型
+            fillsTile = ; // true 如果为 false，即使被缓存，也会在方块下方绘制地板
+            forceDark = ; // false 是否强制让这个方块被黑暗/战争迷雾覆盖
+            drawLiquidLight = ; // true 是否绘制液体的发光效果
+            mapColor = ; // 小地图颜色
+            hasColor = ; //false 是否具有小地图颜色
+            outlineColor = Color.valueOf(""); // 404049 方块图标的轮廓颜色
+            outlineIcon = ; // false 是否有图标轮廓
+            outlineRadius = ; // 4 轮廓宽度
+            outlinedIcon = ; // -1 哪个图标区域会添加轮廓
+            hasShadow = ; // true 下方是否有阴影
+            customShadow = ; // false 是否绘制自定义阴影(VeName-shadow)
+            albedo = f; // 0f 反射率
+            lightColor = Color.valueOf(""); // 方块自身发出的环境光颜色
+            emitLight = ; // false 是否调用drawLight()
+            obstructsLight = ; // true 是否遮挡其他方块发出的光线
+            lightRadius = f; // 60f 光照半径
+            useColor = ; // true 是否在小地图中使用这个方块的颜色
+            // 音效
+            configureSound = Sounds.; // click 进行配置时产生的音效
+            placePitchChange = ; // true 建造时是否改变建造音效的音高
+            breakPitchChange = ; // true 拆除时是否改变拆除音效的音高
+            placeSound = Sounds.; // unset 建造音效
+            breakSound = Sounds.; // unset 拆除音效
+            destroySound = Sounds.; // unset 摧毁音效
+            destroySoundVolume = f; // 1f 摧毁音效音量
+            destroyPitchMin = f; // 1f 摧毁音效音调范围
+            destroyPitchMax = f; // 1f
+            ambientSound = Sounds.; // none 空闲时发出的声音
+            ambientSoundVolume = f; // 0.05f 空闲音效音量
+            // 粒子效果
+            placeEffect = Fx.; // placeBlock 放置效果
+            breakEffect = Fx.; // breakBlock 拆除效果
+            destroyEffect = Fx.; // dynamicExplosion 摧毁效果
+        }};
+        */
 
 
         testCrafter = new ExtendedCrafter("test-crafter"){{

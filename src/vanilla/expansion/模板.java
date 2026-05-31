@@ -1692,7 +1692,7 @@
             // 基础属性
             insulated = ; // false 是否具有绝缘属性
             absorbLasers = ; // false 能否吸收激光
-            scaledHealth = f; // -1f 每个格子所占的生命值基数, 结果为: health = size * size * scaledHealth并四舍五入至5的倍数
+            scaledHealth = f; // -1f 生命值基数, 自动计算scaledHealth * size^2, 四舍五入到5的倍数
             health = ; // -1 生命值, 跳过scaledHealth
             armor = f; // 0f 护甲
             baseExplosiveness = ; // 0f 基础爆炸性
@@ -1731,7 +1731,7 @@
             forceTeam = ; // 所有这个方块全部强制属于这个队伍
 
             // 放置和拆除
-            breakable = ; // 是否可以用右键直接拆除这个方块
+            breakable = ; // 能否用右键拆除
             requiresWater = ; // false 是否只能放置在水上
             placeableLiquid = ; // false 能否放置在任何液体上
             placeablePlayer = ; // true 能否通过建筑菜单直接放置
