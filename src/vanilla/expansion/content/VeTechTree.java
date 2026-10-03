@@ -2,6 +2,7 @@ package vanilla.expansion.content;
 
 import arc.struct.Seq;
 import mindustry.content.Blocks;
+import mindustry.content.TechTree;
 import mindustry.game.Objectives;
 
 import static mindustry.content.TechTree.*;
@@ -11,6 +12,10 @@ import static vanilla.expansion.content.VeLiquids.*;
 import static vanilla.expansion.content.VeSectors.*;
 
 public class VeTechTree {
+
+    /** 用于 addAfter 方法中临时存储父节点 */
+    public static TechTree.TechNode context = null;
+
     public static void load() {
 
         // cyclant

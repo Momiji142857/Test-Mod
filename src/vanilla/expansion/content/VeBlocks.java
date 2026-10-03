@@ -44,7 +44,8 @@ import vanilla.expansion.VanillaExpansion;
 public class VeBlocks {
 
     public static Block
-            //environment
+            //region environment
+
             accessibleDeepWater, deepWaterOil, flowingLava, antigrass, semigrass, gravel, carbonShale, hillStone, saltyIce, deepslate, deepslateBrick, coreZoneCyclant, metalTiles13ve, metalTiles14ve, metalTiles15ve, metalTiles16ve,
                     antigrassWall, semigrassWall, carbonShaleWall, hillStoneWall, deepslateWall, deepslateBrickWall, darkMetalRepaired,
                     carbonShaleBoulder, hillStoneBoulder,
@@ -64,7 +65,9 @@ public class VeBlocks {
             redGround, greenGround, blueGround, whiteGround, darkGround,
                     pureDark,
 
-            //turrets
+            //endregion
+            //region turrets
+
             click, frag, pulse, rise, bake, waterer,
             beat, crack, shock,
             buffet, burn, dot, spurt,
@@ -78,7 +81,9 @@ public class VeBlocks {
 
             sans,
 
-            //production
+            //endregion
+            //region production
+
             mechanicalDrillMicro, mechanicalDrillHuge,
 
             isomorphicDrill, isomorphicDrillHuge, laserBore, powerDrill, beamDrill, silicideDrill,
@@ -94,35 +99,42 @@ public class VeBlocks {
 
             collector, magneticDigger, mechanicalWell, rotChamber,
 
-            //transport - serpulo
+            //endregion
+            //region transport
+
+            // serpulo
             armoredBridgeConveyor, armoredRouter, armoredOverflowGate, armoredUnderflowGate, armoredUnloader,
                     silicideDuct, silicideArmoredDuct, silicideJunction, silicideBridgeConveyor, silicideSorter, silicideInvertedSorter, silicideRouter, silicideDistributor, silicideOverflowGate, silicideUnderflowGate, silicideUnloader,
 
-            //transport - erekir
+            // erekir
             ductJunction,
 
-            //transport - cyclant
+            // cyclant
             rail, railJunction, railBridge, railRouter, railOverflowGate, railUnderflowGate, railUnloader,
                     silicideRail, silicideRailJunction, silicideRailBridge, silicideRailRouter, silicideRailOverflowGate, silicideRailUnderflowGate, silicideRailUnloader,
                     chromiumConveyor, chromiumSorter, cobaltRail, cobaltRailBridge, cobaltRailUnderflowGate, cobaltRailUnloader,
 
             stackRail, silicideStackRail, phaseUnloader, multiUnloader, massLauncher, massRailgun, warpDriver,
 
-            //transport - maress, sitrullus
+            // maress, sitrullus
             ferricConveyor, ferricConveyorArmored, ferricRail, /* magneticDuct, */ valveCross, ferricBridge, valveSort, valveInvertedSort, valveDistribute, valveOverflow, valveUnderflow, valveUnload,
 
-            //liquid
+            //endregion
+            //region liquid
+
             isomorphicPump, platformPump, pressurePump,
                     isomorphicConduit, fluidJunction, isomorphicBridgeConduit, fluidRouter, can, tank,
                     pressureConduit, platformBridgeConduit,
                     silicidePlatedConduit,
                     silicideConduit, silicideFluidJunction, silicideBridgeConduit, silicideFluidRouter, canSilicide, tankSilicide,
 
-            //liquid - maress, sitrullus
+            // maress, sitrullus
             chainedPump,
                     silverConduit, silverConduitArmored, valveFluidCross, silverBridge, valveFluidDistribute,
 
-            //power
+            //endregion
+            //region power
+
             advancedNode, advancedNodeLarge, isomorphicNode, isomorphicNodeLarge, insulatedNode, sectorPowerTower,
                     nodeBlocker, powerBattery, silicideBattery, sodiumSulphurBattery, charger, discharger,
                     largeCombustionGenerator, largeTurbineGenerator, geothermalGenerator, solarPad, lavaThermalGenerator, internalCombustionGenerator, sodiumReactor, solidFuelCell, fluidFuelCell, microReactor, isomorphicReactor, radioactiveThermalGenerator, fusionReactor,
@@ -132,7 +144,9 @@ public class VeBlocks {
 
             winTower,
 
-            //defense
+            //endregion
+            //region defense
+
             copperWallHuge, titaniumWallHuge, thoriumWallHuge,
                     defensiveWall, defensiveWallLarge, defensiveWallHuge,
                     effectiveWall, effectiveWallLarge,
@@ -152,26 +166,30 @@ public class VeBlocks {
 
             titanicPlastaniumWall, bush, tree,
 
-            //crafting
+            //endregion
+            //region crafting
+
             quartzExtractor,
 
-            //crafting - cyclant
+            // cyclant
             isomorphicPress, hydraulicPress, isomorphicSmelter, substitutionChamber, quartzSeparator, quartzSeparatorLarge, isomorphicKiln, silicideCrucible, silicideMixer, pyratiter, blaster, lavaCooler, plantPress, cellLaboratory,
                     gasificationChamber, sporeBlender, meltingElectrolyzer, sodiumCarbonFixator, saltElectrolyzer, surgeElectrolyzer, nitroalkossReactor,
                     crackingCompressor, fibraltExtender, chainTransferer, carbonizationChamber,
                     surgeCoagulator, catalyzonCrafter, fusionRefueller, fusionDisfueller, phaseLoom, warper, titaniumExtractor, carbonShaleSmelter, coalSynthezer, isomorphicPulverizer, largePulverizer, decomposer, eddyMelter, Extractor, recycler,
 
-            //crafting - maress, sitrullus
+            // maress, sitrullus
             blastFurnace, multiFurnace, reductionChember, magneticSeparator, centrifugeKiln, reflectorThermolyzer,
                     boiler, reactorCore,
 
             siliconOxidator, concentrator,
                     filter, blender,
 
-            //units
+            //endregion
+            //region units
+
             giganticPayloadConveyor,
 
-            //units - cyclant
+            // cyclant
             groundFabricator, airFabricator, navalFabricator, specialFabricator, integratedConstructor,
                     isomorphicAdditiveReconstructor, isomorphicMultiplicativeReconstructor,
                     juniorArmorcarReconstructor, juniorCrabbotReconstructor, juniorHovershipReconstructor,
@@ -185,33 +203,38 @@ public class VeBlocks {
             payloadRail, payloadRailRouter, cobaltPayloadRail, cobaltPayloadRailRouter,
                     payloadRailLarge, payloadRailRouterLarge, cobaltPayloadRailLarge, cobaltPayloadRailRouterLarge,
 
-            //effect
+            //endregion
+            //region effect
+
             overdriver, mendDome,
 
-            //effect - cyclant
+            // cyclant
             mendPoint, menderator, mendGlobe, overdriverPoint, overdrivator, overdriverGlobe, forcerator,
                     teamProjectorSharded, plastaniumStool, warpDefender,
                     isomorphicCoreShard, isomorphicCoreFoundation, isomorphicCoreUncleus, coreQuark, coreSingularity,
                     shelf, shelfSilicide, containerSilicide, warpDisc, bank, bankSilicide, warpBase,
                     lamp, lampAlarm, advancedLaunchPad, advancedLandingPad, isomorphicAcceleratorSmall, isomorphicAccelerator,
 
-            //effect - maress, sitrullus
+            // maress, sitrullus
             nuke, coreGeneral, tradePortal, sporeBomb,
 
-            //effect - Special
+            // Special
             coreHolder, gammaBlock, coreThurium,
 
-            //logic
+            //endregion
+            //region logic
             isomorphicMessage, isomorphicSwitch, isomorphicProcessor, isomorphicMemory,
                     quantumProcessor, quantumMemoryCell,
 
-            //sandbox
+            //endregion
+            //region sandbox
             silicideItemSource, silicideItemVoid,
                     silicideFluidSource, silicideFluidVoid,
                     mapPowerSource,
                     sweeper, sandboxBlast, pogMender, pogOverdriver, forceSource,
 
-            //test
+            //endregion
+            //region test
             testTurret, testTurret2, testTurret3,
                     testChainBurst, testChainDrill,
                     bridge3,testInstantConvey, testUnloader,
@@ -222,7 +245,7 @@ public class VeBlocks {
                     testDirectionalShield, testDisplayStorage, testAccelerator,
                     coreNucleusRoot, coreNuleusRootSitrullus, coreSingularityRoot, teamProjectorCrux, isomorphicAcceleratorCrux, coreSingularityCrux, coreBoss, coreGeneralStg, coreGeneralFungikiller;
 
-    public static Block testCrafter, multiTest;
+            //endregion
 
     public static void load() {
 
@@ -464,155 +487,7 @@ public class VeBlocks {
         }};
         */
 
-
-        testCrafter = new ExtendedCrafter("test-crafter"){{
-            localizedName = "测试工厂（多载荷）";
-            size = 3;
-            health = 300;
-            itemCapacity = 40;
-            liquidCapacity = 40;
-            payloadCapacity = 5;
-            rotate = true;
-
-            requirements(
-                    Category.crafting,
-                    ItemStack.with(
-                            Items.copper, 60,
-                            Items.lead, 40
-                    )
-            );
-
-            recipe = new Recipe(){{
-                // 输入
-                inputItems = ItemStack.with(Items.copper, 1);                // 1个铜
-                inputLiquids = new LiquidStack[]{new LiquidStack(Liquids.water, 0.1f)}; // 6/秒水
-                inputPayloads = new PayloadStack[]{
-                        new PayloadStack(UnitTypes.flare, 2),   // 2只星辉
-                        new PayloadStack(Blocks.duo, 3)         // 3个双管炮
-                };
-
-                // 输出
-                outputItems = ItemStack.with(Items.lead, 1);                // 1个铅
-                outputLiquids = new LiquidStack[]{new LiquidStack(Liquids.slag, 0.1f)}; // 6/秒矿渣
-                outputPayloads = new PayloadStack[]{
-                        new PayloadStack(Blocks.scatter, 2)     // 2个散射炮
-                };
-
-                craftTime = 30f;        // 0.5秒
-                allowOverdrive = true;  // 允许超速
-                craftEffect = Fx.smeltsmoke;
-            }};
-        }};
-
-        multiTest = new MultiCrafter_Momiji("multi-test-crafter"){{
-            localizedName = "综合测试工厂（多配方）";
-            size = 3;
-            health = 600;
-            itemCapacity = 40;
-            liquidCapacity = 40;
-            payloadCapacity = 10;
-            rotate = true;
-            drawArrow = true;
-
-            requirements(Category.crafting, ItemStack.with(
-                    Items.copper, 100,
-                    Items.lead, 80,
-                    Items.silicon, 60,
-                    Items.graphite, 50
-            ));
-
-            recipes = new Recipe[]{
-                    // 配方1：纯物品+液体，无热量，无载荷
-                    new Recipe(){{
-                        inputItems = ItemStack.with(Items.copper, 3);
-                        inputLiquids = new LiquidStack[]{new LiquidStack(Liquids.water, 0.15f)};
-
-                        outputItems = ItemStack.with(Items.lead, 1);
-                        outputLiquids = new LiquidStack[]{new LiquidStack(Liquids.slag, 0.1f)};
-
-                        craftTime = 60f;
-                        allowOverdrive = true;
-                        craftEffect = Fx.smeltsmoke;
-                        switchEffect = Fx.rotateBlock;
-                    }},
-
-                    // 配方2：纯物品+液体，无热量，无载荷
-                    new Recipe(){{
-                        inputItems = ItemStack.with(Items.copper, 1);
-                        inputLiquids = new LiquidStack[]{new LiquidStack(Liquids.water, 0.15f)};
-
-                        outputItems = ItemStack.with(Items.lead, 3);
-                        outputLiquids = new LiquidStack[]{new LiquidStack(Liquids.slag, 0.1f)};
-                        outputPower = 30f / 60f;
-
-                        craftTime = 60f;
-                        allowOverdrive = true;
-                        craftEffect = Fx.smeltsmoke;
-                        switchEffect = Fx.rotateBlock;
-                    }},
-
-                    // 配方2：消耗热量 + 产出热量
-                    new Recipe(){{
-                        inputItems = ItemStack.with(Items.titanium, 2);
-                        inputLiquids = new LiquidStack[]{new LiquidStack(Liquids.water, 0.1f)};
-                        inputHeat = 40f;
-
-                        outputItems = ItemStack.with(Items.surgeAlloy, 1);
-                        outputHeat = 20f;
-
-                        craftTime = 120f;
-                        allowOverdrive = false;
-                        craftEffect = Fx.smeltsmoke;
-                        switchEffect = Fx.rotateBlock;
-                    }},
-
-                    // 配方3：载荷输入 → 载荷输出（无热量）
-                    new Recipe(){{
-                        inputItems = ItemStack.with(Items.copper, 2);
-                        inputLiquids = new LiquidStack[]{new LiquidStack(Liquids.water, 0.1f)};
-                        inputPayloads = new PayloadStack[]{
-                                new PayloadStack(Blocks.scatter, 2),
-                                new PayloadStack(Blocks.duo, 3)
-                        };
-
-                        outputItems = ItemStack.with(Items.lead, 1);
-                        outputLiquids = new LiquidStack[]{new LiquidStack(Liquids.slag, 0.05f)};
-                        outputPayloads = new PayloadStack[]{
-                                new PayloadStack(UnitTypes.flare, 1)
-                        };
-
-                        craftTime = 50f;
-                        allowOverdrive = true;
-                        craftEffect = Fx.producesmoke;
-                        switchEffect = Fx.rotateBlock;
-                    }},
-
-                    // 配方4：热量+载荷组合
-                    new Recipe(){{
-                        inputItems = ItemStack.with(Items.silicon, 2, Items.titanium, 1);
-                        inputLiquids = new LiquidStack[]{new LiquidStack(Liquids.water, 0.2f)};
-                        inputPower = 1.5f;
-                        inputHeat = 50f;
-                        inputPayloads = new PayloadStack[]{
-                                new PayloadStack(UnitTypes.flare, 1),
-                                new PayloadStack(Blocks.duo, 1)
-                        };
-
-                        outputItems = ItemStack.with(Items.surgeAlloy, 1);
-                        outputLiquids = new LiquidStack[]{new LiquidStack(Liquids.slag, 0.15f)};
-                        outputHeat = 25f;
-                        outputPayloads = new PayloadStack[]{
-                                new PayloadStack(Blocks.scatter, 1)
-                        };
-
-                        craftTime = 150f;
-                        allowOverdrive = false;
-                        craftEffect = Fx.smeltsmoke;
-                        switchEffect = Fx.rotateBlock;
-                    }}
-            };
-        }};
-
+        //region environment
         accessibleDeepWater = new Floor("accessible-deep-water", 0) {{
             speedMultiplier = 0.2f;
             drownTime = 0f;
@@ -1075,6 +950,8 @@ public class VeBlocks {
             variants = 0;
         }};
 
+        //endregion
+        //region turrets
 
         click = new ItemTurret("click") {{
             requirements(Category.turret, ItemStack.with(VeItems.aluminium, 40));
@@ -2134,6 +2011,8 @@ public class VeBlocks {
             researchCostMultiplier = 0.01f;
         }};
 
+        //endregion
+        //region production
 
         mechanicalDrillMicro = new Drill("mechanical-drill-micro") {{
             requirements(Category.production, ItemStack.with(Items.copper, 4));
@@ -2804,7 +2683,10 @@ public class VeBlocks {
             researchCostMultiplier = 0.5f;
         }};
 
+        //endregion
+        //region transport
 
+        // serpulo
         armoredBridgeConveyor = new DuctBridge("armored-bridge-conveyor") {{
             requirements(Category.distribution, ItemStack.with(Items.metaglass, 10, Items.thorium, 10, Items.plastanium, 10));
             speed = 4f;
@@ -2974,12 +2856,14 @@ public class VeBlocks {
             crushDamageMultiplier = 0.05f;
         }};
 
+        // erekir
         ductJunction = new DuctJunction("duct-junction") {{
             requirements(Category.distribution, ItemStack.with(Items.beryllium, 3));
             speed = 4f;
             health = 120;
         }};
 
+        // cyclant
         rail = new Conveyor("rail") {{
             requirements(Category.distribution, ItemStack.with(VeItems.aluminium, 1));
             speed = 0.09f;
@@ -3457,6 +3341,7 @@ public class VeBlocks {
             consumePower(36f / 60f);
         }};
 
+        // maress, sitrullus
         ferricConveyor = new Conveyor("ferric-conveyor") {{
             requirements(Category.distribution, ItemStack.with(VeItems.ferrum, 1));
             speed = 0.12f;
@@ -3594,6 +3479,9 @@ public class VeBlocks {
             group = BlockGroup.transportation;
             crushDamageMultiplier = 0.2f;
         }};
+
+        //endregion
+        //region liquid
 
         isomorphicPump = new Pump("isomorphic-pump") {{
             requirements(Category.liquid, ItemStack.with(Items.metaglass, 12, VeItems.aluminium, 10));
@@ -3816,6 +3704,7 @@ public class VeBlocks {
             liquidCapacity = 2200f;
         }};
 
+        // maress, sitrullus
         chainedPump = new Pump("chained-pump") {{
             requirements(Category.liquid, ItemStack.with(VeItems.ferrum, 10, VeItems.silver, 20));
             pumpAmount = 9f / 60f;
@@ -3882,6 +3771,9 @@ public class VeBlocks {
             liquidCapacity = 100f;
             squareSprite = false;
         }};
+
+        //endregion
+        //region power
 
         advancedNode = new BeamNode("advanced-node") {{
             requirements(Category.power, ItemStack.with(Items.lead, 4, VeItems.quartz, 3));
@@ -4666,6 +4558,9 @@ public class VeBlocks {
             ambientSoundVolume = 0.01f;
         }};
 
+        //endregion
+        //region defense
+
         copperWallHuge = new Wall("copper-wall-huge") {{
             requirements(Category.defense, ItemStack.with(Items.copper, 54));
             scaledHealth = 320f;
@@ -5337,6 +5232,8 @@ public class VeBlocks {
             alwaysUnlocked = true;
         }};
 
+        //endregion
+        //region crafting
 
         quartzExtractor = new GenericCrafter("quartz-extractor") {{
             requirements(Category.crafting, ItemStack.with(Items.copper, 16, Items.graphite, 12));
@@ -5358,8 +5255,17 @@ public class VeBlocks {
             ambientSound = Sounds.loopGrind;
             ambientSoundVolume = 0.03f;
             consumeItem(Items.sand, 2);
+
+
+            drawer = new DrawMulti(
+                    new DrawRegion("-bottom"),
+                    new DrawLiquidTile(),
+                    new DrawRegion("-spinner", 3, true),
+                    new DrawDefault()
+            );
         }};
 
+        // cyclant
         isomorphicPress = new GenericCrafter("isomorphic-press") {{
             requirements(Category.crafting, ItemStack.with(Items.lead, 30, VeItems.aluminium, 40));
             outputItem = new ItemStack(Items.graphite, 2);
@@ -5516,6 +5422,7 @@ public class VeBlocks {
             consumePower(48f / 60f);
         }};
 
+        //endregion
 
         isomorphicCoreShard = new CoreBlock("isomorphic-core-shard") {{
             requirements(Category.effect, BuildVisibility.coreZoneOnly, ItemStack.with(Items.lead, 1600, VeItems.aluminium, 1000));

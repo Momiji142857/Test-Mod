@@ -77,8 +77,10 @@ public class VePal {
             heal40 = Color.valueOf("98ffa966"),
             heal53 = Color.valueOf("98ffa988"),
             heal67 = Color.valueOf("98ffa9aa"),
-            heal80 = Color.valueOf("98ffa9cc");
+            heal80 = Color.valueOf("98ffa9cc")
 
     // 黑色
-    // black = Color.black;
+    // black = Color.black
+    ;
+
 }
